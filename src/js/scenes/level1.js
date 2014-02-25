@@ -60,6 +60,8 @@ module.exports = {
       localStorage.setItem("highscore", this.score);
     }
 
+    localStorage.setItem("lastscore", this.score);
+
     this.game.time.events.remove(this.blockTimer);
     this.game.time.events.remove(this.scoreTimer);
     this.game.state.start('mainMenu');

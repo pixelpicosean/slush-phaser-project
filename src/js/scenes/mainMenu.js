@@ -8,6 +8,7 @@ module.exports = {
 
     var tween,
       highscore = localStorage.getItem("highscore"),
+      lastscore = localStorage.getItem("lastscore"),
       style = {
         font: '30px Arial',
         fill: '#fff'
@@ -26,6 +27,10 @@ module.exports = {
     this.labelTitle.alpha = 0;
 
     this.highscoreLabel = this.game.add.text(20, 280, "Highscore: " + this.highscore, style);
+
+    if (lastscore) {
+      this.lastscoreLabel = this.game.add.text(20, 240, "Lastscore: " + lastscore, style);
+    }
 
     tween = this.add.tween(this.background)
       .to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
