@@ -1,3 +1,10 @@
+/**
+ * @class base
+ * This is the root file for the Phaser Boilerplate. All other files are included from this one.
+ *
+ * @author Matt Gale <matt@littleball.co.uk>
+ **/
+
 /*globals require*/
 
 var Phaser = require('phaser/phaser'),
