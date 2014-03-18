@@ -1,5 +1,7 @@
 /*globals module*/
 
+var game = require('../game');
+
 module.exports = {
 
   preload: function () {
@@ -17,11 +19,11 @@ module.exports = {
     // auto pause if window looses focus
     this.stage.disableVisibilityChange = true;
 
-    if (this.game.device.desktop) {
+    if (game.device.desktop) {
       this.stage.scale.pageAlignHorizontally = true;
     }
 
-    this.game.state.start('preloader', true, false);
+    game.state.start('preloader', true, false);
   }
 
 };

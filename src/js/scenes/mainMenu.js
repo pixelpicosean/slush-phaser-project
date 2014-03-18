@@ -1,6 +1,7 @@
 /*globals module, require, localStorage*/
 
-var Phaser = require('phaser/phaser');
+var Phaser = require('phaser');
+var game = require('../game');
 
 module.exports = {
 
@@ -23,13 +24,13 @@ module.exports = {
     this.background = this.add.sprite(0, 0, 'menu_background');
     this.background.alpha = 0;
 
-    this.labelTitle = this.game.add.text(20, 20, "Tap to start", style);
+    this.labelTitle = game.add.text(20, 20, "Tap to start", style);
     this.labelTitle.alpha = 0;
 
-    this.highscoreLabel = this.game.add.text(20, 280, "Highscore: " + this.highscore, style);
+    this.highscoreLabel = game.add.text(20, 280, "High Score: " + this.highscore, style);
 
     if (lastscore) {
-      this.lastscoreLabel = this.game.add.text(20, 240, "Lastscore: " + lastscore, style);
+      this.lastscoreLabel = game.add.text(20, 240, "Last Score: " + lastscore, style);
     }
 
     tween = this.add.tween(this.background)
@@ -45,7 +46,7 @@ module.exports = {
   },
 
   startGame: function () {
-    this.game.state.start('level1', true, false);
+    game.state.start('level1', true, false);
   }
 
 };

@@ -7,13 +7,12 @@
 
 /*globals require*/
 
-var Phaser = require('phaser/phaser'),
+
+var	game = require('./game'),
     boot = require('./scenes/boot.js'),
     preloader = require('./scenes/preloader'),
     mainMenu = require('./scenes/mainMenu'),
     level1 = require('./scenes/level1');
-
-var game = new Phaser.Game(480, 320, Phaser.AUTO, 'content', null);
 
 game.state.add('boot', boot, false);
 game.state.add('preloader', preloader, false);

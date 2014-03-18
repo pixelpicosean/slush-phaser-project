@@ -1,6 +1,6 @@
 /*globals module, require*/
 
-var Phaser = require('phaser/phaser');
+var Phaser = require('phaser');
 
 module.exports = {
 
