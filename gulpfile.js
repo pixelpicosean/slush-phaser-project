@@ -4,7 +4,10 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     browserify = require('browserify'),
     imagemin = require('gulp-imagemin'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    source = require('vinyl-source-stream'),
+    streamify = require('gulp-streamify'),
+    uglify = require('gulp-uglify');
 
 gulp.task('default', ['compile', 'watch', 'server']);
 
@@ -21,11 +24,6 @@ gulp.task('script-hints', function () {
     });
 });
 
-var source = require('vinyl-source-stream');
-var streamify = require('gulp-streamify');
-var uglify = require('gulp-uglify');
-
-// using vinyl-source-stream
 gulp.task('script-compile', ['script-hints'], function () {
   var bundleStream = browserify('./src/js/base.js').bundle();
 
