@@ -1,7 +1,7 @@
 /*globals module, require, localStorage*/
 
-var Phaser = require('phaser');
-var game = require('../game');
+var Phaser = require('phaser'),
+  game = require('../game');
 
 module.exports = {
 

@@ -8,7 +8,7 @@
 /*globals require*/
 
 
-var	game = require('./game'),
+var game = require('./game'),
     boot = require('./scenes/boot.js'),
     preloader = require('./scenes/preloader'),
     mainMenu = require('./scenes/mainMenu'),

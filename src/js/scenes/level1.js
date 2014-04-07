@@ -1,7 +1,7 @@
 /* globals module, require, localStorage*/
 
-var Phaser = require('phaser');
-var game = require('../game');
+var Phaser = require('phaser'),
+  game = require('../game');
 
 
 module.exports = {
@@ -15,16 +15,14 @@ module.exports = {
     this.player = this.add.sprite(50, 50, 'game_sprites');
 
     game.physics.enable(this.player, Phaser.Physics.ARCADE);
-
     this.player.body.gravity.y = 1000;
 
     this.blocks = game.add.group();
     this.blocks.enableBody = true;
     this.blocks.physicsBodyType = Phaser.Physics.ARCADE;
 
-    this.blocks.createMultiple(20, 'game_sprites', 1);
+    this.blocks.createMultiple(10, 'game_sprites', 1);
 
-    game.physics.enable(this.player, Phaser.Physics.ARCADE);
 
     this.input.onDown.add(this.jump, this);
 
@@ -44,6 +42,8 @@ module.exports = {
       this.restartGame();
     }
     game.physics.arcade.overlap(this.player, this.blocks, this.restartGame, null, this);
+
+    this.labelScore.setText("" + this.score);
   },
 
   jump: function () {
@@ -57,6 +57,7 @@ module.exports = {
     var block = this.blocks.getFirstDead();
     block.reset(x, y);
     block.body.velocity.x = -200;
+    block.checkWorldBounds = true;
     block.outOfBoundsKill = true;
   },
 
