@@ -13,7 +13,11 @@ var game = require('./game'),
     boot = require('./scenes/boot.js'),
     preloader = require('./scenes/preloader'),
     mainMenu = require('./scenes/mainMenu'),
-    level1 = require('./scenes/level1');
+    level1 = require('./scenes/level1'),
+    localisation = require('./locale');
+
+// set the default language
+game.language = "en";
 
 game.state.add('boot', boot, false);
 game.state.add('preloader', preloader, false);
@@ -22,7 +26,7 @@ game.state.add('level1', level1, false);
 
 game.state.start('boot');
 
-},{"./game":2,"./scenes/boot.js":3,"./scenes/level1":4,"./scenes/mainMenu":5,"./scenes/preloader":6}],2:[function(require,module,exports){
+},{"./game":2,"./locale":3,"./scenes/boot.js":4,"./scenes/level1":5,"./scenes/mainMenu":6,"./scenes/preloader":7}],2:[function(require,module,exports){
 var Phaser = (window.Phaser);
 
 var game = new Phaser.Game(480, 320, Phaser.AUTO, 'content', null);
@@ -30,6 +34,20 @@ var game = new Phaser.Game(480, 320, Phaser.AUTO, 'content', null);
 module.exports = game;
 
 },{}],3:[function(require,module,exports){
+/**
+ * @class locale
+ */
+module.exports = {
+  "en": {
+    "mainMenu": {
+      "labelTitle": "Tap to start",
+      "highScore": "High Score",
+      "lastScore": "Last Score"
+    }
+  }
+};
+
+},{}],4:[function(require,module,exports){
 /*globals module*/
 
 var game = require('../game');
@@ -60,7 +78,7 @@ module.exports = {
 
 };
 
-},{"../game":2}],4:[function(require,module,exports){
+},{"../game":2}],5:[function(require,module,exports){
 /* globals module, require, localStorage*/
 
 var Phaser = (window.Phaser),
@@ -145,11 +163,12 @@ module.exports = {
 
 };
 
-},{"../game":2}],5:[function(require,module,exports){
+},{"../game":2}],6:[function(require,module,exports){
 /*globals module, require, localStorage*/
 
 var Phaser = (window.Phaser),
-  game = require('../game');
+  game = require('../game'),
+  localisation = require('../locale');
 
 module.exports = {
 
@@ -172,13 +191,13 @@ module.exports = {
     this.background = this.add.sprite(0, 0, 'menu_background');
     this.background.alpha = 0;
 
-    this.labelTitle = game.add.text(20, 20, "Tap to start", style);
+    this.labelTitle = game.add.text(20, 20, localisation[game.language].mainMenu.labelTitle, style);
     this.labelTitle.alpha = 0;
 
-    this.highscoreLabel = game.add.text(20, 280, "High Score: " + this.highscore, style);
+    this.highscoreLabel = game.add.text(20, 280, localisation[game.language].mainMenu.highScore + ": " + this.highscore, style);
 
     if (lastscore) {
-      this.lastscoreLabel = game.add.text(20, 240, "Last Score: " + lastscore, style);
+      this.lastscoreLabel = game.add.text(20, 240, localisation[game.language].mainMenu.lastScore + ": " + lastscore, style);
     }
 
     tween = this.add.tween(this.background)
@@ -199,7 +218,7 @@ module.exports = {
 
 };
 
-},{"../game":2}],6:[function(require,module,exports){
+},{"../game":2,"../locale":3}],7:[function(require,module,exports){
 /*globals module, require*/
 
 var Phaser = (window.Phaser);
