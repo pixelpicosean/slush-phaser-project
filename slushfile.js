@@ -12,7 +12,7 @@ gulp.task('default', function (done) {
     {
       type: 'input',
       name: 'name',
-      message: 'What is the project name'
+      message: 'Name your game'
     },
     {
       type: 'input',

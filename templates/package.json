@@ -1,6 +1,7 @@
 {
-  "name": "phaser-boilerplate",
+  "name": "<%= name %>",
   "version": "0.0.1",
+  "desciption": "<%= description %>",
   "devDependencies": {
     "gulp": "^3.5.2",
     "gulp-jshint": "^1.5.0",

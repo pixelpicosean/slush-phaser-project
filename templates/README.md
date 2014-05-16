@@ -1,6 +1,6 @@
-# Phaser Boilerplate
+# <%= name %>
 
-A starting point for a game with Phaser, with sample game (flappy birds clone).
+<%= description %>
 
 ## Pre-requesits
 
@@ -8,18 +8,7 @@ You will need to have [node][node] and [gulp][gulp] setup on your machine.
 
 ## Getting started
 
-Simply clone this repository
-
-```sh
-$ git clone git@github.com:Eruant/phaser-boilerplate.git my-great-game
-```
-Next you will need to get the `node` modules. A simple install command should cover this
-
-```sh
-$ npm install
-```
-
-Finally we can get the server running with gulp
+To package all source files and run on a local server simply run the following command:
 
 ```sh
 $ gulp
@@ -33,7 +22,7 @@ When editing, make sure you update the files within the `src` directory. These f
 
 The JavaScript files have been set in a modular way using [browserify][browserify]. This means you can treat the files like you do with `node` modules.
 
-Happy coding!
+Happy gaming!
 
 [node]:       http://nodejs.org/
 [gulp]:       http://gulpjs.com/
