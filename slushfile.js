@@ -42,6 +42,9 @@ gulp.task('default', function (done) {
       .pipe(gulp.dest('./'))
       .pipe(install())
       .on('finish', function () {
+        console.log('You new project has been set up');
+        console.log('');
+        console.log('Run `gulp` to run a local server');
         done();
       });
 
