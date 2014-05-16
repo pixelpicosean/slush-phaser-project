@@ -58,7 +58,7 @@ gulp.task('watch-markup', function () {
   });
 });
 
-gulp.task('server', function () {
+gulp.task('server', ['compile'], function () {
   return browserSync.init(['bin/js/*.js', 'bin/index.html'], {
     server: {
       baseDir: './bin'
