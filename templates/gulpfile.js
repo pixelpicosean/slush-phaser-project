@@ -5,9 +5,9 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     imagemin = require('gulp-imagemin'),
     browserSync = require('browser-sync'),
-    source = require('vinyl-source-stream'),
+    source = require('vinyl-source-stream')/*,
     streamify = require('gulp-streamify'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify')*/;
 
 gulp.task('default', ['compile', 'watch', 'server']);
 
@@ -39,7 +39,7 @@ gulp.task('markup', function () {
 });
 
 gulp.task('assets', function () {
-  return gulp.src(['src/assets/*.png', 'src/assets/*jpg'])
+  return gulp.src(['src/assets/*.png', 'src/assets/*.jpg'])
     .pipe(imagemin())
     .pipe(gulp.dest('bin/assets'));
 });
@@ -58,7 +58,7 @@ gulp.task('watch-markup', function () {
   });
 });
 
-gulp.task('server', function () {
+gulp.task('server', ['compile'], function () {
   return browserSync.init(['bin/js/*.js', 'bin/index.html'], {
     server: {
       baseDir: './bin'
