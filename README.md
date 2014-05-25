@@ -26,7 +26,7 @@ $ cd ./myGreatGame
 Then call the [slush][slush] template to begin.
 
 ```sh
-$ slush phaser-commonjs
+$ slush phaser-node
 ```
 
 
