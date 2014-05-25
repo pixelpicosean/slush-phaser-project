@@ -12,6 +12,14 @@ Parts included:
 
 You will need to have [node][node], [gulp][gulp] and [slush][slush] setup on your machine.
 
+## Installing Slush template
+
+To install the generator, run the following command, making sure you use the global tag.
+
+```sh
+npm install -g slush-phaser-node
+```
+
 ## Getting started
 
 Navigate to where you want to develop your game (you can create a new folder too if you like).
