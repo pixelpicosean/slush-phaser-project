@@ -1,0 +1,26 @@
+{
+  "name": "<%= packageName %>",
+  "version": "0.0.1",
+  "description": "<%= description %>",
+  "devDependencies": {
+    "gulp": "^3.5.2",
+    "gulp-jshint": "^1.5.0",
+    "gulp-browserify": "^0.4.6",
+    "gulp-concat": "^2.1.7",
+    "gulp-uglify": "^0.2.1",
+    "browser-sync": "^0.6.1",
+    "gulp-imagemin": "^0.1.5",
+    "vinyl-source-stream": "^0.1.1",
+    "gulp-streamify": "0.0.4",
+    "browserify": "^3.32.1",
+    "browserify-shim": "^3.3.1"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "phaser": "global:Phaser"
+  }
+}
