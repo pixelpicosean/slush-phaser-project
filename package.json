@@ -1,11 +1,19 @@
 {
   "name": "slush-phaser-browserify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A slush generator for createing phaser games using browserify as a module system",
   "keywords": [
     "slushgenerator"
   ],
   "author": "Matt Gale <matt@littleball.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eruant/slush-phaser-node"
+  },
+  "bugs": {
+    "url": "https://github.com/Eruant/slush-phaser-node/issues"
+  },
+  "licence": "MIT",
   "dependencies": {
     "gulp": "^3.6.2",
     "gulp-conflict": "^0.1.1",
