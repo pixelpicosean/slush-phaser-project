@@ -1,9 +1,12 @@
 {
   "name": "slush-phaser-node",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A slush generator for createing phaser games using browserify as a module system",
   "keywords": [
-    "slushgenerator"
+    "slushgenerator",
+    "phaser",
+    "browserify",
+    "browser-sync"
   ],
   "author": "Matt Gale <matt@littleball.co.uk>",
   "repository": {
