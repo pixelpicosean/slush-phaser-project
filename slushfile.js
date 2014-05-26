@@ -26,6 +26,18 @@ gulp.task('default', function (done) {
       message: 'Description'
     },
     {
+      type: 'input',
+      name: 'width',
+      message: 'Width',
+      default: 480
+    },
+    {
+      type: 'input',
+      name: 'height',
+      message: 'Height',
+      default: 320
+    },
+    {
       type: 'confirm',
       name: 'moveon',
       message: 'Continue?',
