@@ -18,7 +18,15 @@ gulp.task('default', function (done) {
     {
       type: 'input',
       name: 'packageName',
-      message: 'package name (e.g. my-game)'
+      message: 'package name (e.g. my-game)',
+      validate: function (input) {
+        var pass = input.match(/^[A-Za-z0-9\-]+$/);
+        if (pass) {
+          return true;
+        } else {
+          return "You may only use letters, numbers and hyphens (-)";
+        }
+      }
     },
     {
       type: 'input',
@@ -29,19 +37,35 @@ gulp.task('default', function (done) {
       type: 'input',
       name: 'width',
       message: 'Width',
-      default: 480
+      default: 480,
+      validate: function (input) {
+        var pass = input.match(/^\d+$/);
+        if (pass) {
+          return true;
+        } else {
+          return "Please enter a valid number";
+        }
+      }
     },
     {
       type: 'input',
       name: 'height',
       message: 'Height',
-      default: 320
+      default: 320,
+      validate: function (input) {
+        var pass = input.match(/^\d+$/);
+        if (pass) {
+          return true;
+        } else {
+          return "Please enter a valid number";
+        }
+      }
     },
     {
       type: 'confirm',
       name: 'moveon',
       message: 'Continue?',
-      default: false
+      default: true
     }
   ],
   function (answers) {
