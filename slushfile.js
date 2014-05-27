@@ -37,7 +37,6 @@ gulp.task('default', function (done) {
       type: 'input',
       name: 'width',
       message: 'Width',
-      default: 480,
       validate: function (input) {
         var pass = input.match(/^\d+$/);
         if (pass) {
@@ -51,7 +50,6 @@ gulp.task('default', function (done) {
       type: 'input',
       name: 'height',
       message: 'Height',
-      default: 320,
       validate: function (input) {
         var pass = input.match(/^\d+$/);
         if (pass) {
