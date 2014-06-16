@@ -1,18 +1,19 @@
 /*globals module, require*/
 
-var Phaser = require('phaser');
+var Phaser = require('phaser'),
+  game = require('../game');
 
 module.exports = {
 
   preload: function () {
 
-    this.loadingBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loadingBar');
+    this.loadingBar = this.add.sprite(game.world.centerX, game.world.centerY, 'loadingBar');
     this.loadingBar.anchor.x = 0.5;
     this.loadingBar.anchor.y = 0.5;
     this.load.setPreloadSprite(this.loadingBar);
 
-    this.game.load.image('menu_background', 'assets/menu_background.png');
-    this.game.load.spritesheet('game_sprites', 'assets/game_sprites.png', 32, 32);
+    game.load.image('menu_background', 'assets/menu_background.png');
+    game.load.spritesheet('game_sprites', 'assets/game_sprites.png', 32, 32);
 
   },
 
@@ -23,7 +24,7 @@ module.exports = {
   },
 
   startMainMenu: function () {
-    this.game.state.start('mainMenu', true, false);
+    game.state.start('mainMenu', true, false);
   }
 
 };
