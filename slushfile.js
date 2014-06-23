@@ -5,7 +5,8 @@ var gulp = require('gulp'),
   conflict = require('gulp-conflict'),
   template = require('gulp-template'),
   rename = require('gulp-rename'),
-  inquirer = require('inquirer');
+  inquirer = require('inquirer'),
+  shell = require('gulp-shell');
 
 gulp.task('default', function (done) {
 
@@ -84,6 +85,7 @@ gulp.task('default', function (done) {
       .pipe(conflict('./'))
       .pipe(gulp.dest('./'))
       .pipe(install())
+      .pipe(shell(['gulp']))
       .on('finish', function () {
         done();
       });
