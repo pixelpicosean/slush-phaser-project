@@ -4,9 +4,7 @@
 module.exports = {
   "en": {
     "mainMenu": {
-      "labelTitle": "Tap to start",
-      "highScore": "High Score",
-      "lastScore": "Last Score"
+      "labelTitle": "Example menu\nClick to continue"
     }
   }
 };
