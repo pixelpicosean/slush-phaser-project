@@ -9,12 +9,14 @@ module.exports = {
     var tween,
       style = {
         font: '30px Arial',
-        fill: '#fff'
+        fill: '#fff',
+        align: 'center'
       };
 
     game.stage.backgroundColor = '#4488cc';
 
-    this.labelTitle = game.add.text(20, 20, localisation[game.language].mainMenu.labelTitle, style);
+    this.labelTitle = game.add.text(game.width * 0.5, game.height * 0.5, localisation[game.language].mainMenu.labelTitle, style);
+    this.labelTitle.anchor.setTo(0.5, 0.5);
     this.labelTitle.alpha = 0;
 
     tween = this.add.tween(this.labelTitle)

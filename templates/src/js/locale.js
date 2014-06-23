@@ -7,7 +7,7 @@ module.exports = {
       "labelTitle": "Example menu\nClick to continue"
     },
     "mainGame": {
-      "labelTitle": "Add you game code here..."
+      "labelTitle": "Add you game code goes here..."
     }
   }
 };
