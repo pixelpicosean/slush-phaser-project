@@ -26,7 +26,7 @@ module.exports = {
   },
 
   startGame: function () {
-    game.state.start('level1', true, false);
+    game.state.start('mainGame', true, false);
   }
 
 };
