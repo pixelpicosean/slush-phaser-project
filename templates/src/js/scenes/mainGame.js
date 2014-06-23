@@ -14,6 +14,7 @@ module.exports = {
     game.stage.backgroundColor = '#fff';
 
     this.labelTitle = game.add.text(game.width * 0.5, game.height * 0.5, localisation[game.language].mainGame.labelTitle, style);
+    this.labelTitle.anchor.setTo(0.5, 0.5);
 
   },
 
