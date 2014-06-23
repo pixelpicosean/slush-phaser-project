@@ -4,9 +4,10 @@
 module.exports = {
   "en": {
     "mainMenu": {
-      "labelTitle": "Tap to start",
-      "highScore": "High Score",
-      "lastScore": "Last Score"
+      "labelTitle": "Example menu\nClick to continue"
+    },
+    "mainGame": {
+      "labelTitle": "Add you game code goes here..."
     }
   }
 };

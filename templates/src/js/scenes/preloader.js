@@ -7,14 +7,17 @@ module.exports = {
 
   preload: function () {
 
-    this.loadingBar = this.add.sprite(game.world.centerX, game.world.centerY, 'loadingBar');
-    this.loadingBar.anchor.x = 0.5;
-    this.loadingBar.anchor.y = 0.5;
+    game.stage.backgroundColor = '#4488cc';
+
+    var bmd = game.add.bitmapData(game.width, game.height);
+    bmd.context.fillStyle = '#fff';
+    bmd.context.fillRect(0, game.height - 10, game.width, 10);
+    bmd.dirty = true;
+
+    this.loadingBar = this.add.sprite(game.world.centerX, game.world.centerY, bmd);
     this.load.setPreloadSprite(this.loadingBar);
 
-    game.load.image('menu_background', 'assets/menu_background.png');
-    game.load.spritesheet('game_sprites', 'assets/game_sprites.png', 32, 32);
-
+    // load any other assets here
   },
 
   create: function () {
