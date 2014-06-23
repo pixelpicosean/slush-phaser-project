@@ -7,8 +7,10 @@ module.exports = {
 
   preload: function () {
 
+    game.stage.backgroundColor = '#4488cc';
+
     var bmd = game.add.bitmapData(game.width, game.height);
-    bmd.context.fillStyle = '#4488cc';
+    bmd.context.fillStyle = '#fff';
     bmd.context.fillRect(0, game.height - 10, game.width, 10);
     bmd.dirty = true;
 

@@ -12,6 +12,8 @@ module.exports = {
         fill: '#fff'
       };
 
+    game.stage.backgroundColor = '#4488cc';
+
     this.labelTitle = game.add.text(20, 20, localisation[game.language].mainMenu.labelTitle, style);
     this.labelTitle.alpha = 0;
 
