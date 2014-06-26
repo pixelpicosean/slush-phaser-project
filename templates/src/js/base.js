@@ -5,8 +5,6 @@
  * @author Matt Gale <matt@littleball.co.uk>
  **/
 
-/*globals require*/
-
 
 var game = require('./game'),
     boot = require('./scenes/boot.js'),

@@ -1,5 +1,3 @@
-/*globals module, require*/
-
 var Phaser = require('phaser'),
   game = require('../game');
 

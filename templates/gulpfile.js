@@ -1,5 +1,3 @@
-/*globals require, console*/
-
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     browserify = require('browserify'),
