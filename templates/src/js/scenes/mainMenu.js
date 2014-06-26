@@ -1,6 +1,7 @@
 var Phaser = require('phaser'),
   game = require('../game'),
-  localisation = require('../locale');
+  localisation = require('../locale'),
+  Label = require('../classes/label');
 
 module.exports = {
 
@@ -9,27 +10,33 @@ module.exports = {
     var tween,
       style = {
         font: '30px Arial',
-        fill: '#fff',
+        fill: '#ffffff',
         align: 'center'
       };
 
+    // set the background colour
     game.stage.backgroundColor = '#4488cc';
-
-    this.labelTitle = game.add.text(game.width * 0.5, game.height * 0.5, localisation[game.language].mainMenu.labelTitle, style);
-    this.labelTitle.anchor.setTo(0.5, 0.5);
+    
+    // add a label based on our custom class
+    this.labelTitle = new Label(game.width * 0.5, game.height * 0.5, localisation[game.language].mainMenu.labelTitle, style);
     this.labelTitle.alpha = 0;
+    game.add.existing(this.labelTitle);
 
-    tween = this.add.tween(this.labelTitle)
-      .to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
-
+    // fade the label in
+    tween = this.add.tween(this.labelTitle);
+    tween.to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
     tween.onComplete.add(this.addPointerEvents, this);
   },
 
   addPointerEvents: function () {
+    
+    // add an input listener
     this.input.onDown.addOnce(this.startGame, this);
   },
 
   startGame: function () {
+    
+    // go to the main game scene
     game.state.start('mainGame', true, false);
   }
 

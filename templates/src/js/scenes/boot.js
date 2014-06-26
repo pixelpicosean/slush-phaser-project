@@ -1,13 +1,11 @@
-/*globals module*/
-
-var game = require('../game');
+var Phaser = require('phaser'),
+  game = require('../game');
 
 module.exports = {
 
   preload: function () {
 
-    // the preloader images
-    this.load.image('loadingBar', 'assets/preloader_loading.png');
+    // add any images for the pre-loader here
 
   },
 
@@ -22,6 +20,9 @@ module.exports = {
     if (game.device.desktop) {
       this.stage.scale.pageAlignHorizontally = true;
     }
+    
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.setScreenSize();
 
     game.state.start('preloader', true, false);
   }
