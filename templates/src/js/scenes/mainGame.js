@@ -1,3 +1,7 @@
+/**
+ * @class mainGame
+ * A Phaser scene
+ */
 var game = require('../game'),
   localisation = require('../locale'),
   Label = require('../classes/label');

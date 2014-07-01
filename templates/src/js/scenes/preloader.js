@@ -1,3 +1,7 @@
+/**
+ * @class preloader
+ * A Phaser scene
+ */
 var Phaser = require('phaser'),
   game = require('../game');
 

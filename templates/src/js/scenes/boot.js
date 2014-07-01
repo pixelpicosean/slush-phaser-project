@@ -1,7 +1,6 @@
 /**
  * @class boot
- *
- * @author Matt Gale <matt@littleball.co.uk>
+ * A Phaser scene
  */
 var Phaser = require('phaser'),
   game = require('../game');

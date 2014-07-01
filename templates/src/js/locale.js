@@ -1,8 +1,6 @@
 /**
  * @class locale
  * A simple object to store translations for each language requred
- *
- * @author Matt Gale <matt@littleball.co.uk>
  */
 module.exports = {
   "en": {
