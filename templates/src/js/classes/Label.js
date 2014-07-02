@@ -1,6 +1,20 @@
+/**
+ * @class Label
+ * An extention to the text class, that adds some default styling
+ *
+ * @extends Phaser.Text
+ */
 var Phaser = require('phaser'),
   game = require('../game');
 
+/**
+ * @constructor
+ *
+ * @param x {Number} Horizontal position
+ * @param y {Number} Verticle position
+ * @param textContext {String} The text to display
+ * @param fontStyle {Object} Optional style of the text
+ */
 var Label = function (x, y, textContent, fontStyle) {
 
   // set a basic style
