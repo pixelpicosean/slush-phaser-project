@@ -34,7 +34,7 @@ gulp.task('script-compile', ['script-hints'], function () {
 });
 
 gulp.task('markup', function () {
-  return gulp.src('src/index.jade')
+  return gulp.src('src/templates/index.jade')
     .pipe(jade())
     .pipe(gulp.dest('bin'));
 });
