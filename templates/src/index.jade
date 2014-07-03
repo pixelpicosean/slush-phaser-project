@@ -6,9 +6,7 @@ head
 
   title <%= name %>
 
-  style(type="text/css", media="screen").
-    html, body { width: 100%; height: 100%; margin: 0; background-color: #000; }
-    canvas { margin: 0 auto; }
+  link(href="/css/root.css", type="text/css", rel="stylesheet")
 
 body
   script(src="//cdnjs.cloudflare.com/ajax/libs/phaser/2.0.4/phaser.min.js")
