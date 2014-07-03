@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['compile', 'watch', 'server']);
 
-gulp.task('compile', ['scripts', 'markup', 'assets']);
+gulp.task('compile', ['scripts', 'markup', 'styles', 'assets']);
 
 gulp.task('scripts', ['script-compile']);
 
