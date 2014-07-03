@@ -1,13 +1,10 @@
 # To do
 
+- [ ] Add Google analytics
+- [x] Browser Sync
 - [x] Code linting
 - [x] Image compression
-- [x] Browser Sync
-- [ ] Add Google analytics
-- [ ] Test suit
+- [x] Jade templating
 - [ ] Manifest files (auto-generated)
-
-# Nice to have
-
-- [ ] Jade templating
-- [ ] SASS
+- [x] SASS
+- [ ] Test suit

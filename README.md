@@ -7,6 +7,7 @@ Parts included:
 - [Phaser][phaser]: to build your games with
 - [Browserify][browserify]: to organise your code in a CommonJS format
 - [BrowserSync][browsersync]: to test your code
+- [Jade][jade]: for templating
 
 ## Pre-requesits
 
@@ -84,3 +85,4 @@ THE SOFTWARE.
 [phaser]:       http://phaser.io/
 [browserify]:   http://browserify.org/
 [commonjs]:     http://wiki.commonjs.org/wiki/CommonJS
+[jade]:         http://jade-lang.com/

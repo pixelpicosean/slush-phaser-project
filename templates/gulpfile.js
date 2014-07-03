@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     imagemin = require('gulp-imagemin'),
     browserSync = require('browser-sync'),
+    sass = require('gulp-sass'),
     source = require('vinyl-source-stream'),
     jade = require('gulp-jade')/*,
     streamify = require('gulp-streamify'),
@@ -10,7 +11,7 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['compile', 'watch', 'server']);
 
-gulp.task('compile', ['scripts', 'markup', 'assets']);
+gulp.task('compile', ['scripts', 'markup', 'styles', 'assets']);
 
 gulp.task('scripts', ['script-compile']);
 
@@ -36,6 +37,12 @@ gulp.task('markup', function () {
   return gulp.src('src/index.jade')
     .pipe(jade())
     .pipe(gulp.dest('bin'));
+});
+
+gulp.task('styles', function () {
+  return gulp.src('src/scss/root.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('bin/css'));
 });
 
 gulp.task('assets', function () {
