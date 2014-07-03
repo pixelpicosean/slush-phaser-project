@@ -1,6 +1,6 @@
 # To do
 
-- [ ] Add Google analytics
+- [/] Add Google analytics (partial-support added)
 - [x] Browser Sync
 - [x] Code linting
 - [x] Image compression
