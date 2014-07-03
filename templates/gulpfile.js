@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     imagemin = require('gulp-imagemin'),
     browserSync = require('browser-sync'),
-    source = require('vinyl-source-stream')/*,
+    source = require('vinyl-source-stream'),
+    jade = require('gulp-jade')/*,
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify')*/;
 
@@ -32,7 +33,8 @@ gulp.task('script-compile', ['script-hints'], function () {
 });
 
 gulp.task('markup', function () {
-  return gulp.src('src/index.html')
+  return gulp.src('src/index.jade')
+    .pipe(jade())
     .pipe(gulp.dest('bin'));
 });
 

@@ -31,6 +31,6 @@ var Label = function (x, y, textContent, fontStyle) {
 };
 
 Label.prototype = Object.create(Phaser.Text.prototype);
-Label.prototype.contructor = Label;
+Label.prototype.constructor = Label;
 
 module.exports = Label;
