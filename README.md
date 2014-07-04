@@ -8,6 +8,7 @@ Parts included:
 - [Browserify][browserify]: to organise your code in a CommonJS format
 - [BrowserSync][browsersync]: to test your code
 - [Jade][jade]: for templating
+- [Google Analytics][analytics]: for tracking
 
 ## Pre-requesits
 
@@ -51,6 +52,18 @@ When editing, make sure you update the files within the `src` directory. These f
 
 The JavaScript files have been set in a modular way using [browserify][browserify]. This means you can treat the files like you do with `node` modules.
 
+### Analytics
+
+Google analytics have been included so that you can track user actions. This is useful for seeing how far the user gets, which in turn will alert you to any bugs or levels that are impossible to complete.
+
+To track an event, just add the following code anywhere in your game:
+
+``` javascript
+game.analytics.trackEvent('action', 'label', 'value');
+```
+
+Only the action is required, but you may want to add extra options, such as health, level or simply what just happend.
+
 Happy coding!
 
 ---
@@ -86,3 +99,4 @@ THE SOFTWARE.
 [browserify]:   http://browserify.org/
 [commonjs]:     http://wiki.commonjs.org/wiki/CommonJS
 [jade]:         http://jade-lang.com/
+[analytics]:    http://www.google.com/analytics/
