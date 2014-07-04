@@ -10,6 +10,8 @@ module.exports = {
 
   create: function () {
 
+    game.analytics.trackEvent('scene', 'create', 'mainGame');
+
     game.stage.backgroundColor = '#fff';
 
     this.labelTitle = new Label(game.width * 0.5, game.height * 0.5, localisation[game.language].mainGame.labelTitle);
@@ -22,6 +24,9 @@ module.exports = {
   },
 
   restartGame: function () {
+
+    game.analytics.trackEvent('scene', 'create', 'restartGame');
+
     game.state.start('mainMenu');
   }
 

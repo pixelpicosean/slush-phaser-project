@@ -11,6 +11,8 @@ module.exports = {
 
   create: function () {
 
+    game.analytics.trackEvent('scene', 'create', 'mainMenu');
+
     var tween,
       style = {
         font: '30px Arial',

@@ -9,6 +9,8 @@ module.exports = {
 
   preload: function () {
 
+    game.analytics.trackEvent('scene', 'preload', 'preloader');
+
     game.stage.backgroundColor = '#4488cc';
 
     var bmd = game.add.bitmapData(game.width, game.height);
@@ -23,6 +25,9 @@ module.exports = {
   },
 
   create: function () {
+
+    game.analytics.trackEvent('scene', 'create', 'preloader');
+
     var tween = this.add.tween(this.loadingBar)
       .to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
     tween.onComplete.add(this.startMainMenu, this);
