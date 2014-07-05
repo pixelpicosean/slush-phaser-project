@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     sass = require('gulp-sass'),
     source = require('vinyl-source-stream'),
-    jade = require('gulp-jade')/*,
+    jade = require('gulp-jade'),
+    karma = require('gulp-karma')/*,
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify')*/;
 
@@ -21,6 +22,18 @@ gulp.task('script-hints', function () {
     .pipe(jshint.reporter('default'))
     .on('error', function () {
       console.warn('Error: JSHint encountered an error');
+    });
+});
+
+gulp.task('script-test', function () {
+  return gulp.src('src/**/*_spec.js')
+    .pipe(karma({
+      baseDir: './',
+      configFile: 'karma.config.js',
+      action: 'run'
+    }))
+    .on('error', function (err) {
+      throw err;
     });
 });
 

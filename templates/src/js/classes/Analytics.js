@@ -6,6 +6,10 @@
 
 var Analytics = function (category) {
 
+  if (!category) {
+    thoew new this.exception("No category defined");
+  }
+
   this.active = (ga) ? true : false;
   this.category = category;
 };
