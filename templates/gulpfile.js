@@ -37,7 +37,7 @@ gulp.task('script-test', function () {
     });
 });
 
-gulp.task('script-compile', ['script-hints'], function () {
+gulp.task('script-compile', ['script-hints', 'script-test'], function () {
   var bundleStream = browserify('./src/js/base.js').bundle();
 
   bundleStream
