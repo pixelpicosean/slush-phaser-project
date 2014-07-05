@@ -1,6 +1,7 @@
 describe('Analytics', function () {
 
-  var analytics = new Analytics('test-name');
+  var Analytics = require('./Analytics'),
+    analytics = new Analytics('test-name');
 
   it('should have an active value based on GA being defined', function () {
     expect(typeof analytics.active).toEqual('boolean');

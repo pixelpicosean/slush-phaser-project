@@ -17,6 +17,7 @@
     "gulp-streamify": "0.0.4",
     "gulp-uglify": "^0.2.1",
     "karma": "^0.12.16",
+    "karma-browserify": "^0.2.1",
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "vinyl-source-stream": "^0.1.1"
@@ -28,5 +29,9 @@
   },
   "browserify-shim": {
     "phaser": "global:Phaser"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/gulp script-test",
+    "start": "./node_modules/.bin/gulp default"
   }
 }
