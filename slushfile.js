@@ -60,6 +60,19 @@ gulp.task('default', function (done) {
       }
     },
     {
+      type: 'input',
+      name: 'ga',
+      message: 'Google Analytics Key',
+      validate: function (input) {
+        var pass = input.match(/[A-Z0-9\-o]+/);
+        if (pass) {
+          return true;
+        } else {
+          return "Please enter a valid Google Analytics Key or 'no'";
+        }
+      }
+    },
+    {
       type: 'confirm',
       name: 'moveon',
       message: 'Continue?',
