@@ -7,10 +7,10 @@
 var Analytics = function (category) {
 
   if (!category) {
-    thoew new this.exception("No category defined");
+    throw new this.exception("No category defined");
   }
 
-  this.active = (ga) ? true : false;
+  this.active = (window.ga) ? true : false;
   this.category = category;
 };
 
@@ -24,11 +24,11 @@ Analytics.prototype.trackEvent = function (action, label, value) {
   }
 
   if (value) {
-    ga('send', this.category, action, label, value);
+    window.ga('send', this.category, action, label, value);
   } else if (label) {
-    ga('send', this.category, action, label);
+    window.ga('send', this.category, action, label);
   } else {
-    ga('send', this.category, action);
+    window.ga('send', this.category, action);
   }
 
 };

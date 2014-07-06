@@ -17,7 +17,7 @@ gulp.task('compile', ['scripts', 'markup', 'styles', 'assets']);
 gulp.task('scripts', ['script-compile']);
 
 gulp.task('script-hints', function () {
-  return gulp.src('src/js/**/*.js')
+  return gulp.src(['src/js/**/*.js', '!src/js/**/*_spec.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .on('error', function () {
