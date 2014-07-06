@@ -19,7 +19,7 @@ game.state.add('preloader', preloader, false);
 game.state.add('mainMenu', mainMenu, false);
 game.state.add('mainGame', mainGame, false);
 
-game.analytics = new Analytics(<% packageName %>);
+game.analytics = new Analytics("<%= packageName %>");
 
 // kick off the game
 game.state.start('boot');

@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     sass = require('gulp-sass'),
     source = require('vinyl-source-stream'),
-    jade = require('gulp-jade')/*,
+    jade = require('gulp-jade'),
+    karma = require('gulp-karma')/*,
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify')*/;
 
@@ -16,7 +17,7 @@ gulp.task('compile', ['scripts', 'markup', 'styles', 'assets']);
 gulp.task('scripts', ['script-compile']);
 
 gulp.task('script-hints', function () {
-  return gulp.src('src/js/**/*.js')
+  return gulp.src(['src/js/**/*.js', '!src/js/**/*_spec.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .on('error', function () {
@@ -24,7 +25,19 @@ gulp.task('script-hints', function () {
     });
 });
 
-gulp.task('script-compile', ['script-hints'], function () {
+gulp.task('script-test', function () {
+  return gulp.src('src/**/*_spec.js')
+    .pipe(karma({
+      baseDir: './',
+      configFile: 'karma.config.js',
+      action: 'run'
+    }))
+    .on('error', function (err) {
+      throw err;
+    });
+});
+
+gulp.task('script-compile', ['script-hints', 'script-test'], function () {
   var bundleStream = browserify('./src/js/base.js').bundle();
 
   bundleStream
