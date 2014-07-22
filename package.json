@@ -8,13 +8,13 @@
     "es6",
     "browser-sync"
   ],
-  "author": "Sean Bohan <pixelpicosean@gmail.com>, Matt Gale <matt@littleball.co.uk>",
+  "author": "Sean Bohan <pixelpicosean@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PixelPicoSean/slush-phaser-node"
+    "url": "https://github.com/PixelPicoSean/slush-phaser-ci"
   },
   "bugs": {
-    "url": "https://github.com/PixelPicoSean/slush-phaser-node/issues"
+    "url": "https://github.com/PixelPicoSean/slush-phaser-ci/issues"
   },
   "licence": "MIT",
   "dependencies": {
