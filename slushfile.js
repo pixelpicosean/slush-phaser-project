@@ -84,10 +84,10 @@ gulp.task('default', function (done) {
       return done();
     }
 
-    gulp.src([__dirname + '/templates/**/*.png'])
-      .pipe(gulp.dest('./'));
+    /*gulp.src([__dirname + '/templates/project/media/**'])
+      .pipe(gulp.dest('./project/media/'));*/
 
-    gulp.src([__dirname + '/templates/**', __dirname + '/templates/**/*.png'])
+    gulp.src([__dirname + '/templates/**'])
       .pipe(template(answers))
       .pipe(rename(function (file) {
         if (file.basename[0] === '_') {
