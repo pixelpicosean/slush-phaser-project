@@ -10,8 +10,11 @@ App.start = function() {
         <%= width %>,
         <%= height %>,
         Phaser.AUTO,
-        '<%= projectName %>'
+        '<%= packageName %>'
     );
+
+    game.analytics = new Analytics('<%= packageName %>');
+
     game.state.add('boot', Boot);
     game.state.add('preloader', Preloader);
     game.state.add('menu', Menu);
