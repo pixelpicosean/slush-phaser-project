@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   concat = require('gulp-concat'),
   rimraf = require('gulp-rimraf'),
+  addSrc = require('gulp-add-src'),
   processhtml = require('gulp-processhtml'),
   minifycss = require('gulp-minify-css'),
   es6ModuleTranspiler = require('gulp-es6-module-transpiler'),
@@ -97,14 +98,16 @@ gulp.task('minifycss', function() {
 });
 
 gulp.task('uglify', ['lint'], function () {
-  var bundleStream = browserify('./project/js/base.js').bundle();
-
-  bundleStream
-    .pipe(source('game.js'))
-    .pipe(gulp.dest(paths.product));
-
-  gulp.src(paths.product + '/game.js')
-    .pipe(uglify({ outSourceMaps: false }))
+  return gulp.src('./project/js/**/*.js')
+    .pipe(es6ModuleTranspiler({
+      type: 'amd'
+    }))
+    .pipe(addSrc([
+      './project/bower_components/almond/almond.js',
+      './project/bower_components/phaser-official/phaser.js'
+    ]))
+    .pipe(concat('game.js'))
+    .pipe(uglify())
     .pipe(gulp.dest(paths.product));
 });
 

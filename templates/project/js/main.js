@@ -1,3 +1,5 @@
+import Analytics from 'utils/analytics';
+
 import Boot from 'scenes/boot';
 import Preloader from 'scenes/preloader';
 import Menu from 'scenes/menu';
