@@ -30,13 +30,13 @@ gulp.task('script-compile', ['script-hints'], function () {
   bundleStream
     .pipe(source('bundle.js'))
     /*.pipe(streamify(uglify()))*/
-    .pipe(gulp.dest('bin/js'));
+    .pipe(gulp.dest('dev/js'));
 });
 
 gulp.task('styles', function () {
   return gulp.src('project/scss/root.scss')
     .pipe(sass())
-    .pipe(gulp.dest('bin/css'));
+    .pipe(gulp.dest('dev/css'));
 });
 
 gulp.task('processhtml', function() {
@@ -48,7 +48,7 @@ gulp.task('processhtml', function() {
 gulp.task('assets', function () {
   return gulp.src(['project/assets/*.png', 'project/assets/*.jpg'])
     .pipe(imagemin())
-    .pipe(gulp.dest('bin/assets'));
+    .pipe(gulp.dest('dev/assets'));
 });
 
 gulp.task('watch', ['watch-scripts', 'watch-html']);
@@ -66,9 +66,9 @@ gulp.task('watch-html', function () {
 });
 
 gulp.task('server', ['compile'], function () {
-  return browserSync.init(['bin/js/*.js', 'bin/index.html'], {
+  return browserSync.init(['dev/js/*.js', 'dev/index.html'], {
     server: {
-      baseDir: './bin'
+      baseDir: './dev'
     }
   });
 });
