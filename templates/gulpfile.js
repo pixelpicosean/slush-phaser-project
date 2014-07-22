@@ -6,7 +6,6 @@ var gulp = require('gulp'),
   es6ModuleTranspiler = require('gulp-es6-module-transpiler'),
   jshint = require('gulp-jshint'),
   rename = require('gulp-rename'),
-  browserify = require('browserify'),
   // imagemin = require('gulp-imagemin'),
   uglify = require('gulp-uglify');
   browserSync = require('browser-sync'),
@@ -44,12 +43,6 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', ['lint'], function () {
-  /*var bundleStream = browserify('./project/js/base.js').bundle();
-
-  bundleStream
-    .pipe(source('game.js'))
-    .pipe(gulp.dest(paths.develop));
-*/
   return gulp.src('./project/js/**/*.js')
     .pipe(es6ModuleTranspiler({
       type: 'amd'
