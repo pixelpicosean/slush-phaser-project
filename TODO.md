@@ -3,5 +3,5 @@
 - [x] Add Google analytics
 - [x] Browser Sync
 - [x] Code linting
-- [x] Image compression
+- [ ] Image compression
 - [ ] Manifest files (auto-generated)

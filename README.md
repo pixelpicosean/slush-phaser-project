@@ -24,7 +24,7 @@ You will need to have [node][node], [gulp][gulp] and [slush][slush] setup on you
 To install the generator, clone this folk(not the original one), then run the following command.
 
 ```sh
-cd slush-phaser-ci
+cd slush-phaser-project
 npm link
 ```
 
@@ -42,7 +42,7 @@ $ cd ./myGreatGame
 Then call the [slush][slush] template to begin.
 
 ```sh
-$ slush phaser-ci
+$ slush phaser-project
 ```
 
 
