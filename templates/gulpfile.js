@@ -97,15 +97,12 @@ gulp.task('minifycss', function() {
     .pipe(gulp.dest(paths.product));
 });
 
-gulp.task('uglify', ['lint'], function () {
-  return gulp.src('./project/js/**/*.js')
-    .pipe(es6ModuleTranspiler({
-      type: 'amd'
-    }))
-    .pipe(addSrc([
+gulp.task('uglify', ['scripts'], function () {
+  return gulp.src([
       './project/bower_components/almond/almond.js',
-      './project/bower_components/phaser-official/phaser.js'
-    ]))
+      './project/bower_components/phaser-official/build/phaser.js',
+      './project/game.js'
+    ])
     .pipe(concat('game.js'))
     .pipe(uglify())
     .pipe(gulp.dest(paths.product));
