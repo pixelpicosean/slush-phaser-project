@@ -96,11 +96,13 @@ gulp.task('minifycss', function() {
 });
 
 gulp.task('uglify', ['lint'], function () {
-  var bundleStream = browserify(paths.develop + '/js/base.js').bundle();
+  var bundleStream = browserify('./project/js/base.js').bundle();
 
   bundleStream
     .pipe(source('game.js'))
-    .pipe(gulp.dest(path.product))
+    .pipe(gulp.dest(paths.product));
+
+  gulp.src(paths.product + '/game.js')
     .pipe(uglify({ outSourceMaps: false }))
     .pipe(gulp.dest(paths.product));
 });
