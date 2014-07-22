@@ -3,35 +3,20 @@
   "version": "0.0.1",
   "description": "<%= description %>",
   "devDependencies": {
-    "browser-sync": "^0.6.1",
-    "browserify": "^3.32.1",
-    "browserify-shim": "^3.3.1",
+    "bower": "latest",
     "gulp": "^3.5.2",
-    "gulp-browserify": "^0.4.6",
     "gulp-concat": "^2.1.7",
     "gulp-imagemin": "^0.1.5",
-    "gulp-jade": "^0.6.1",
+    "gulp-processhtml": "latest",
     "gulp-jshint": "^1.5.0",
-    "gulp-karma": "0.0.4",
     "gulp-sass": "^0.7.2",
     "gulp-streamify": "0.0.4",
     "gulp-uglify": "^0.2.1",
-    "karma": "^0.12.16",
-    "karma-browserify": "^0.2.1",
-    "karma-jasmine": "^0.1.5",
-    "karma-phantomjs-launcher": "^0.1.4",
+    "browser-sync": "^0.6.1",
     "vinyl-source-stream": "^0.1.1"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "phaser": "global:Phaser"
-  },
   "scripts": {
-    "test": "./node_modules/.bin/gulp script-test",
+    "post-install": "node ./node_modules/bower/bin/bower install",
     "start": "./node_modules/.bin/gulp default"
   }
 }
