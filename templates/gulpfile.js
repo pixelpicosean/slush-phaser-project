@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+  gutil = require('gulp-util'),
   concat = require('gulp-concat'),
   rimraf = require('gulp-rimraf'),
   addSrc = require('gulp-add-src'),
@@ -29,7 +30,8 @@ gulp.task('lint', function () {
 
 gulp.task('clean', function() {
   return gulp.src(paths.product, { read: false })
-    .pipe(rimraf({ force: true }));
+    .pipe(rimraf({ force: true }))
+    .on('error', gutil.log);
 });
 
 gulp.task('compile', ['html', 'styles', 'scripts']);
@@ -40,7 +42,8 @@ gulp.task('html', function () {});
 gulp.task('styles', function () {
   return gulp.src(paths.develop + '/css/*.css')
     .pipe(concat('style.css'))
-    .pipe(gulp.dest(paths.develop));
+    .pipe(gulp.dest(paths.develop))
+    .on('error', gutil.log);
 });
 
 gulp.task('scripts', ['lint'], function () {
@@ -49,7 +52,8 @@ gulp.task('scripts', ['lint'], function () {
       type: 'amd'
     }))
     .pipe(concat('game.js'))
-    .pipe(gulp.dest('./project'));
+    .pipe(gulp.dest('./project'))
+    .on('error', gutil.log);
 });
 
 gulp.task('watch-scripts', function () {
@@ -84,7 +88,8 @@ gulp.task('server', ['compile'], function () {
 gulp.task('process-html', function() {
   return gulp.src(paths.develop + '/index.html')
     .pipe(processhtml('index.html'))
-    .pipe(gulp.dest(paths.product));
+    .pipe(gulp.dest(paths.product))
+    .on('error', gutil.log);
 });
 
 gulp.task('minifycss', function() {
@@ -94,7 +99,8 @@ gulp.task('minifycss', function() {
       removeEmpty: true
     }))
     .pipe(rename('style.css'))
-    .pipe(gulp.dest(paths.product));
+    .pipe(gulp.dest(paths.product))
+    .on('error', gutil.log);
 });
 
 gulp.task('uglify', ['scripts'], function () {
@@ -105,13 +111,15 @@ gulp.task('uglify', ['scripts'], function () {
     ])
     .pipe(concat('game.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(paths.product));
+    .pipe(gulp.dest(paths.product))
+    .on('error', gutil.log);
 });
 
 gulp.task('process-assets', function () {
   return gulp.src(['assets/*.png', 'assets/*.jpg'])
     // .pipe(imagemin())
-    .pipe(gulp.dest(paths.product + '/assets'));
+    .pipe(gulp.dest(paths.product + '/assets'))
+    .on('error', gutil.log);
 });
 
 // Runnable tasks
