@@ -1,27 +1,24 @@
 var gulp = require('gulp'),
+  concat = require('gulp-concat'),
+  clean = require('gulp-clean'),
   processhtml = require('gulp-processhtml'),
+  minifycss = require('gulp-minifycss'),
   jshint = require('gulp-jshint'),
+  rename = require('gulp-rename'),
   browserify = require('browserify'),
   imagemin = require('gulp-imagemin'),
+  uglify = require('gulp-uglify');
   browserSync = require('browser-sync'),
-  source = require('vinyl-source-stream'),/*,
-  streamify = require('gulp-streamify'),
-  uglify = require('gulp-uglify')*/;
+  source = require('vinyl-source-stream');
 
 var paths = {
-  project: 'project',
-  develop: 'dev',
+  develop: 'project',
   product: 'dist'
 };
 
-gulp.task('default', ['compile', 'watch', 'server']);
-
-gulp.task('compile', ['scripts', 'styles', 'assets']);
-
-gulp.task('scripts', ['script-compile']);
-
-gulp.task('script-hints', function () {
-  return gulp.src([paths.project + '/js/**/*.js'])
+// General tasks
+gulp.task('lint', function () {
+  return gulp.src([paths.develop + '/js/**/*.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .on('error', function () {
@@ -29,50 +26,91 @@ gulp.task('script-hints', function () {
     });
 });
 
-gulp.task('script-compile', ['script-hints'], function () {
-  var bundleStream = browserify(paths.project + '/js/base.js').bundle();
-
-  bundleStream
-    .pipe(source('bundle.js'))
-    /*.pipe(streamify(uglify()))*/
-    .pipe(gulp.dest(paths.develop + '/js'));
+gulp.task('clean', function() {
+  return gulp.src(paths.product, { read: false })
+    .pipe(clean({ force: true }));
 });
+
+gulp.task('compile', ['html', 'styles', 'scripts']);
+
+// Development tasks
+gulp.task('html', function () {});
 
 gulp.task('styles', function () {
-  return gulp.src(paths.project + '/css/*.css')
-    .pipe(gulp.dest(paths.develop + '/css'));
-});
-
-gulp.task('processhtml', function() {
-  return gulp.src(paths.project + '/index.html')
-    .pipe(processhtml('index.html'))
+  return gulp.src(paths.develop + '/css/*.css')
+    .pipe(concat('style.css'))
     .pipe(gulp.dest(paths.develop));
 });
 
-gulp.task('assets', function () {
-  return gulp.src([paths.project + '/assets/*.png', paths.project + '/assets/*.jpg'])
-    .pipe(imagemin())
-    .pipe(gulp.dest(paths.develop + '/assets'));
+gulp.task('scripts', ['lint'], function () {
+  var bundleStream = browserify(paths.develop + '/js/base.js').bundle();
+
+  bundleStream
+    .pipe(source('game.js'))
+    .pipe(gulp.dest(paths.develop));
 });
 
-gulp.task('watch', ['watch-scripts', 'watch-html']);
-
 gulp.task('watch-scripts', function () {
-  return gulp.watch(paths.project + '/js/**/*.js', function () {
+  return gulp.watch(paths.develop + '/js/**/*.js', function () {
     gulp.run('scripts');
   });
 });
 
-gulp.task('watch-html', function () {
-  return gulp.watch(paths.project + '/index.html', function () {
-    gulp.run('processhtml');
+gulp.task('watch-styles', function () {
+  return gulp.watch(paths.develop + '/css/*.css', function () {
+    gulp.run('styles');
   });
 });
 
+gulp.task('watch-html', function () {
+  return gulp.watch(paths.develop + '/index.html', function () {
+    gulp.run('html');
+  });
+});
+
+gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-html']);
+
 gulp.task('server', ['compile'], function () {
-  return browserSync.init([paths.develop + '/js/bundle.js', paths.develop + '/index.html'], {
+  return browserSync.init(['game.js', 'index.html', 'style.css'], {
     server: {
-      baseDir: './'
+      baseDir: paths.develop
     }
   });
 });
+
+// Production tasks
+gulp.task('process-html', function() {
+  return gulp.src(paths.develop + '/index.html')
+    .pipe(processhtml('index.html'))
+    .pipe(gulp.dest(paths.product));
+});
+
+gulp.task('minifycss', function() {
+  return gulp.src(paths.develop + '/css/*.css')
+    .pipe(minifycss({
+      keepSpecialComments: false,
+      removeEmpty: true
+    }))
+    .pipe(rename('style.css'))
+    .pipe(gulp.dest(paths.product));
+});
+
+gulp.task('uglify', ['lint'], function () {
+  var bundleStream = browserify(paths.develop + '/js/base.js').bundle();
+
+  bundleStream
+    .pipe(source('game.js'))
+    .pipe(gulp.dest(path.product))
+    .pipe(uglify(outSourceMaps: false))
+    .pipe(gulp.dest(paths.product));
+});
+
+gulp.task('process-assets', function () {
+  return gulp.src(['assets/*.png', 'assets/*.jpg'])
+    .pipe(imagemin())
+    .pipe(gulp.dest(paths.product + '/assets'));
+});
+
+// Runnable tasks
+gulp.task('default', ['compile', 'watch', 'server']);
+gulp.task('build', ['clean', 'process-html', 'minifycss', 'uglify', 'process-assets']);

@@ -6,13 +6,24 @@
     "bower": "latest",
     "gulp": "^3.5.2",
     "gulp-concat": "^2.1.7",
-    "gulp-imagemin": "^0.1.5",
+    "gulp-clean": "latest",
     "gulp-processhtml": "latest",
+    "gulp-minifycss": "latest",
     "gulp-jshint": "^1.5.0",
-    "gulp-streamify": "0.0.4",
+    "gulp-rename": "latest",
+    "gulp-browserify": "latest",
+    "gulp-imagemin": "^0.1.5",
     "gulp-uglify": "^0.2.1",
     "browser-sync": "^0.6.1",
     "vinyl-source-stream": "^0.1.1"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "phaser": "global:Phaser"
   },
   "scripts": {
     "post-install": "node ./node_modules/bower/bin/bower install",
