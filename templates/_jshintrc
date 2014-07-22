@@ -14,6 +14,7 @@
   "globals": {
     "window": true,
     "require": true,
-    "module": true
+    "module": true,
+    "Phaser": true
   }
 }
