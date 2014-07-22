@@ -2,11 +2,11 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   rimraf = require('gulp-rimraf'),
   processhtml = require('gulp-processhtml'),
-  minifycss = require('gulp-minifycss'),
+  minifycss = require('gulp-minify-css'),
   jshint = require('gulp-jshint'),
   rename = require('gulp-rename'),
   browserify = require('browserify'),
-  imagemin = require('gulp-imagemin'),
+  // imagemin = require('gulp-imagemin'),
   uglify = require('gulp-uglify');
   browserSync = require('browser-sync'),
   source = require('vinyl-source-stream');
@@ -43,7 +43,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', ['lint'], function () {
-  var bundleStream = browserify(paths.develop + '/js/base.js').bundle();
+  var bundleStream = browserify('./project/js/base.js').bundle();
 
   bundleStream
     .pipe(source('game.js'))
@@ -101,13 +101,13 @@ gulp.task('uglify', ['lint'], function () {
   bundleStream
     .pipe(source('game.js'))
     .pipe(gulp.dest(path.product))
-    .pipe(uglify(outSourceMaps: false))
+    .pipe(uglify({ outSourceMaps: false }))
     .pipe(gulp.dest(paths.product));
 });
 
 gulp.task('process-assets', function () {
   return gulp.src(['assets/*.png', 'assets/*.jpg'])
-    .pipe(imagemin())
+    // .pipe(imagemin())
     .pipe(gulp.dest(paths.product + '/assets'));
 });
 
