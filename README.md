@@ -1,13 +1,14 @@
 # Phaser Slush Generator
 
-A starting point to build a game with [Phaser][phaser], using [CommonJS modules][commonjs] to organise your code.
+**Note: this is a folk which will look very different from the origin** 
+
+A starting point to build a game with [Phaser][phaser], using "ES6 modules" to organise your code.
 
 Parts included:
 
 - [Phaser][phaser]: to build your games with
-- [Browserify][browserify]: to organise your code in a CommonJS format
-- [BrowserSync][browsersync]: to test your code
-- [Jade][jade]: for templating
+- [ES6 Module Transpiler][es6-module-transpiler]: to organise your code in future format
+- [BrowserSync][browsersync]: for automatically dev reload
 - [Google Analytics][analytics]: for tracking
 
 ## Pre-requesits
@@ -16,10 +17,11 @@ You will need to have [node][node], [gulp][gulp] and [slush][slush] setup on you
 
 ## Installing Slush template
 
-To install the generator, run the following command, making sure you use the global tag.
+To install the generator, clone this folk(not the original one), then run the following command.
 
 ```sh
-npm install -g slush-phaser-node
+cd slush-phaser-node
+npm link
 ```
 
 ## Getting started
@@ -48,9 +50,9 @@ $ gulp
 
 ## Editing
 
-When editing, make sure you update the files within the `src` directory. These files will then be compressed and added to the `bin` directory ready for publishing.
+When editing, make sure you update the files within the `project` directory. These files will then be compressed and added to the `dist` directory ready for publishing.
 
-The JavaScript files have been set in a modular way using [browserify][browserify]. This means you can treat the files like you do with `node` modules.
+The JavaScript files have been set in a modular way using [es6-module-transpiler][es6-module-transpiler]. This means you can use the future module system.
 
 ### Analytics
 
@@ -70,7 +72,7 @@ Happy coding!
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Matt Gale
+Copyright (c) 2014 Matt Gale, Sean Bohan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -92,11 +94,8 @@ THE SOFTWARE.
 
 [node]:         http://nodejs.org/
 [gulp]:         http://gulpjs.com/
-[browserify]:   http://browserify.org/
 [slush]:        https://github.com/klei/slush
 [browsersync]:  http://www.browsersync.io/
 [phaser]:       http://phaser.io/
-[browserify]:   http://browserify.org/
-[commonjs]:     http://wiki.commonjs.org/wiki/CommonJS
-[jade]:         http://jade-lang.com/
+[es6-module-transpiler]:     https://github.com/square/es6-module-transpiler
 [analytics]:    http://www.google.com/analytics/
