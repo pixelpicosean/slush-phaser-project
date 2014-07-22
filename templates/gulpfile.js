@@ -4,7 +4,6 @@ var gulp = require('gulp'),
   browserify = require('browserify'),
   imagemin = require('gulp-imagemin'),
   browserSync = require('browser-sync'),
-  sass = require('gulp-sass'),
   source = require('vinyl-source-stream'),/*,
   streamify = require('gulp-streamify'),
   uglify = require('gulp-uglify')*/;
@@ -40,8 +39,7 @@ gulp.task('script-compile', ['script-hints'], function () {
 });
 
 gulp.task('styles', function () {
-  return gulp.src(paths.project + '/scss/root.scss')
-    .pipe(sass())
+  return gulp.src(paths.project + '/css/*.css')
     .pipe(gulp.dest(paths.develop + '/css'));
 });
 
@@ -49,7 +47,7 @@ gulp.task('processhtml', function() {
   return gulp.src(paths.project + '/index.html')
     .pipe(processhtml('index.html'))
     .pipe(gulp.dest(paths.develop));
-})
+});
 
 gulp.task('assets', function () {
   return gulp.src([paths.project + '/assets/*.png', paths.project + '/assets/*.jpg'])

@@ -5,4 +5,3 @@
 - [x] Code linting
 - [x] Image compression
 - [ ] Manifest files (auto-generated)
-- [x] SASS
