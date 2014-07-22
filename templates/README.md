@@ -18,12 +18,12 @@ This should open a browser window with the game running locally. You can copy th
 
 ## Editing
 
-When editing, make sure you update the files within the `src` directory. These files will then be compressed and added to the `bin` directory ready for publishing.
+When editing, make sure you update the files within the `project` directory. These files will then be compressed and added to the `dist` directory ready for publishing.
 
-The JavaScript files have been set in a modular way using [browserify][browserify]. This means you can treat the files like you do with `node` modules.
+The JavaScript files have been set in ES6 modular way using [es6-module-transpiler][es6-module-transpiler]. This means you can treat the files like you do with `node` modules.
 
 Happy gaming!
 
 [node]:       http://nodejs.org/
 [gulp]:       http://gulpjs.com/
-[browserify]: http://browserify.org/
+[es6-module-transpiler]: https://github.com/square/es6-module-transpiler
