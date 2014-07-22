@@ -1,8 +1,12 @@
 # Phaser Slush Generator
 
-**Note: this is a folk which will look very different from the origin** 
-
 A starting point to build a game with [Phaser][phaser], using "ES6 modules" to organise your code.
+
+## Introduction
+This project is a folk of [slush-phaser-node][slush-phaser-node], and here's why I prefer to make it different from the origin:
+- (The most) This is going to be the project generator for my game editor(Circulus, not yet opened to public), so the layout will be different
+- I prefer not to use HTML template for game dev
+- I removed test support to make it run faster
 
 Parts included:
 
@@ -20,7 +24,7 @@ You will need to have [node][node], [gulp][gulp] and [slush][slush] setup on you
 To install the generator, clone this folk(not the original one), then run the following command.
 
 ```sh
-cd slush-phaser-node
+cd slush-phaser-ci
 npm link
 ```
 
@@ -38,7 +42,7 @@ $ cd ./myGreatGame
 Then call the [slush][slush] template to begin.
 
 ```sh
-$ slush phaser-node
+$ slush phaser-ci
 ```
 
 
