@@ -72,7 +72,7 @@ gulp.task('watch-html', function () {
 gulp.task('server', ['compile'], function () {
   return browserSync.init([paths.develop + '/js/bundle.js', paths.develop + '/index.html'], {
     server: {
-      baseDir: paths.develop
+      baseDir: './'
     }
   });
 });
