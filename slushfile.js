@@ -62,7 +62,7 @@ gulp.task('default', function (done) {
     {
       type: 'input',
       name: 'ga',
-      message: 'Google Analytics Key',
+      message: 'Google Analytics Key (enter "no" to skip)',
       validate: function (input) {
         var pass = input.match(/[A-Z0-9\-o]+/);
         if (pass) {
