@@ -1,25 +1,12 @@
-/**
- * @class mainGame
- * A Phaser scene
- */
-var game = require('../game');
+function Game() {}
 
-module.exports = {
-
-  create: function () {
-    game.analytics.trackEvent('scene', 'create', 'mainGame');
-
-    game.stage.backgroundColor = '#fff';
-  },
-
-  update: function () {
-    // add your game loop code here
-  },
-
-  restartGame: function () {
-    game.analytics.trackEvent('scene', 'create', 'restartGame');
-
-    game.state.start('menu');
-  }
-
+Game.prototype.preload = function () {
+  game.analytics.trackEvent('scene', 'preload', 'game');
+  game.stage.backgroundColor = '#000';
 };
+
+Game.prototype.create = function () {
+  game.analytics.trackEvent('scene', 'create', 'game');
+};
+
+export default Game;

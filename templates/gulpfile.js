@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   rimraf = require('gulp-rimraf'),
   processhtml = require('gulp-processhtml'),
   minifycss = require('gulp-minify-css'),
+  es6ModuleTranspiler = require('gulp-es6-module-transpiler'),
   jshint = require('gulp-jshint'),
   rename = require('gulp-rename'),
   browserify = require('browserify'),
@@ -43,11 +44,18 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', ['lint'], function () {
-  var bundleStream = browserify('./project/js/base.js').bundle();
+  /*var bundleStream = browserify('./project/js/base.js').bundle();
 
   bundleStream
     .pipe(source('game.js'))
     .pipe(gulp.dest(paths.develop));
+*/
+  return gulp.src('./project/js/**/*.js')
+    .pipe(es6ModuleTranspiler({
+      type: 'amd'
+    }))
+    .pipe(concat('game.js'))
+    .pipe(gulp.dest('./project'));
 });
 
 gulp.task('watch-scripts', function () {

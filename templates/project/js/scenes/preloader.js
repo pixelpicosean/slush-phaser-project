@@ -1,26 +1,12 @@
-/**
- * @class preloader
- * A Phaser scene
- */
-var Phaser = require('phaser'),
-  game = require('../game');
+function Preloader() {}
 
-module.exports = {
-
-  preload: function () {
-    game.analytics.trackEvent('scene', 'preload', 'preloader');
-
-    game.stage.backgroundColor = '#4488cc';
-
-    // load any other assets here
-  },
-
-  create: function () {
-    game.analytics.trackEvent('scene', 'create', 'preloader');
-  },
-
-  startMainMenu: function () {
-    game.state.start('menu', true, false);
-  }
-
+Preloader.prototype.preload = function () {
+  game.analytics.trackEvent('scene', 'preload', 'preloader');
+  game.stage.backgroundColor = '#4488cc';
 };
+
+Preloader.prototype.create = function () {
+  game.analytics.trackEvent('scene', 'create', 'preloader');
+};
+
+export default Preloader;
