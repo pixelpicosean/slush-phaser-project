@@ -16,7 +16,7 @@ gulp.task('compile', ['scripts', 'styles', 'assets']);
 gulp.task('scripts', ['script-compile']);
 
 gulp.task('script-hints', function () {
-  return gulp.src(['src/js/**/*.js', '!src/js/**/*_spec.js'])
+  return gulp.src(['project/js/**/*.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .on('error', function () {
@@ -25,7 +25,7 @@ gulp.task('script-hints', function () {
 });
 
 gulp.task('script-compile', ['script-hints'], function () {
-  var bundleStream = browserify('./src/js/base.js').bundle();
+  var bundleStream = browserify('./project/js/base.js').bundle();
 
   bundleStream
     .pipe(source('bundle.js'))
@@ -34,19 +34,19 @@ gulp.task('script-compile', ['script-hints'], function () {
 });
 
 gulp.task('styles', function () {
-  return gulp.src('src/scss/root.scss')
+  return gulp.src('project/scss/root.scss')
     .pipe(sass())
     .pipe(gulp.dest('bin/css'));
 });
 
 gulp.task('processhtml', function() {
-  return gulp.src('src/index.html')
+  return gulp.src('project/index.html')
     .pipe(processhtml('index.html'))
     .pipe(gulp.dest('bin'));
 })
 
 gulp.task('assets', function () {
-  return gulp.src(['src/assets/*.png', 'src/assets/*.jpg'])
+  return gulp.src(['project/assets/*.png', 'project/assets/*.jpg'])
     .pipe(imagemin())
     .pipe(gulp.dest('bin/assets'));
 });
@@ -54,13 +54,13 @@ gulp.task('assets', function () {
 gulp.task('watch', ['watch-scripts', 'watch-html']);
 
 gulp.task('watch-scripts', function () {
-  return gulp.watch('src/js/**/*.js', function () {
+  return gulp.watch('project/js/**/*.js', function () {
     gulp.run('scripts');
   });
 });
 
 gulp.task('watch-html', function () {
-  return gulp.watch('src/index.html', function () {
+  return gulp.watch('project/index.html', function () {
     gulp.run('processhtml');
   });
 });
