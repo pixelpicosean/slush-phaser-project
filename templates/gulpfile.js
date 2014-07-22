@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
   concat = require('gulp-concat'),
-  clean = require('gulp-clean'),
+  rimraf = require('gulp-rimraf'),
   processhtml = require('gulp-processhtml'),
   minifycss = require('gulp-minifycss'),
   jshint = require('gulp-jshint'),
@@ -28,7 +28,7 @@ gulp.task('lint', function () {
 
 gulp.task('clean', function() {
   return gulp.src(paths.product, { read: false })
-    .pipe(clean({ force: true }));
+    .pipe(rimraf({ force: true }));
 });
 
 gulp.task('compile', ['html', 'styles', 'scripts']);
