@@ -9,6 +9,12 @@ var gulp = require('gulp'),
   streamify = require('gulp-streamify'),
   uglify = require('gulp-uglify')*/;
 
+var paths = {
+  project: 'project',
+  develop: 'dev',
+  product: 'dist'
+};
+
 gulp.task('default', ['compile', 'watch', 'server']);
 
 gulp.task('compile', ['scripts', 'styles', 'assets']);
@@ -16,7 +22,7 @@ gulp.task('compile', ['scripts', 'styles', 'assets']);
 gulp.task('scripts', ['script-compile']);
 
 gulp.task('script-hints', function () {
-  return gulp.src(['project/js/**/*.js'])
+  return gulp.src([paths.project + '/js/**/*.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .on('error', function () {
@@ -25,50 +31,50 @@ gulp.task('script-hints', function () {
 });
 
 gulp.task('script-compile', ['script-hints'], function () {
-  var bundleStream = browserify('./project/js/base.js').bundle();
+  var bundleStream = browserify(paths.project + '/js/base.js').bundle();
 
   bundleStream
     .pipe(source('bundle.js'))
     /*.pipe(streamify(uglify()))*/
-    .pipe(gulp.dest('dev/js'));
+    .pipe(gulp.dest(paths.develop + '/js'));
 });
 
 gulp.task('styles', function () {
-  return gulp.src('project/scss/root.scss')
+  return gulp.src(paths.project + '/scss/root.scss')
     .pipe(sass())
-    .pipe(gulp.dest('dev/css'));
+    .pipe(gulp.dest(paths.develop + '/css'));
 });
 
 gulp.task('processhtml', function() {
-  return gulp.src('project/index.html')
+  return gulp.src(paths.project + '/index.html')
     .pipe(processhtml('index.html'))
-    .pipe(gulp.dest('bin'));
+    .pipe(gulp.dest(paths.develop));
 })
 
 gulp.task('assets', function () {
-  return gulp.src(['project/assets/*.png', 'project/assets/*.jpg'])
+  return gulp.src([paths.project + '/assets/*.png', paths.project + '/assets/*.jpg'])
     .pipe(imagemin())
-    .pipe(gulp.dest('dev/assets'));
+    .pipe(gulp.dest(paths.develop + '/assets'));
 });
 
 gulp.task('watch', ['watch-scripts', 'watch-html']);
 
 gulp.task('watch-scripts', function () {
-  return gulp.watch('project/js/**/*.js', function () {
+  return gulp.watch(paths.project + '/js/**/*.js', function () {
     gulp.run('scripts');
   });
 });
 
 gulp.task('watch-html', function () {
-  return gulp.watch('project/index.html', function () {
+  return gulp.watch(paths.project + '/index.html', function () {
     gulp.run('processhtml');
   });
 });
 
 gulp.task('server', ['compile'], function () {
-  return browserSync.init(['dev/js/*.js', 'dev/index.html'], {
+  return browserSync.init([paths.develop + '/js/bundle.js', paths.develop + '/index.html'], {
     server: {
-      baseDir: './dev'
+      baseDir: paths.develop
     }
   });
 });
