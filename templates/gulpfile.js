@@ -5,14 +5,13 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     sass = require('gulp-sass'),
     source = require('vinyl-source-stream'),
-    jade = require('gulp-jade'),
     karma = require('gulp-karma')/*,
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify')*/;
 
 gulp.task('default', ['compile', 'watch', 'server']);
 
-gulp.task('compile', ['scripts', 'markup', 'styles', 'assets']);
+gulp.task('compile', ['scripts', 'styles', 'assets']);
 
 gulp.task('scripts', ['script-compile']);
 
@@ -46,12 +45,6 @@ gulp.task('script-compile', ['script-hints', 'script-test'], function () {
     .pipe(gulp.dest('bin/js'));
 });
 
-gulp.task('markup', function () {
-  return gulp.src('src/templates/index.jade')
-    .pipe(jade())
-    .pipe(gulp.dest('bin'));
-});
-
 gulp.task('styles', function () {
   return gulp.src('src/scss/root.scss')
     .pipe(sass())
@@ -64,17 +57,11 @@ gulp.task('assets', function () {
     .pipe(gulp.dest('bin/assets'));
 });
 
-gulp.task('watch', ['watch-scripts', 'watch-markup']);
+gulp.task('watch', ['watch-scripts']);
 
 gulp.task('watch-scripts', function () {
   return gulp.watch('src/js/**/*.js', function () {
     gulp.run('scripts');
-  });
-});
-
-gulp.task('watch-markup', function () {
-  return gulp.watch('src/index.html', function () {
-    gulp.run('markup');
   });
 });
 
