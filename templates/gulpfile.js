@@ -71,7 +71,7 @@ gulp.task('watch-html', function () {
 gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-html']);
 
 gulp.task('server', ['compile'], function () {
-  return browserSync.init(['game.js', 'index.html', 'style.css'], {
+  return browserSync.init([paths.develop + '/game.js', paths.develop + '/index.html', paths.develop + '/style.css'], {
     server: {
       baseDir: paths.develop
     }
