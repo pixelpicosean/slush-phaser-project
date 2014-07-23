@@ -81,7 +81,7 @@ gulp.task('watch-html', function () {
 
 gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-html']);
 
-gulp.task('server', ['compile'], function () {
+gulp.task('server', function () {
   return browserSync({
     server: {
       baseDir: paths.develop
