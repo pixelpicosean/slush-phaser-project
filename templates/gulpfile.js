@@ -37,12 +37,16 @@ gulp.task('clean', function() {
 gulp.task('compile', ['html', 'styles', 'scripts']);
 
 // Development tasks
-gulp.task('html', function () {});
+gulp.task('html', function () {
+  return gulp.src(paths.develop + '/index.html')
+    .pipe(browserSync.reload({ stream: true }))
+});
 
 gulp.task('styles', function () {
   return gulp.src(paths.develop + '/css/*.css')
     .pipe(concat('style.css'))
     .pipe(gulp.dest(paths.develop))
+    .pipe(browserSync.reload({ stream: true}))
     .on('error', gutil.log);
 });
 
@@ -53,6 +57,7 @@ gulp.task('scripts', ['lint'], function () {
     }))
     .pipe(concat('game.js'))
     .pipe(gulp.dest('./project'))
+    .pipe(browserSync.reload({ stream: true, once: true }))
     .on('error', gutil.log);
 });
 
@@ -77,7 +82,7 @@ gulp.task('watch-html', function () {
 gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-html']);
 
 gulp.task('server', ['compile'], function () {
-  return browserSync.init([paths.develop + '/game.js', paths.develop + '/index.html', paths.develop + '/style.css'], {
+  return browserSync({
     server: {
       baseDir: paths.develop
     }
