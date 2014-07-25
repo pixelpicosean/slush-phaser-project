@@ -3,9 +3,7 @@ function Preloader() {
 }
 
 Preloader.prototype.preload = function () {
-  var game = this.game;
-
-  game.analytics.trackEvent('scene', 'preload', 'preloader');
+  this.game.analytics.trackEvent('scene', 'preload', 'preloader');
 
   this.loadingSprite = game.add.sprite(320, 480, 'preloader');
   this.loadingSprite.anchor.setTo(0.5, 0.5);

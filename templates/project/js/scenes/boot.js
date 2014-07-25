@@ -2,7 +2,7 @@ function Boot() {}
 
 Boot.prototype.preload = function () {
   this.game.analytics.trackEvent('scene', 'preload', 'boot');
-  this.game.load.image('preloader', 'assets/preloader.gif');
+  this.load.image('preloader', 'assets/preloader.gif');
 };
 
 Boot.prototype.create = function () {
