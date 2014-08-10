@@ -1,7 +1,5 @@
 function Game() {}
 
-Game.prototype.create = function () {
-  this.game.analytics.trackEvent('scene', 'create', 'game');
-};
+Game.prototype.create = function () {};
 
 export default Game;

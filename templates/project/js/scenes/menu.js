@@ -1,7 +1,5 @@
 function Menu() {}
 
-Menu.prototype.create = function () {
-  this.game.analytics.trackEvent('scene', 'create', 'menu');
-};
+Menu.prototype.create = function () {};
 
 export default Menu;
