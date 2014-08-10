@@ -5,25 +5,29 @@ var gulp = require('gulp'),
   conflict = require('gulp-conflict'),
   template = require('gulp-template'),
   rename = require('gulp-rename'),
+  filter = require('gulp-filter'),
   inquirer = require('inquirer');
 
-gulp.task('default', function (done) {
+gulp.task('default', function(done) {
 
   inquirer.prompt([
     {
       type: 'input',
       name: 'name',
-      message: 'Name your game (e.g. My Game)'
+      default: 'Awesome Phaser',
+      message: 'Name your game'
     },
     {
       type: 'input',
       name: 'packageName',
-      message: 'package name (e.g. my-game)',
+      default: 'awesome-phaser',
+      message: 'package name',
       validate: function (input) {
         var pass = input.match(/^[A-Za-z0-9\-]+$/);
         if (pass) {
           return true;
-        } else {
+        }
+        else {
           return "You may only use letters, numbers and hyphens (-)";
         }
       }
@@ -36,12 +40,14 @@ gulp.task('default', function (done) {
     {
       type: 'input',
       name: 'width',
+      default: '640',
       message: 'Width',
-      validate: function (input) {
+      validate: function(input) {
         var pass = input.match(/^\d+$/);
         if (pass) {
           return true;
-        } else {
+        }
+        else {
           return "Please enter a valid number";
         }
       }
@@ -49,12 +55,14 @@ gulp.task('default', function (done) {
     {
       type: 'input',
       name: 'height',
+      default: '960',
       message: 'Height',
-      validate: function (input) {
+      validate: function(input) {
         var pass = input.match(/^\d+$/);
         if (pass) {
           return true;
-        } else {
+        }
+        else {
           return "Please enter a valid number";
         }
       }
@@ -63,11 +71,12 @@ gulp.task('default', function (done) {
       type: 'input',
       name: 'ga',
       message: 'Google Analytics Key (enter "no" to skip)',
-      validate: function (input) {
+      validate: function(input) {
         var pass = input.match(/[A-Z0-9\-o]+/);
         if (pass) {
           return true;
-        } else {
+        }
+        else {
           return "Please enter a valid Google Analytics Key or 'no'";
         }
       }
@@ -79,14 +88,25 @@ gulp.task('default', function (done) {
       default: true
     }
   ],
-  function (answers) {
+
+  function(answers) {
     if (!answers.moveon) {
       return done();
     }
 
+    var needTemplateFilter = filter([
+      '**/*.md',
+      '**/*.json',
+      '**/*.js',
+      '**/*.html',
+      '**/*.manifest'
+    ]);
+
     gulp.src([__dirname + '/templates/**'])
+      .pipe(needTemplateFilter)
       .pipe(template(answers))
-      .pipe(rename(function (file) {
+      .pipe(needTemplateFilter.restore())
+      .pipe(rename(function(file) {
         if (file.basename[0] === '_') {
           file.basename = '.' + file.basename.slice(1);
         }
@@ -94,7 +114,7 @@ gulp.task('default', function (done) {
       .pipe(conflict('./'))
       .pipe(gulp.dest('./'))
       .pipe(install())
-      .on('finish', function () {
+      .on('finish', function() {
         done();
       });
 
