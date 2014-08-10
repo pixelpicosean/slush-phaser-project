@@ -4,7 +4,7 @@ A starting point to build a game with [Phaser][phaser], using "ES6 modules" to o
 
 ## Introduction
 This project is a folk of [slush-phaser-node][slush-phaser-node], and here's why I prefer to make it different from the origin:
-- (The most) This is going to be the project generator for my game editor(Circulus, not yet opened to public), so the layout will be different
+- A better project scaffold leads to better management
 - I prefer not to use HTML template for game dev
 - I removed test support to make it run faster
 
