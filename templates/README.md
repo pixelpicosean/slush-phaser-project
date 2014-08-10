@@ -16,6 +16,14 @@ $ gulp
 
 This should open a browser window with the game running locally. You can copy the address and paste it into any browser on your local network (including mobiles and tablets).
 
+## Project Scaffold
+* assets (put your working assets here, export final asset to `project/assets`)
+    - graphic
+    - music
+    - sound
+* design (game design document goes here)
+* project (the REAL project folder)
+
 ## Editing
 
 When editing, make sure you update the files within the `project` directory. These files will then be compressed and added to the `dist` directory ready for publishing.
