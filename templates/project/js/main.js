@@ -1,7 +1,7 @@
 import Analytics from 'utils/analytics';
 
 import Boot from 'scenes/boot';
-import Preloader from 'scenes/preloader';
+import Preload from 'scenes/preload';
 import Menu from 'scenes/menu';
 import Game from 'scenes/game';
 
@@ -18,7 +18,7 @@ App.start = function() {
     game.analytics = new Analytics('<%= packageName %>');
 
     game.state.add('boot', Boot);
-    game.state.add('preloader', Preloader);
+    game.state.add('preload', Preload);
     game.state.add('menu', Menu);
     game.state.add('game', Game);
 

@@ -1,8 +1,8 @@
-function Preloader() {
+function Preload() {
     this.loadingSprite = null;
 }
 
-Preloader.prototype.preload = function () {
+Preload.prototype.preload = function () {
     this.loadingSprite = game.add.sprite(320, 480, 'preloader');
     this.loadingSprite.anchor.setTo(0.5, 0.5);
 
@@ -12,11 +12,11 @@ Preloader.prototype.preload = function () {
     // Load game assets here
 };
 
-Preloader.prototype.create = function () {
+Preload.prototype.create = function () {
 };
 
-Preloader.prototype.onLoadComplete = function() {
+Preload.prototype.onLoadComplete = function() {
     this.game.state.start('menu', true, false);
 };
 
-export default Preloader;
+export default Preload;
