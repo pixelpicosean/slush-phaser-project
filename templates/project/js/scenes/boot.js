@@ -1,10 +1,10 @@
 function Boot() {}
 
-Boot.prototype.preload = function () {
+Boot.prototype.preload = function() {
     this.load.image('preloader', 'assets/preloader.gif');
 };
 
-Boot.prototype.create = function () {
+Boot.prototype.create = function() {
     // max number of fingers to detect
     this.input.maxPointers = 1;
 

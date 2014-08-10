@@ -2,7 +2,7 @@ function Preload() {
     this.loadingSprite = null;
 }
 
-Preload.prototype.preload = function () {
+Preload.prototype.preload = function() {
     this.loadingSprite = game.add.sprite(320, 480, 'preloader');
     this.loadingSprite.anchor.setTo(0.5, 0.5);
 
@@ -10,9 +10,10 @@ Preload.prototype.preload = function () {
     this.load.setPreloadSprite(this.loadingSprite);
 
     // Load game assets here
+    this.load.image('logo', 'assets/logo.png');
 };
 
-Preload.prototype.create = function () {
+Preload.prototype.create = function() {
 };
 
 Preload.prototype.onLoadComplete = function() {

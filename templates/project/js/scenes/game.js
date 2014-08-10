@@ -1,5 +1,5 @@
 function Game() {}
 
-Game.prototype.create = function () {};
+Game.prototype.create = function() {};
 
 export default Game;
