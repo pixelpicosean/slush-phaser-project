@@ -18,7 +18,7 @@ Boot.prototype.create = function() {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.scale.setScreenSize();
 
-    this.game.state.start('preloader', true, false);
+    this.game.state.start('preload', true, false);
 };
 
 export default Boot;
