@@ -70,6 +70,10 @@ game.analytics.trackEvent('action', 'label', 'value');
 
 Only the action is required, but you may want to add extra options, such as health, level or simply what just happend.
 
+## TODO
+- [ ] Image compression
+- [ ] Offline support for product
+
 Happy coding!
 
 ---
