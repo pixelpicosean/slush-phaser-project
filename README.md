@@ -1,6 +1,10 @@
 # Phaser Slush Generator
 
-A starting point to build a game with [Phaser][phaser], using "ES6 modules" to organise your code.
+[![NPM](https://nodei.co/npm/slush-phaser-project.png?global=true)](https://nodei.co/npm/slush-phaser-project/)
+
+[![NPM version][npm-image]][npm-url]    [![Dependency Status][dependency-image]][dependency-url]
+
+> A starting point to build a game with [Phaser][phaser], using "ES6 modules" to organise your code.
 
 ## Introduction
 This project is a folk of [slush-phaser-node][slush-phaser-node], and here's why I prefer to make it different from the origin:
@@ -103,3 +107,9 @@ THE SOFTWARE.
 [phaser]:       http://phaser.io/
 [es6-module-transpiler]:     https://github.com/square/es6-module-transpiler
 [analytics]:    http://www.google.com/analytics/
+
+[npm-url]: https://www.npmjs.org/package/slush-phaser-project
+[npm-image]: http://img.shields.io/npm/v/npm.svg
+
+[dependency-image]: http://img.shields.io/david/strongloop/express.svg
+[dependency-url]: https://david-dm.org/pixelpicosean/slush-phaser-project
