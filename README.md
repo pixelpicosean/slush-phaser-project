@@ -23,13 +23,11 @@ Parts included:
 
 You will need to have [node][node], [gulp][gulp] and [slush][slush] setup on your machine.
 
-## Installing Slush template
+## How to install
 
-To install the generator, clone this folk(not the original one), then run the following command.
-
-```sh
-cd slush-phaser-project
-npm link
+Simply run the following command:
+```
+npm install -g slush-phaser-project
 ```
 
 ## Getting started
@@ -42,13 +40,11 @@ $ mkdir myGreatGame
 $ cd ./myGreatGame
 ```
 
-
 Then call the [slush][slush] template to begin.
 
 ```sh
 $ slush phaser-project
 ```
-
 
 Finally run [gulp][gulp] to launch a server.
 
