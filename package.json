@@ -1,6 +1,6 @@
 {
   "name": "slush-phaser-project",
-  "version": "0.1.8",
+  "version": "0.1.8-1",
   "description": "A slush generator for createing phaser games using es6 module system",
   "keywords": [
     "slushgenerator",
@@ -18,12 +18,12 @@
   },
   "licence": "MIT",
   "dependencies": {
-    "gulp": "^3.8.7",
-    "gulp-conflict": "^0.1.2",
-    "gulp-install": "^0.1.8",
-    "gulp-rename": "^1.2.0",
-    "gulp-template": "^0.1.2",
-    "gulp-filter": "^1.0.0",
-    "inquirer": "^0.5.1"
+    "gulp": "3.8.7",
+    "gulp-conflict": "0.2.0",
+    "gulp-install": "0.2.0",
+    "gulp-rename": "1.2.0",
+    "gulp-template": "1.0.0",
+    "gulp-filter": "1.0.0",
+    "inquirer": "0.6.0"
   }
 }
