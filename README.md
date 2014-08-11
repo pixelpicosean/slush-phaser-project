@@ -12,6 +12,10 @@ This project is a folk of [slush-phaser-node][slush-phaser-node], and here's why
 - I prefer not to use HTML template for game dev
 - I removed test support to make it run faster
 
+> So what's upcoming in roadmap?
+> - Default multi screen support for mobile and desktop
+> - Code generator for subclasses
+
 Parts included:
 
 - [Phaser][phaser]: to build your games with
@@ -72,6 +76,8 @@ Only the action is required, but you may want to add extra options, such as heal
 
 ## TODO
 - [ ] Image compression
+- [ ] Add prompt for config physics
+- [ ] Better multi screen size support for both mobile and desktop
 - [ ] Offline support for product
 
 Happy coding!
