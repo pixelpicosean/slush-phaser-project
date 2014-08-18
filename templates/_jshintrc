@@ -3,7 +3,7 @@
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
-  "indent": 2,
+  "indent": 4,
   "noarg": true,
   "nonew": true,
   "undef": true,
@@ -11,10 +11,12 @@
   "trailing": true,
   "sub": true,
   "white": true,
+  "devel": true,
+  "debug": true,
   "globals": {
-    "window": true,
     "require": true,
     "module": true,
-    "Phaser": true
+    "Phaser": true,
+    "PIXI": true
   }
 }

@@ -28,9 +28,9 @@ This should open a browser window with the game running locally. You can copy th
 
 When editing, make sure you update the files within the `project` directory. These files will then be compressed and added to the `dist` directory ready for publishing.
 
-The JavaScript files have been set in ES6 modular way using [es6-module-transpiler][es6-module-transpiler]. This means you can treat the files like you do with `node` modules.
+The JavaScript files have been set in ES6 modular way using [es6-module-transpiler][es6-module-transpiler]. This means you can treat the files as modules which is going to be supported officially by Phaser 3.
 
-Happy gaming!
+Happy building games!
 
 [node]:       http://nodejs.org/
 [gulp]:       http://gulpjs.com/

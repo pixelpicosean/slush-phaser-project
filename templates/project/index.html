@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <!-- Standardised web app manifest -->
-  <link rel="manifest" href="app.manifest">
+    <!-- Standardised web app manifest -->
+    <link rel="manifest" href="app.manifest">
 
-  <!-- iOS specific -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="HandheldFriendly" content="true">
+    <!-- iOS specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="true">
 
-  <!-- Chrome for Android -->
-  <meta name="mobile-web-app-capable" content="yes">
+    <!-- Chrome for Android -->
+    <meta name="mobile-web-app-capable" content="yes">
 
-  <title><%= name %></title>
+    <title><%= name %></title>
 
-  <!-- build:css style.css -->
-  <link rel="stylesheet" href="css/root.css">
-  <!-- /build -->
+    <!-- build:css style.css -->
+    <link rel="stylesheet" href="css/root.css">
+    <!-- /build -->
 </head>
 <body>
-  <!-- build:js game.js -->
-  <script src="bower_components/almond/almond.js"></script>
-  <script src="bower_components/phaser-official/build/phaser.js"></script>
-  <script src="game.js"></script>
-  <!-- /build -->
+    <!-- build:js game.js -->
+    <script src="bower_components/almond/almond.js"></script>
+    <script src="bower_components/phaser-official/build/phaser.js"></script>
+    <script src="game.js"></script>
+    <!-- /build -->
 
-  <script>
-    window.game = require('main')['default'].start();
-  </script>
+    <script>
+        window.game = require('main')['default'].start();
+    </script>
 </body>
 </html>
