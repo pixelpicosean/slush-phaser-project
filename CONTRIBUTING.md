@@ -24,7 +24,7 @@ If you find an issue with the project, please let us know on the [issues](https:
 Please keep to the format already used in the project.
 
 - make sure your code passes jshint
-- use 2 spaces (no tabs)
+- use 4 spaces (no tabs)
 - use `camelCase` for variable names
 - use tripple equals (`===`) for tests
 

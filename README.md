@@ -12,16 +12,19 @@ This project is a folk of [slush-phaser-node][slush-phaser-node], and here's why
 - I prefer not to use HTML template for game dev
 - I removed test support to make it run faster
 
-> So what's upcoming in roadmap?
-> - Default multi screen support for mobile and desktop
-> - Code generator for subclasses
+Things upcoming:
+ - Default multi screen support for mobile and desktop
+ - Code generator for subclasses
 
-Parts included:
+Frameworks and tools used to make it possible:
 
-- [Phaser][phaser]: to build your games with
-- [ES6 Module Transpiler][es6-module-transpiler]: to organise your code in future format
+- [Node.js][node]: makes anything possible :D
+- [Slush][slush]: generates whole project
+- [Gulp][gulp]: constructs your work flow
+- [Phaser][phaser]: lets you craft awesome games
+- [ES6 Module Transpiler][es6-module-transpiler]: organises your code in future format
 - [BrowserSync][browsersync]: for automatically dev reload
-- [Google Analytics][analytics]: for tracking
+- [Google Analytics][analytics]: lets you track informations from players
 
 ## Pre-requesits
 
@@ -75,10 +78,7 @@ game.analytics.trackEvent('action', 'label', 'value');
 Only the action is required, but you may want to add extra options, such as health, level or simply what just happend.
 
 ## TODO
-- [ ] Image compression
-- [ ] Add prompt for config physics
-- [ ] Better multi screen size support for both mobile and desktop
-- [ ] Offline support for product
+See [Issues][issues] and [Milestones][milestones]
 
 Happy coding!
 
@@ -86,7 +86,7 @@ Happy coding!
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Matt Gale, Sean Bohan
+Copyright (c) 2014 Sean Bohan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -119,3 +119,6 @@ THE SOFTWARE.
 
 [dependency-image]: http://img.shields.io/david/strongloop/express.svg
 [dependency-url]: https://david-dm.org/pixelpicosean/slush-phaser-project
+
+[issues]: https://github.com/pixelpicosean/slush-phaser-project/issues
+[milestones]: https://github.com/pixelpicosean/slush-phaser-project/milestones
