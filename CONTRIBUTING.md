@@ -8,10 +8,10 @@ You are welcome to contribute to this project. Please follow the guidelines outl
 
 ## Issues and bugs
 
-If you find an issue with the project, please let us know on the [issues](https://github.com/Eruant/slush-phaser-node/issues/
+If you find an issue with the project, please let us know on the [issues](https://github.com/pixelpicosean/slush-phaser-project/issues/
 ) page.
 
-- Search the [issues page](https://github.com/Eruant/slush-phaser-node/issues/
+- Search the [issues page](https://github.com/pixelpicosean/slush-phaser-project/issues/
 ) for existing similar issues. You can always add a comment to an existing issue.
 - Choose a descriptive title
 - Provide the following information:
@@ -38,4 +38,4 @@ All code contributions should be made with a [pull request](https://help.github.
 - fix the issues and commit your changes to your new branch
 - push your fix to GitHub
       `git push origin name-of-fix-branch`
-- in GitHub, send a pull request to `slush-phaser-node:dev`
+- in GitHub, send a pull request to `slush-phaser-project:dev`
