@@ -5,20 +5,20 @@
     "orientation": "portrait",
     "icons": [
         {
-            "src": "icon-16.png",
-            "sizes": "16x16",
+            "src": "apple-touch-icon-60x60.png",
+            "sizes": "60x60",
         },
         {
-            "src": "icon-32.png",
-            "sizes": "32x32",
+            "src": "apple-touch-icon-76x76.png",
+            "sizes": "76x76",
         },
         {
-            "src": "icon-128.png",
-            "sizes": "128x128",
+            "src": "apple-touch-icon-120x120.png",
+            "sizes": "120x120",
         },
         {
-            "src": "icon-256.png",
-            "sizes": "256x256",
+            "src": "apple-touch-icon-152x152.png",
+            "sizes": "152x152",
         }
     ]
 }
