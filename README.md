@@ -6,15 +6,14 @@
 
 > A starting point to build a game with [Phaser][phaser], using "ES6 modules" to organise your code.
 
-## Introduction
-This project is a folk of [slush-phaser-node][slush-phaser-node], and here's why I prefer to make it different from the origin:
-- A better project scaffold leads to better management
-- I prefer not to use HTML template for game dev
-- I removed test support to make it run faster
+## Features
 
-Things upcoming:
- - Default multi screen support for mobile and desktop
- - Code generator for subclasses
+- easy workflow lets you focus on crafting awesome games
+- ES6 module support for the future
+- gulp (a build tool of choice) build insanely fast via node stream api
+- lighting fast development rebuild system
+- live reload on all resources
+- deploy with one line command
 
 Frameworks and tools used to make it possible:
 
@@ -25,6 +24,11 @@ Frameworks and tools used to make it possible:
 - [ES6 Module Transpiler][es6-module-transpiler]: organises your code in future format
 - [BrowserSync][browsersync]: for automatically dev reload
 - [Google Analytics][analytics]: lets you track informations from players
+
+## Things upcoming
+ 
+ - Default multi screen support for mobile and desktop
+ - Code generator for subclasses
 
 ## Pre-requesits
 
@@ -59,11 +63,19 @@ Finally run [gulp][gulp] to launch a server.
 $ gulp
 ```
 
-## Editing
+## Workflow
 
-When editing, make sure you update the files within the `project` directory. These files will then be compressed and added to the `dist` directory ready for publishing.
+> The workflow introduced below is recommended but not forced which will just make your life easier :D
 
-The JavaScript files have been set in a modular way using [es6-module-transpiler][es6-module-transpiler]. This means you can use the future module system.
+There're 2 folders "design" and "media" created at root path, both of them are empty by default.
+
+The "design" folder is made for your game design docs, graphs and sketches.
+
+The "media" folder is for your original assets(ai, psd, wav...). You may process them with tools like TexturePacker, Audacity... to phaser friendly formats(png, ogg...) and put them into `project/assets` for use.
+
+When editing source code, make sure you update the files within the `project` directory. These files will then be compiled and reload for developing or compressed and added to the `dist` directory for publishing.
+
+The JavaScript files have been set in a modular way using [es6-module-transpiler][es6-module-transpiler]. This means your code modules are managed in the future format.
 
 ### Analytics
 
@@ -76,6 +88,10 @@ game.analytics.trackEvent('action', 'label', 'value');
 ```
 
 Only the action is required, but you may want to add extra options, such as health, level or simply what just happend.
+
+## Why ES6 instead of AMD or CJS?
+
+> "Perhaps by early 2015 we ought to be looking at going purely ES6? Moving to using more advanced native browser features like Object.observe and Promises." -- Richard, the author of Phaser.io
 
 ## TODO
 See [Issues][issues] and [Milestones][milestones]
