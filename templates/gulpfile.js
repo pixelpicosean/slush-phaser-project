@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
+    plumber = require('gulp-plumber'),
     concat = require('gulp-concat'),
     rimraf = require('gulp-rimraf'),
     processhtml = require('gulp-processhtml'),
@@ -51,13 +52,16 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', ['lint'], function () {
     return gulp.src('./project/js/**/*.js')
+        .pipe(plumber(function(error) {
+            gutil.colors.red(error.message);
+            this.emit('end');
+        }))
         .pipe(es6ModuleTranspiler({
             type: 'amd'
         }))
         .pipe(concat('game.js'))
         .pipe(gulp.dest('./project'))
-        .pipe(browserSync.reload({ stream: true, once: true }))
-        .on('error', gutil.log);
+        .pipe(browserSync.reload({ stream: true, once: true }));
 });
 
 gulp.task('watch-scripts', function () {
