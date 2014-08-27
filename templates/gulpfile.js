@@ -121,9 +121,12 @@ gulp.task('uglify', ['scripts'], function () {
 });
 
 gulp.task('process-assets', function () {
-    return gulp.src(['assets/*.png', 'assets/*.jpg'])
+    gulp.src(['project/assets/*.png', 'project/assets/*.jpg', 'project/assets/*.gif'])
         // .pipe(imagemin())
         .pipe(gulp.dest(paths.product + '/assets'))
+        .on('error', gutil.log);
+    gulp.src(['project/*.png', 'project/*.ico', 'project/*.xml', 'project/*.manifest'])
+        .pipe(gulp.dest(paths.product))
         .on('error', gutil.log);
 });
 
