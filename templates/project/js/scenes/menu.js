@@ -8,6 +8,12 @@ Menu.prototype.create = function() {
         'logo'
     );
     logo.anchor.setTo(0.5);
+
+    this.game.input.onDown.add(this.startGame, this);
+};
+
+Menu.prototype.startGame = function() {
+    this.game.state.start('game');
 };
 
 export default Menu;
