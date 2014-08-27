@@ -21,7 +21,7 @@ var paths = {
 gulp.task('lint', function () {
     return gulp.src([paths.develop + '/js/**/*.js'])
         .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('jshint-stylish'))
         .on('error', function () {
             console.warn('Error: JSHint encountered an error');
         });
