@@ -42,7 +42,8 @@
 <body>
     <!-- build:js game.js -->
     <script src="bower_components/almond/almond.js"></script>
-    <script src="bower_components/phaser-official/build/phaser.js"></script>
+    <script src="bower_components/phaser-official/build/<%= phaserPath %>"></script>
+    <% _.forEach(externalLibs, function(lib) { %><script src="bower_components/phaser-official/build/custom/<%- lib %>.js"></script><% }); %>
     <script src="game.js"></script>
     <!-- /build -->
 

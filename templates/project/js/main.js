@@ -9,8 +9,7 @@ var game, App = {};
 
 App.start = function() {
     game = new Phaser.Game(
-        <%= width %>,
-        <%= height %>,
+        <%= width %>, <%= height %>,
         Phaser.AUTO,
         '<%= packageName %>'
     );

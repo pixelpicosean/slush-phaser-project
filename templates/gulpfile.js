@@ -110,7 +110,8 @@ gulp.task('minifycss', function() {
 gulp.task('uglify', ['scripts'], function () {
     return gulp.src([
             './project/bower_components/almond/almond.js',
-            './project/bower_components/phaser-official/build/phaser.js',
+            './project/bower_components/phaser-official/build/<%= phaserPath %>',
+            <% _.forEach(externalLibs, function(lib) { %>'./project/bower_components/phaser-official/build/custom/<%- lib %>.js',<% }); %>
             './project/game.js'
         ])
         .pipe(concat('game.js'))
