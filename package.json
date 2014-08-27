@@ -1,6 +1,6 @@
 {
   "name": "slush-phaser-project",
-  "version": "0.1.8-3",
+  "version": "0.1.9",
   "description": "A slush generator for createing phaser games using es6 module system",
   "keywords": [
     "slushgenerator",
