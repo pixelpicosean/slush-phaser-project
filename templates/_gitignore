@@ -2,3 +2,4 @@
 node_modules
 project/bower_components
 project/game.js
+dist

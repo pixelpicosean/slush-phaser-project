@@ -29,9 +29,9 @@ gulp.task('lint', function () {
 });
 
 gulp.task('clean', function() {
-    return gulp.src(paths.product, { read: false })
-        .pipe(rimraf({ force: true }))
-        .on('error', gutil.log);
+    rimraf(paths.product, function(err) {
+        gutil.color.red(err);
+    });
 });
 
 gulp.task('compile', ['html', 'styles', 'scripts']);
