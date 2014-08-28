@@ -13,6 +13,7 @@
   "white": true,
   "devel": true,
   "debug": true,
+  "browser": true,
   "globals": {
     "require": true,
     "module": true,
