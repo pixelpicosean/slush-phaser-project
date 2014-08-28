@@ -53,7 +53,7 @@ gulp.task('styles', function () {
 gulp.task('scripts', ['lint'], function () {
     return gulp.src(paths.develop + '/js/**/*.js')
         .pipe(plumber(function(error) {
-            gutil.colors.red(error.message);
+            gutil.log(gutil.colors.red(error.message));
             this.emit('end');
         }))
         .pipe(es6ModuleTranspiler({
