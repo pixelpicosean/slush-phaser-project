@@ -17,13 +17,22 @@
     "url": "https://github.com/PixelPicoSean/slush-phaser-project/issues"
   },
   "licence": "MIT",
+  "main": "src/commands/cli",
+  "preferGlobal": "true",
+  "bin": {
+    "phaser": "./bin/phaser"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "dependencies": {
+    "commander": "^2.3.0",
     "gulp": "3.8.7",
     "gulp-conflict": "0.2.0",
+    "gulp-filter": "1.0.0",
     "gulp-install": "0.2.0",
     "gulp-rename": "1.2.0",
     "gulp-template": "1.0.0",
-    "gulp-filter": "1.0.0",
     "inquirer": "0.6.0"
   }
 }
