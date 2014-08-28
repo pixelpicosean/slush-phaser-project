@@ -64,10 +64,19 @@ gulp.task('scripts', ['lint'], function () {
         .pipe(browserSync.reload({ stream: true, once: true }));
 });
 
+function logChanges(event) {
+    gutil.log(
+        gutil.colors.green('File ' + event.type + ': ') +
+        gutil.colors.magenta(path.basename(event.path))
+    );
+}
 gulp.task('watch', function() {
-    gulp.watch(paths.develop + '/js/**/*.js', ['scripts']);
-    gulp.watch(paths.develop + '/css/*.css', ['styles']);
-    gulp.watch(paths.develop + '/index.html', ['html']);
+    gulp.watch(paths.develop + '/js/**/*.js', ['scripts'])
+        .on('change', logChanges);
+    gulp.watch(paths.develop + '/css/*.css', ['styles'])
+        .on('change', logChanges);
+    gulp.watch(paths.develop + '/index.html', ['html'])
+        .on('change', logChanges);
 });
 
 gulp.task('server', function () {
