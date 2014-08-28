@@ -51,7 +51,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', ['lint'], function () {
-    return gulp.src('./project/js/**/*.js')
+    return gulp.src(paths.develop + '/js/**/*.js')
         .pipe(plumber(function(error) {
             gutil.colors.red(error.message);
             this.emit('end');
@@ -64,28 +64,14 @@ gulp.task('scripts', ['lint'], function () {
         .pipe(browserSync.reload({ stream: true, once: true }));
 });
 
-gulp.task('watch-scripts', function () {
-    return gulp.watch(paths.develop + '/js/**/*.js', function () {
-        gulp.run('scripts');
-    });
+gulp.task('watch', function() {
+    gulp.watch(paths.develop + '/js/**/*.js', ['scripts']);
+    gulp.watch(paths.develop + '/css/*.css', ['styles']);
+    gulp.watch(paths.develop + '/index.html', ['html']);
 });
-
-gulp.task('watch-styles', function () {
-    return gulp.watch(paths.develop + '/css/*.css', function () {
-        gulp.run('styles');
-    });
-});
-
-gulp.task('watch-html', function () {
-    return gulp.watch(paths.develop + '/index.html', function () {
-        gulp.run('html');
-    });
-});
-
-gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-html']);
 
 gulp.task('server', function () {
-    return browserSync({
+    browserSync({
         server: {
             baseDir: paths.develop
         }
