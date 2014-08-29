@@ -10,6 +10,7 @@
 
 - easy workflow lets you focus on crafting awesome games
 - ES6 module support for the future
+- Scene(state) and prefab generator
 - gulp (a build tool of choice) build insanely fast via node stream api
 - lighting fast development rebuild system
 - live reload on all resources
@@ -43,6 +44,8 @@ npm install -g slush-phaser-project
 
 ## Getting started
 
+### Basic
+
 Navigate to where you want to develop your game (you can create a new folder too if you like).
 
 ```sh
@@ -63,17 +66,37 @@ Finally run [gulp][gulp] to launch a server.
 $ gulp
 ```
 
+### Generator
+
+After installed there should be a `phaser` command in your PATH, try `phaser --version` to check it.
+Now there's only generator support from the cli command, maybe project or some other features will be added, but I dont have any idea about that. *Feel free to tell me what you think :D*
+
+**NOTE:** to make generator work as you want, please locate to **`GAME_ROOT`** instead of **`GAME_ROOT/project`**
+
+    phaser [command] [options]
+
+    Commands:
+        g|generate         // Generate a new scene/prefab with ES6 support       
+
+    Options:
+        -h, --help     output usage information
+        -V, --version  output the version number
+
+    Command-Specific Help:
+        phaser [command] --help
+
+
 ## Workflow
 
 > The workflow introduced below is recommended but not forced which will just make your life easier :D
 
-There're 2 folders "design" and "media" created at root path, both of them are empty by default.
+There're 2 folders **"design"** and **"media"** created at root path, both of them are empty by default.
 
-The "design" folder is made for your game design docs, graphs and sketches.
+The **"design"** folder is made for your game design docs, graphs and sketches.
 
-The "media" folder is for your original assets(ai, psd, wav...). You may process them with tools like TexturePacker, Audacity... to phaser friendly formats(png, ogg...) and put them into `project/assets` for use.
+The **"media"** folder is for your original assets(ai, psd, wav...). You may process them with tools like TexturePacker, Audacity... to phaser friendly formats(png, ogg...) and put them into `project/assets` for use.
 
-When editing source code, make sure you update the files within the `project` directory. These files will then be compiled and reload for developing or compressed and added to the `dist` directory for publishing.
+When **editing source code**, make sure you update the files within the `project` directory. These files will then be compiled and reload for developing or compressed and added to the `dist` directory for publishing.
 
 The JavaScript files have been set in a modular way using [es6-module-transpiler][es6-module-transpiler]. This means your code modules are managed in the future format.
 
