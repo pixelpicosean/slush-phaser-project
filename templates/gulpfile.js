@@ -11,7 +11,8 @@ var gulp = require('gulp'),
     // imagemin = require('gulp-imagemin'),
     uglify = require('gulp-uglify');
     browserSync = require('browser-sync'),
-    source = require('vinyl-source-stream');
+    source = require('vinyl-source-stream'),
+    path = require('path');
 
 var paths = {
     develop: 'project',
