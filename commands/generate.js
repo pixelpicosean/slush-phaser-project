@@ -41,8 +41,8 @@ function dashizeNameError (filename) {
 
 function generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPath) {
 
-     var ext = (type === 'template') ? '.hbs' : '.js',
-            fullFilePath = destPath + '/' + fileName + ext;
+     var ext = '.js',
+        fullFilePath = destPath + '/' + fileName + ext;
 
     // if the file has existed, it will abort the task
     if ( fs.existsSync( fullFilePath ) ) {
@@ -58,16 +58,15 @@ function generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPat
         process.exit(0);
     }
 
+    /* Test only
     gutil.log(gutil.colors.green('path: ' + srcPath));
     gutil.log(gutil.colors.green('moduleName: ' + moduleName));
     gutil.log(gutil.colors.green('fileName: ' + fileName));
     gutil.log(gutil.colors.green('ext: ' + ext));
     gutil.log(gutil.colors.green('destPath: ' + destPath));
+    */
 
-    // @TODO when generate multiple files on certain type
-    // moduleName is not being defined correctly.
-    // fine for now, since multiple file generation are only template file
-    /*return gulp.src(srcPath)
+    return gulp.src(srcPath)
         .pipe(replace(/__NAMESPACE__/g, moduleName))
         .pipe(rename({
             basename: fileName,
@@ -81,7 +80,7 @@ function generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPat
                 gutil.colors.magenta(tildify(destPath))
             );
         })
-        .pipe(gulp.dest(destPath));*/
+        .pipe(gulp.dest(destPath));
 }
 
 function setupTask(generator) {
@@ -150,8 +149,9 @@ function setupTask(generator) {
 
             generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPath);
         }
+        // multiple file generation not support for now
         else {
-            for (var j = 0, l = srcPath.length; j < l; j++) {
+            /*for (var j = 0, l = srcPath.length; j < l; j++) {
                 var _type = srcPath[j].type,
                     // when original type is 'component'
                     // it will create a template file at 'templates/components' folder
@@ -166,7 +166,7 @@ function setupTask(generator) {
                 generatorEngine(
                     _type, srcPath[j].generatorPath, moduleName, fileName, finalPath, destPath
                 );
-            }
+            }*/
         }
     });
 }

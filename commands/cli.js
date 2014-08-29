@@ -12,13 +12,11 @@ program
 program
   .command('g')
   .alias('generate')
-  .description('Generate a new extended/composed prefab')
+  .description('Generate a new scene or extended prefab')
   .usage('[type:[name|/nested/folder/to/name]]' +
       '\n\n  Available types: ' +
-      '\n\n     entity         Generate composed entity' +
-      '\n                    phaser g entity:star -> prefabs/star.js'+
       '\n\n     sprite         Generate extended sprite' +
-      '\n                    phaser g sprite:triggers/death-area -> prefabs/triggers/death-area.js' +
+      '\n                    phaser g sprite:triggers/void -> prefabs/triggers/void.js' +
       '\n\n     scene          Generate a new state' +
       '\n                    phaser g scene:credits -> scenes/credits.js')
   .action(generate);
