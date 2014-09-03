@@ -136,6 +136,7 @@ gulp.task('default', function(done) {
         };
         answers.phaserPath = phaserPaths[answers['phaserCustom']];
         answers.externalLibs = answers.externalLibs || [];
+        answers.needPIXI = false;
         // Config included physics libs
         if (answers['phaserCustom'] === '?') {
             // Choose all the 3 ?!
@@ -145,22 +146,15 @@ gulp.task('default', function(done) {
                 answers['externalLibs'].length = 0;
             }
             else {
-                answers['externalLibs'].map(function(choice) {
-                    if (choice === 'arcade') {
-                        answers.phaserPath = phaserPaths['arcade'];
-                        return null;
-                    }
-                    else {
-                        return choice;
-                    }
-                });
                 // Reset phaser path to the arcade one if arcade choosed
-                for (var i = 0, len = answers['externalLibs'].length; i < len; ++i) {
-                    if (answers['externalLibs'][i] === 'arcade') {
-                        answers.phaserPath = phaserPaths['arcade'];
-                        answers['externalLibs'].splice(i, 1);
-                        break;
-                    }
+                var index = answers['externalLibs'].indexOf('arcade');
+                if (index !== -1) {
+                    answers.phaserPath = phaserPaths['arcade'];
+                    answers['externalLibs'].splice(index, 1);
+                }
+                else {
+                    // Add pixi.js if use "phaser-no-libs"
+                    answers.needPIXI = true;
                 }
             }
         }
