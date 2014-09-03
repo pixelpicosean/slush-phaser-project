@@ -121,7 +121,7 @@ gulp.task('uglify', ['scripts'], function () {
 });
 
 gulp.task('process-assets', function () {
-    gulp.src(['project/assets/*.png', 'project/assets/*.jpg', 'project/assets/*.gif'])
+    gulp.src(['project/assets/**/*'])
         // .pipe(imagemin())
         .pipe(gulp.dest(paths.product + '/assets'))
         .on('error', gutil.log);
