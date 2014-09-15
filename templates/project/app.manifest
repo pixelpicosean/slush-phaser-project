@@ -5,19 +5,19 @@
     "orientation": "portrait",
     "icons": [
         {
-            "src": "apple-touch-icon-60x60.png",
+            "src": "icon/apple-touch-icon-60x60.png",
             "sizes": "60x60",
         },
         {
-            "src": "apple-touch-icon-76x76.png",
+            "src": "icon/apple-touch-icon-76x76.png",
             "sizes": "76x76",
         },
         {
-            "src": "apple-touch-icon-120x120.png",
+            "src": "icon/apple-touch-icon-120x120.png",
             "sizes": "120x120",
         },
         {
-            "src": "apple-touch-icon-152x152.png",
+            "src": "icon/apple-touch-icon-152x152.png",
             "sizes": "152x152",
         }
     ]
