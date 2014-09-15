@@ -4,11 +4,11 @@ var gulp   = require('gulp'),
 
 
 gulp.task('processAssets', function () {
-    gulp.src(['project/assets/**/*'])
+    gulp.src([ 'static/assets/**' ], { baseDir: 'assets' })
         // .pipe(imagemin())
         .pipe(gulp.dest(paths.product + '/assets'))
         .on('error', gutil.log);
-    gulp.src(['project/*.png', 'project/*.ico', 'project/*.xml', 'project/*.manifest'])
+    gulp.src(['static/*.png', 'static/*.ico', 'static/*.xml', 'static/*.manifest'])
         .pipe(gulp.dest(paths.product))
         .on('error', gutil.log);
 });

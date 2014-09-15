@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 gulp.task('server', function () {
     browserSync({
         server: {
-            baseDir: [ paths.develop ]
+            baseDir: [ paths['static'], paths['develop'] ]
         }
     });
 });
