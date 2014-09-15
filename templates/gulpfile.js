@@ -19,6 +19,7 @@ var requireDir = require('require-dir');
 // Specify game project paths for tasks.
 global[ 'paths' ] = {
     'develop': 'project',
+    'static' : 'static',
     'product': 'dist'
 };
 
