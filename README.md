@@ -11,6 +11,7 @@
 - easy workflow lets you focus on crafting awesome games
 - ES6 module support for the future
 - Scene(state) and prefab generator
+- Simple class system
 - gulp (a build tool of choice) build insanely fast via node stream api
 - lighting fast development rebuild system
 - live reload on all resources
@@ -25,11 +26,6 @@ Frameworks and tools used to make it possible:
 - [ES6 Module Transpiler][es6-module-transpiler]: organises your code in future format
 - [BrowserSync][browsersync]: for automatically dev reload
 - [Google Analytics][analytics]: lets you track informations from players
-
-## Things upcoming
- 
- - Default multi screen support for mobile and desktop
- - Code generator for subclasses
 
 ## Pre-requesits
 
@@ -66,12 +62,55 @@ Finally run [gulp][gulp] to launch a server.
 $ gulp
 ```
 
+### Class system
+
+It uses famous [John Resig simple JavaScript inheritance](http://ejohn.org/blog/simple-javascript-inheritance/) and most code 
+are borrowed from another cool project [Panda.js](http://www.pandajs.net/).
+
+It enables you to create your own class or **extend** 
+Phaser built-in classes.
+
+Think `init` function as constructor, and use `this._super()` to call overrided method as in classical OO languages.
+
+```js
+// Create a new class is simple
+var FancyName = Phaser.Class.extend({
+    _name: '',
+    init: function(name) {
+        this._name = name;
+    },
+    fullName: function() {
+        return this._name + '.Snake';
+    }
+});
+var MostFancyName = FancyName.extend({
+    init: function(name) {
+        this._super('<@' + name + '@>');
+    }
+});
+
+// Create instances
+var myFancyName = new MostFancyName('Mario');
+console.log(myFancyName.fullName());
+
+// Extend Phaser built-in class
+var Coin = Phaser.Sprite.extend({
+    init: function(game, x, y) {
+        this._super(game, x, y, 'coin');
+    }
+});
+var coin = new Coin(game, 120, 120);
+game.add.existing(coin);
+```
+
 ### Generator
 
 After installed there should be a `phaser` command in your PATH, try `phaser --version` to check it.
 Now there's only generator support from the cli command, maybe project or some other features will be added, but I dont have any idea about that. *Feel free to tell me what you think :D*
 
-**NOTE:** to make generator work as you want, please locate to **`GAME_ROOT`** instead of **`GAME_ROOT/project`**
+**NOTE:** to make generator work as you want, please locate to **`GAME_ROOT`** instead of **`GAME_ROOT/project`**.
+**NOTE:** If you enabled class system, remember to keep 
+the `js/utils/class.js` which is required for detecting.
 
     phaser [command] [options]
 

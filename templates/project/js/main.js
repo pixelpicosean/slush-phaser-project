@@ -1,3 +1,5 @@
+<% if (useClassSystem) { %>import 'utils/class';
+<% } %>
 import Analytics from 'utils/analytics';
 
 import Boot from 'scenes/boot';

@@ -93,6 +93,12 @@ gulp.task('default', function(done) {
             }
         },
         {
+            type: 'confirm',
+            name: 'useClassSystem',
+            message: 'Use a class system (experiment)',
+            default: false
+        },
+        {
             type: 'input',
             name: 'ga',
             message: 'Google Analytics Key (enter "no" to skip)',
@@ -159,21 +165,35 @@ gulp.task('default', function(done) {
             }
         }
 
-        gulp.src([__dirname + '/templates/**'])
-            .pipe(needTemplateFilter)
-            .pipe(template(answers))
-            .pipe(needTemplateFilter.restore())
-            .pipe(rename(function(file) {
-                if (file.basename[0] === '_') {
-                    file.basename = '.' + file.basename.slice(1);
-                }
-            }))
-            .pipe(conflict('./'))
-            .pipe(gulp.dest('./'))
-            .pipe(install())
-            .on('finish', function() {
-                done();
-            });
+        var copyTemplates = function() {
+            gulp.src([__dirname + '/templates/**'])
+                .pipe(needTemplateFilter)
+                .pipe(template(answers))
+                .pipe(needTemplateFilter.restore())
+                .pipe(rename(function(file) {
+                    if (file.basename[0] === '_') {
+                        file.basename = '.' + file.basename.slice(1);
+                    }
+                }))
+                .pipe(conflict('./'))
+                .pipe(gulp.dest('./'))
+                .pipe(install())
+                .on('finish', function() {
+                    done();
+                });
+        }
+
+        if (answers['useClassSystem']) {
+            gulp.src([__dirname + '/extensions/class.js'])
+                .pipe(conflict('./project/js/utils'))
+                .pipe(gulp.dest('./project/js/utils'))
+                .on('finish', function() {
+                    copyTemplates();
+                });
+        }
+        else {
+            copyTemplates();
+        }
 
     });
 

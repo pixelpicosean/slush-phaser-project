@@ -137,7 +137,14 @@ function setupTask(generator) {
         // if it has dashized moduleName, it will camelize
         moduleName = camelize(moduleName);
 
-        var srcPath = path.join(__dirname, '..', 'generators', type) + '.js';
+        var srcPath = path.join(__dirname, '..', 'generators', type);
+        // resolve to template with class support if needed
+        if (fs.existsSync(path.resolve('project/js') + '/utils/class.js')) {
+            srcPath += '-class';
+        }
+        srcPath += '.js';
+        // console.log('srcPath: ' + srcPath);
+
         var dirName, finalPath, destPath;
 
         // if it is a string, simple call generatorEngine once
