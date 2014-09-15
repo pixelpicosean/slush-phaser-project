@@ -109,6 +109,7 @@ After installed there should be a `phaser` command in your PATH, try `phaser --v
 Now there's only generator support from the cli command, maybe project or some other features will be added, but I dont have any idea about that. *Feel free to tell me what you think :D*
 
 **NOTE:** to make generator work as you want, please locate to **`GAME_ROOT`** instead of **`GAME_ROOT/project`**.
+
 **NOTE:** If you enabled class system, remember to keep 
 the `js/utils/class.js` which is required for detecting.
 
