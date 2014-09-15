@@ -1,11 +1,13 @@
-function __NAMESPACE__() {}
+class __NAMESPACE__ {
 
-__NAMESPACE__.prototype.init = function(settings) {};
+    init(settings) {}
 
-__NAMESPACE__.prototype.preload = function() {};
+    preload() {}
 
-__NAMESPACE__.prototype.create = function() {};
+    create() {}
 
-__NAMESPACE__.prototype.update = function() {};
+    update() {}
+
+}
 
 export default __NAMESPACE__;
