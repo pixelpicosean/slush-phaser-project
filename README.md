@@ -85,6 +85,22 @@ Now there's only generator support from the cli command, maybe project or some o
     Command-Specific Help:
         phaser [command] --help
 
+#### Sample Usage
+
+Generate a new scene called `Credits`:
+```sh
+phaser g scene:credits
+```
+
+Generate a new sprite prefab `Trigger`:
+```sh
+phaser g prefab:trigger
+```
+
+Generate a new sprite prefab `Radar` in `prefabs/triggers` folder:
+```sh
+phaser g scene:triggers/radar
+```
 
 ## Workflow
 
