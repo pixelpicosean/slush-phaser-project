@@ -4,7 +4,9 @@ var gulp   = require('gulp'),
 
 
 gulp.task('clean', function () {
-    rimraf(paths.product, function (err) {
-        gutil.color.red(err);
-    });
+    return gulp.src([ paths.product ], { read: false })
+        .pipe(rimraf())
+        .on('error', function (err) {
+            gutil.colors.red(err);
+        });
 });

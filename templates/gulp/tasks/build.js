@@ -1,11 +1,12 @@
-var gulp = require('gulp');
+var gulp        = require('gulp'),
+    runSequence = require('run-sequence');
 
 
-// Use `gulp build` when you're ready to distribute your game.
-gulp.task('build', [
-    'clean',
-    'processHtml',
-    'minifyCss',
-    'uglify',
-    'processAssets'
-]);
+gulp.task('build', function (done) {
+    runSequence('clean', [
+        'processHtml',
+        'minifyCss',
+        'uglify',
+        'processAssets'
+    ], done);
+});
