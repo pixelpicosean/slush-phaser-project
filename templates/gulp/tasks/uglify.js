@@ -1,6 +1,7 @@
 var gulp   = require('gulp'),
     gutil  = require('gulp-util'),
     concat = require('gulp-concat'),
+    sourcemaps = require('gulp-sourcemaps'),
     uglify = require('gulp-uglify');
 
 
@@ -14,8 +15,10 @@ gulp.task('uglify', [ 'scripts' ], function () {
             <% _.forEach(externalLibs, function(lib) { %>'./static/bower_components/phaser-official/build/custom/<%- lib %>.js',<% }); %>
             './project/game.js'
         ])
+        .pipe(sourcemaps.init())
         .pipe(concat('game.js'))
         .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.product))
         .on('error', gutil.log);
 });

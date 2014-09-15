@@ -3,6 +3,7 @@ var gulp        = require('gulp'),
     concat      = require('gulp-concat'),
     plumber     = require('gulp-plumber'),
     traceur     = require('gulp-traceur'),
+    sourcemaps  = require('gulp-sourcemaps'),
     browserSync = require('browser-sync');
 
 
@@ -12,11 +13,13 @@ gulp.task('scripts', [ 'lint' ], function () {
             gutil.log(gutil.colors.red(error.message));
             this.emit('end');
         }))
+        .pipe(sourcemaps.init())
         .pipe(traceur({
             modules: 'amd',
             moduleName: true
         }))
         .pipe(concat('game.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./project'))
         .pipe(browserSync.reload({ stream: true, once: true }));
 });
