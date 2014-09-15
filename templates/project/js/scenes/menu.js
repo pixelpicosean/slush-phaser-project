@@ -1,19 +1,20 @@
-function Menu() {}
-
 var logo;
+class Menu {
 
-Menu.prototype.create = function() {
-    logo = this.add.sprite(
-        this.game.width / 2, this.game.height / 2,
-        'logo'
-    );
-    logo.anchor.setTo(0.5);
+    create() {
+        logo = this.add.sprite(
+            this.game.width / 2, this.game.height / 2,
+            'logo'
+        );
+        logo.anchor.setTo(0.5);
 
-    this.game.input.onDown.add(this.startGame, this);
-};
+        this.game.input.onDown.add(this.startGame, this);
+    }
 
-Menu.prototype.startGame = function() {
-    this.game.state.start('game');
-};
+    startGame() {
+        this.game.state.start('game');
+    }
+
+}
 
 export default Menu;
