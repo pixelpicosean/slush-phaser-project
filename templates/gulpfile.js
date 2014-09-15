@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     rimraf = require('gulp-rimraf'),
     processhtml = require('gulp-processhtml'),
     minifycss = require('gulp-minify-css'),
-    es6ModuleTranspiler = require('gulp-es6-module-transpiler'),
+    traceur = require('gulp-traceur'),
     jshint = require('gulp-jshint'),
     rename = require('gulp-rename'),
     // imagemin = require('gulp-imagemin'),
@@ -57,8 +57,9 @@ gulp.task('scripts', ['lint'], function () {
             gutil.log(gutil.colors.red(error.message));
             this.emit('end');
         }))
-        .pipe(es6ModuleTranspiler({
-            type: 'amd'
+        .pipe(traceur({
+            modules: 'amd',
+            moduleName: true
         }))
         .pipe(concat('game.js'))
         .pipe(gulp.dest('./project'))
@@ -110,6 +111,8 @@ gulp.task('minifycss', function() {
 gulp.task('uglify', ['scripts'], function () {
     return gulp.src([
             './project/bower_components/almond/almond.js',
+
+            './project/bower_components/traceur-runtime/traceur-runtime.js',
             <% if (needPIXI) { %>'./project/bower_components/phaser-official/build/custom/pixi.js',<% } %>
             './project/bower_components/phaser-official/build/<%= phaserPath %>',
             <% _.forEach(externalLibs, function(lib) { %>'./project/bower_components/phaser-official/build/custom/<%- lib %>.js',<% }); %>
