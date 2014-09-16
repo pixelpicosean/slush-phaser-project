@@ -12,9 +12,9 @@ function logChanges (event) {
 
 
 gulp.task('watch', function () {
-    gulp.watch(paths['develop'] + '/js/**/*.js', [ 'scripts' ])
+    gulp.watch(paths['scripts'], [ 'scripts' ])
         .on('change', logChanges);
-    gulp.watch(paths['develop'] + '/css/*.css',  [ 'styles' ])
+    gulp.watch(paths['less'], [ 'styles' ])
         .on('change', logChanges);
     gulp.watch(paths['develop'] + '/index.html', [ 'html' ])
         .on('change', logChanges);
