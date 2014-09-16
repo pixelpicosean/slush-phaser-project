@@ -8,7 +8,7 @@ var gulp        = require('gulp'),
 
 
 gulp.task('scripts', [ 'lint' ], function () {
-    return gulp.src(paths.develop + '/js/**/*.js')
+    return gulp.src(paths['develop'] + '/js/**/*.js')
         .pipe(plumber(function (error) {
             gutil.log(gutil.colors.red(error.message));
             this.emit('end');
@@ -20,6 +20,6 @@ gulp.task('scripts', [ 'lint' ], function () {
         }))
         .pipe(concat('game.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./project'))
+        .pipe(gulp.dest(paths['temp']))
         .pipe(browserSync.reload({ stream: true, once: true }));
 });

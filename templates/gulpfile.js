@@ -20,6 +20,7 @@ var requireDir = require('require-dir');
 global[ 'paths' ] = {
     'develop': 'project',
     'static' : 'static',
+    'temp'   : '.tmp',
     'product': 'dist'
 };
 
