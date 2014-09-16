@@ -7,7 +7,6 @@ gulp.task('server', function () {
         server: {
             baseDir: [
                 paths['static'],
-                paths['develop'],
                 paths['temp']
             ]
         }
