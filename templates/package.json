@@ -9,6 +9,7 @@
     "gulp": "^3.8.7",
     "gulp-concat": "^2.3.4",
     "gulp-jshint": "^1.8.4",
+    "gulp-less": "^1.3.5",
     "gulp-minify-css": "^0.3.7",
     "gulp-plumber": "^0.6.5",
     "gulp-processhtml": "^0.0.4",

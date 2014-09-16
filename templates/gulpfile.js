@@ -21,7 +21,9 @@ global[ 'paths' ] = {
     'develop': 'project',
     'static' : 'static',
     'temp'   : '.tmp',
-    'product': 'dist'
+    'product': 'dist',
+
+    get less () { return this['develop'] + '/less/*.less'; }
 };
 
 
