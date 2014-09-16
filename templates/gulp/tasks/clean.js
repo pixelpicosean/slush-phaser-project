@@ -4,7 +4,7 @@ var gulp   = require('gulp'),
 
 
 gulp.task('clean', function () {
-    return gulp.src([ paths['product'] ], { read: false })
+    return gulp.src([ paths['temp'], paths['product'] ], { read: false })
         .pipe(rimraf())
         .on('error', function (err) {
             gutil.colors.red(err);
