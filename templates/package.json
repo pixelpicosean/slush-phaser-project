@@ -21,8 +21,7 @@
     "gulp-util": "^3.0.0",
     "jshint-stylish": "^0.4.0",
     "require-dir": "^0.1.0",
-    "run-sequence": "^0.3.6",
-    "vinyl-source-stream": "^0.1.1"
+    "run-sequence": "^0.3.6"
   },
   "scripts": {
     "post-install": "node ./node_modules/bower/bin/bower install",
