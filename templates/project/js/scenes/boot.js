@@ -16,7 +16,7 @@ class Boot {
         }
 
         this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.game.scale.setScreenSize();
+        this.game.scale.setScreenSize(true);
 
         this.game.state.start('preload', true, false);
     }
