@@ -19,6 +19,6 @@ gulp.task('uglify', [ 'scripts' ], function () {
         .pipe(concat('game.min.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(paths.product))
+        .pipe(gulp.dest(paths['product']))
         .on('error', gutil.log);
 });

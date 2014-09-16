@@ -8,7 +8,7 @@ var gulp        = require('gulp'),
 
 
 gulp.task('scripts', [ 'lint' ], function () {
-    return gulp.src(paths['develop'] + '/js/**/*.js')
+    return gulp.src(paths['scripts'])
         .pipe(plumber(function (error) {
             gutil.log(gutil.colors.red(error.message));
             this.emit('end');

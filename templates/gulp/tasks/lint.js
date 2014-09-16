@@ -3,7 +3,7 @@ var gulp   = require('gulp'),
 
 
 gulp.task('lint', function () {
-    return gulp.src([ paths.develop + '/js/**/*.js' ])
+    return gulp.src([ paths['scripts'] ])
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('jshint-stylish'))
         .on('error', function () {
