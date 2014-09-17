@@ -3,10 +3,11 @@ var gulp         = require('gulp'),
 
 
 gulp.task('processAssets', function () {
-    gulp.src([ 'static/assets/**' ], { baseDir: 'assets' })
-        .pipe(handleErrors())
-        .pipe(gulp.dest(paths['product'] + '/assets'));
-    gulp.src(['static/*.png', 'static/*.ico', 'static/*.xml', 'static/*.manifest'])
+    gulp.src([
+        'static/**',
+        '!static/bower_components',     // Workaround to ensure both directory
+        '!static/bower_components/**'   // and its contents don't get copied.
+    ])
         .pipe(handleErrors())
         .pipe(gulp.dest(paths['product']));
 });
