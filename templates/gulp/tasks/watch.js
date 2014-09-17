@@ -1,5 +1,5 @@
 var gulp  = require('gulp'),
-    path  = require('path');
+    path  = require('path'),
     gutil = require('gulp-util');
 
 

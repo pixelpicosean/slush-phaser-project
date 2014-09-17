@@ -1,18 +1,15 @@
-var gulp        = require('gulp'),
-    gutil       = require('gulp-util'),
-    concat      = require('gulp-concat'),
-    plumber     = require('gulp-plumber'),
-    traceur     = require('gulp-traceur'),
-    sourcemaps  = require('gulp-sourcemaps'),
-    browserSync = require('browser-sync');
+var gulp         = require('gulp'),
+    concat       = require('gulp-concat'),
+    plumber      = require('gulp-plumber'),
+    traceur      = require('gulp-traceur'),
+    sourcemaps   = require('gulp-sourcemaps'),
+    browserSync  = require('browser-sync'),
+    handleErrors = require('../util/handleErrors');
 
 
 gulp.task('scripts', [ 'lint' ], function () {
     return gulp.src(paths['scripts'])
-        .pipe(plumber(function (error) {
-            gutil.log(gutil.colors.red(error.message));
-            this.emit('end');
-        }))
+        .pipe(handleErrors())
         .pipe(sourcemaps.init())
         .pipe(traceur({
             modules: 'amd',
