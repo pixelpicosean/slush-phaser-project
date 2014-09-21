@@ -4,6 +4,5 @@ var gulp        = require('gulp'),
 
 gulp.task('html', function () {
     return gulp.src(paths['develop'] + '/index.html')
-        .pipe(gulp.dest(paths['temp']))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(gulp.dest(paths['temp']));
 });

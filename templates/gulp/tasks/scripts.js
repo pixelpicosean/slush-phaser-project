@@ -17,6 +17,5 @@ gulp.task('scripts', [ 'lint' ], function () {
         }))
         .pipe(concat('game.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(paths['temp']))
-        .pipe(browserSync.reload({ stream: true, once: true }));
+        .pipe(gulp.dest(paths['temp']));
 });
