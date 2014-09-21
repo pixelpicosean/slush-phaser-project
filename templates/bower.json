@@ -6,7 +6,6 @@
     ""
   ],
   "dependencies": {
-    "almond": "latest",
     "phaser-official": "latest",
     "traceur-runtime": "latest"
   }

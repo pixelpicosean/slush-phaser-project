@@ -41,8 +41,6 @@
 </head>
 <body>
     <!-- build:js game.min.js -->
-    <script src="bower_components/almond/almond.js"></script>
-
     <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
     <% if (needPIXI) { %><script src="bower_components/phaser-official/build/custom/pixi.js"></script><% } %>
     <script src="bower_components/phaser-official/build/<%= phaserPath %>"></script>
@@ -51,7 +49,7 @@
     <!-- /build -->
 
     <script>
-        window.game = require('main')['default'].start();
+        window.game = System.get('main')['default'].start();
     </script>
 </body>
 </html>

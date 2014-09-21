@@ -12,7 +12,7 @@ gulp.task('scripts', [ 'lint' ], function () {
         .pipe(handleErrors())
         .pipe(sourcemaps.init())
         .pipe(traceur({
-            modules: 'amd',
+            modules: 'register',
             moduleName: true
         }))
         .pipe(concat('game.js'))

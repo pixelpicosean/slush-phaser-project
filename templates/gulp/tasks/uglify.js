@@ -7,8 +7,6 @@ var gulp       = require('gulp'),
 
 gulp.task('uglify', [ 'scripts' ], function () {
     return gulp.src([
-            './static/bower_components/almond/almond.js',
-
             './static/bower_components/traceur-runtime/traceur-runtime.js',
             <% if (needPIXI) { %>'./static/bower_components/phaser-official/build/custom/pixi.js',<% } %>
             './static/bower_components/phaser-official/build/<%= phaserPath %>',
