@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
 project/bower_components
-project/game.js
+project/tmp
 dist
