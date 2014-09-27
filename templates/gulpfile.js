@@ -46,7 +46,7 @@ gulp.task('html', function () {
 gulp.task('styles', function () {
     return gulp.src(paths.develop + '/css/*.css')
         .pipe(concat('style.css'))
-        .pipe(gulp.dest(paths.develop))
+        .pipe(gulp.dest(paths.develop + '/tmp'))
         .pipe(browserSync.reload({ stream: true}))
         .on('error', gutil.log);
 });
