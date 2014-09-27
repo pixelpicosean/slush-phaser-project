@@ -61,7 +61,7 @@ gulp.task('scripts', ['lint'], function () {
             type: 'amd'
         }))
         .pipe(concat('game.js'))
-        .pipe(gulp.dest('./project'))
+        .pipe(gulp.dest('./project/tmp'))
         .pipe(browserSync.reload({ stream: true, once: true }));
 });
 
@@ -113,7 +113,7 @@ gulp.task('uglify', ['scripts'], function () {
             <% if (needPIXI) { %>'./project/bower_components/phaser-official/build/custom/pixi.js',<% } %>
             './project/bower_components/phaser-official/build/<%= phaserPath %>',
             <% _.forEach(externalLibs, function(lib) { %>'./project/bower_components/phaser-official/build/custom/<%- lib %>.js',<% }); %>
-            './project/game.js'
+            './project/tmp/game.js'
         ])
         .pipe(concat('game.js'))
         .pipe(uglify())
