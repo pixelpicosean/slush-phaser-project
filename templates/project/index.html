@@ -17,39 +17,39 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="icon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="icon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="icon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="icon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icon/apple-touch-icon-152x152.png">
-    <link rel="icon" type="image/png" href="icon/favicon-196x196.png" sizes="196x196">
-    <link rel="icon" type="image/png" href="icon/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="icon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="icon/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
     <meta name="msapplication-TileColor" content="#00aba9">
-    <meta name="msapplication-TileImage" content="icon/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
 
     <title><%= name %></title>
 
-    <!-- build:css style.css -->
-    <link rel="stylesheet" href="tmp/style.css">
+    <!-- build:css style.min.css -->
+    <link rel="stylesheet" href="style.css">
     <!-- /build -->
 </head>
 <body>
-    <!-- build:js game.js -->
-    <script src="bower_components/almond/almond.js"></script>
+    <!-- build:js game.min.js -->
+    <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
     <% if (needPIXI) { %><script src="bower_components/phaser-official/build/custom/pixi.js"></script><% } %>
     <script src="bower_components/phaser-official/build/<%= phaserPath %>"></script>
     <% _.forEach(externalLibs, function(lib) { %><script src="bower_components/phaser-official/build/custom/<%- lib %>.js"></script><% }); %>
-    <script src="tmp/game.js"></script>
+    <script src="game.js"></script>
     <!-- /build -->
 
     <script>
-        window.game = require('main')['default'].start();
+        window.game = System.get('main')['default'].start();
     </script>
 </body>
 </html>

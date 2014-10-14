@@ -134,12 +134,12 @@ phaser g scene:credits
 
 Generate a new sprite prefab `Trigger`:
 ```sh
-phaser g sprite:trigger
+phaser g prefab:trigger
 ```
 
 Generate a new sprite prefab `Radar` in `prefabs/triggers` folder:
 ```sh
-phaser g sprite:triggers/radar
+phaser g prefab:triggers/radar
 ```
 
 ## Workflow

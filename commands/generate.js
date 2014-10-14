@@ -139,9 +139,9 @@ function setupTask(generator) {
 
         var srcPath = path.join(__dirname, '..', 'generators', type);
         // resolve to template with class support if needed
-        if (fs.existsSync(path.resolve('project/js') + '/utils/class.js')) {
+        /*if (fs.existsSync(path.resolve('project/js') + '/utils/class.js')) {
             srcPath += '-class';
-        }
+        }*/
         srcPath += '.js';
         // console.log('srcPath: ' + srcPath);
 
