@@ -85,7 +85,7 @@ function generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPat
 
 function setupTask(generator) {
     //   task: gen
-    //   @describe    generate an entity, sprite, scene from base template
+    //   @describe    generate an entity, sprite, state from base template
     return gulp.task('gen', function() {
         var type = generator.type,
             name = generator.name,
@@ -105,10 +105,10 @@ function setupTask(generator) {
         // setup the fileName which used for rename module
         var fileName = pathNested ? name.pop() : name;
 
-        // handle the error case when arg is scene:my-scene
-        // scene name has to be dashized string
+        // handle the error case when arg is state:my-state
+        // state name has to be dashized string
         // here does not handle the nested path case
-        if (type === 'scene' && pathNested) {
+        if (type === 'state' && pathNested) {
             gutil.log(
                 gutil.colors.red('[-Error:] Scenes can not be a nested')
             );
@@ -139,7 +139,7 @@ function setupTask(generator) {
 
         var srcPath = path.join(__dirname, '..', 'generators', type);
         // resolve to template with class support if needed
-        /*if (fs.existsSync(path.resolve('project/js') + '/utils/class.js')) {
+        /*if (fs.existsSync(path.resolve('project/scripts') + '/utils/class.js')) {
             srcPath += '-class';
         }*/
         srcPath += '.js';
@@ -150,9 +150,9 @@ function setupTask(generator) {
         // if it is a string, simple call generatorEngine once
         // else it is an object(array), repeat the generatorEngine call
         if (typeof srcPath === 'string') {
-            dirName = (type === 'scene') ? 'scenes' : 'prefabs';
+            dirName = (type === 'state') ? 'states' : 'prefabs';
             finalPath = pathNested ? dirName + pathName : dirName;
-            destPath =  path.resolve('project/js') + '/' + finalPath;
+            destPath =  path.resolve('project/scripts') + '/' + finalPath;
 
             generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPath);
         }
@@ -168,7 +168,7 @@ function setupTask(generator) {
                 dirName = (injection) ? dirName + '/' + injection : dirName;
 
                 finalPath = pathNested ? dirName + pathName : dirName;
-                destPath =  path.resolve('project/js') + '/' + finalPath;
+                destPath =  path.resolve('project/scripts') + '/' + finalPath;
 
                 generatorEngine(
                     _type, srcPath[j].generatorPath, moduleName, fileName, finalPath, destPath
@@ -191,7 +191,7 @@ var generate = function(options) {
         generatorAndTasks = typeAndName.length ? typeAndName.split(':') : undefined,
         validTypes = [
             'entity', 'sprite',
-            'scene'
+            'state'
         ],
         gen;
 
