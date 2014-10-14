@@ -1,5 +1,7 @@
 .DS_Store
-node_modules
-project/bower_components
-project/tmp
+
 dist
+node_modules
+bower_components
+
+project/game.js
