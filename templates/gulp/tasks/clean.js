@@ -1,10 +1,10 @@
 var gulp         = require('gulp'),
-    rimraf       = require('gulp-rimraf'),
+    del          = require('del'),
     handleErrors = require('../util/handleErrors');
 
 
 gulp.task('clean', function () {
-    return gulp.src([ paths['temp'], paths['product'] ], { read: false })
-        .pipe(handleErrors())
-        .pipe(rimraf());
+    del([
+        paths['temp'], paths['product']
+    ]);
 });
