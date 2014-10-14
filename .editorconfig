@@ -4,7 +4,6 @@ root = true
 
 # General Options
 [*]
-end_of_line = lf
 indent_size = 4
 indent_style = space
 insert_final_newline = true
