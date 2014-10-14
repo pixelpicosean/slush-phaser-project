@@ -1,5 +1,3 @@
-<% if (useClassSystem) { %>import 'utils/class';
-<% } %>
 import Analytics from 'utils/analytics';
 
 import Boot from 'states/boot';
@@ -13,7 +11,7 @@ App.start = function() {
     game = new Phaser.Game(
         <%= width %>, <%= height %>,
         Phaser.AUTO,
-        '<%= packageName %>'
+        'game-container'
     );
 
     game.analytics = new Analytics('<%= packageName %>');
