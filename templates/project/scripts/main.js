@@ -2,10 +2,10 @@
 <% } %>
 import Analytics from 'utils/analytics';
 
-import Boot from 'scenes/boot';
-import Preload from 'scenes/preload';
-import Menu from 'scenes/menu';
-import Game from 'scenes/game';
+import Boot from 'states/boot';
+import Preload from 'states/preload';
+import Menu from 'states/menu';
+import Game from 'states/game';
 
 var game, App = {};
 
