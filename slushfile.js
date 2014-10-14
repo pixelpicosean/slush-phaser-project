@@ -40,7 +40,7 @@ gulp.task('default', function(done) {
         {
             type: 'input',
             name: 'width',
-            default: '640',
+            default: '960',
             message: 'Width',
             validate: function(input) {
                 var pass = input.match(/^\d+$/);
@@ -55,7 +55,7 @@ gulp.task('default', function(done) {
         {
             type: 'input',
             name: 'height',
-            default: '960',
+            default: '640',
             message: 'Height',
             validate: function(input) {
                 var pass = input.match(/^\d+$/);
@@ -91,12 +91,6 @@ gulp.task('default', function(done) {
             when: function(answers) {
                 return (answers['phaserCustom'] === '?');
             }
-        },
-        {
-            type: 'confirm',
-            name: 'useClassSystem',
-            message: 'Use a class system (experiment)',
-            default: false
         },
         {
             type: 'input',
@@ -165,35 +159,21 @@ gulp.task('default', function(done) {
             }
         }
 
-        var copyTemplates = function() {
-            gulp.src([__dirname + '/templates/**'])
-                .pipe(needTemplateFilter)
-                .pipe(template(answers))
-                .pipe(needTemplateFilter.restore())
-                .pipe(rename(function(file) {
-                    if (file.basename[0] === '_') {
-                        file.basename = '.' + file.basename.slice(1);
-                    }
-                }))
-                .pipe(conflict('./'))
-                .pipe(gulp.dest('./'))
-                .pipe(install())
-                .on('finish', function() {
-                    done();
-                });
-        }
-
-        if (answers['useClassSystem']) {
-            gulp.src([__dirname + '/extensions/class.js'])
-                .pipe(conflict('./project/js/utils'))
-                .pipe(gulp.dest('./project/js/utils'))
-                .on('finish', function() {
-                    copyTemplates();
-                });
-        }
-        else {
-            copyTemplates();
-        }
+        gulp.src([__dirname + '/templates/**'])
+            .pipe(needTemplateFilter)
+            .pipe(template(answers))
+            .pipe(needTemplateFilter.restore())
+            .pipe(rename(function(file) {
+                if (file.basename[0] === '_') {
+                    file.basename = '.' + file.basename.slice(1);
+                }
+            }))
+            .pipe(conflict('./'))
+            .pipe(gulp.dest('./'))
+            .pipe(install())
+            .on('finish', function() {
+                done();
+            });
 
     });
 
