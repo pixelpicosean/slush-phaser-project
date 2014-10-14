@@ -9,7 +9,7 @@
 ## Features
 
 - easy workflow lets you focus on crafting awesome games
-- ES6 module support for the future
+- ES6 features supported
 - Scene(state) and prefab generator
 - Simple class system
 - gulp (a build tool of choice) build insanely fast via node stream api
@@ -23,7 +23,7 @@ Frameworks and tools used to make it possible:
 - [Slush][slush]: generates whole project
 - [Gulp][gulp]: constructs your work flow
 - [Phaser][phaser]: lets you craft awesome games
-- [ES6 Module Transpiler][es6-module-transpiler]: organises your code in future format
+- [Traceur][traceur]: organises your code in future format
 - [BrowserSync][browsersync]: for automatically dev reload
 - [Google Analytics][analytics]: lets you track informations from players
 
@@ -62,56 +62,12 @@ Finally run [gulp][gulp] to launch a server.
 $ gulp
 ```
 
-### Class system
-
-It uses famous [John Resig simple JavaScript inheritance](http://ejohn.org/blog/simple-javascript-inheritance/) and most code 
-are borrowed from another cool project [Panda.js](http://www.pandajs.net/).
-
-It enables you to create your own class or **extend** 
-Phaser built-in classes.
-
-Think `init` function as constructor, and use `this._super()` to call overrided method as in classical OO languages.
-
-```js
-// Create a new class is simple
-var FancyName = Phaser.Class.extend({
-    _name: '',
-    init: function(name) {
-        this._name = name;
-    },
-    fullName: function() {
-        return this._name + '.Snake';
-    }
-});
-var MostFancyName = FancyName.extend({
-    init: function(name) {
-        this._super('<@' + name + '@>');
-    }
-});
-
-// Create instances
-var myFancyName = new MostFancyName('Mario');
-console.log(myFancyName.fullName());
-
-// Extend Phaser built-in class
-var Coin = Phaser.Sprite.extend({
-    init: function(game, x, y) {
-        this._super(game, x, y, 'coin');
-    }
-});
-var coin = new Coin(game, 120, 120);
-game.add.existing(coin);
-```
-
 ### Generator
 
 After installed there should be a `phaser` command in your PATH, try `phaser --version` to check it.
 Now there's only generator support from the cli command, maybe project or some other features will be added, but I dont have any idea about that. *Feel free to tell me what you think :D*
 
 **NOTE:** to make generator work as you want, please locate to **`GAME_ROOT`** instead of **`GAME_ROOT/project`**.
-
-**NOTE:** If you enabled class system, remember to keep 
-the `js/utils/class.js` which is required for detecting.
 
     phaser [command] [options]
 
@@ -127,19 +83,19 @@ the `js/utils/class.js` which is required for detecting.
 
 #### Sample Usage
 
-Generate a new scene called `Credits`:
+Generate a new state called `Credits`:
 ```sh
-phaser g scene:credits
+phaser g state:credits
 ```
 
 Generate a new sprite prefab `Trigger`:
 ```sh
-phaser g prefab:trigger
+phaser g sprite:trigger
 ```
 
 Generate a new sprite prefab `Radar` in `prefabs/triggers` folder:
 ```sh
-phaser g prefab:triggers/radar
+phaser g sprite:triggers/radar
 ```
 
 ## Workflow
@@ -150,11 +106,11 @@ There're 2 folders **"design"** and **"media"** created at root path, both of th
 
 The **"design"** folder is made for your game design docs, graphs and sketches.
 
-The **"media"** folder is for your original assets(ai, psd, wav...). You may process them with tools like TexturePacker, Audacity... to phaser friendly formats(png, ogg...) and put them into `project/assets` for use.
+The **"media"** folder is for your original assets(ai, psd, wav...). You may process them with tools like TexturePacker, Audacity... to phaser friendly formats(png, ogg...) and put them into `static/assets` for use.
 
 When **editing source code**, make sure you update the files within the `project` directory. These files will then be compiled and reload for developing or compressed and added to the `dist` directory for publishing.
 
-The JavaScript files have been set in a modular way using [es6-module-transpiler][es6-module-transpiler]. This means your code modules are managed in the future format.
+ECMAScript 6 features are supported with help of [Traceur][Traceur]. This means you can write code with syntax which is going to be supported officially by Phaser 3.
 
 ### Analytics
 
@@ -168,7 +124,7 @@ game.analytics.trackEvent('action', 'label', 'value');
 
 Only the action is required, but you may want to add extra options, such as health, level or simply what just happend.
 
-## Why ES6 instead of AMD or CJS?
+## Why ES6?
 
 > "Perhaps by early 2015 we ought to be looking at going purely ES6? Moving to using more advanced native browser features like Object.observe and Promises." -- Richard, the author of Phaser.io
 
@@ -206,7 +162,7 @@ THE SOFTWARE.
 [slush]:        https://github.com/klei/slush
 [browsersync]:  http://www.browsersync.io/
 [phaser]:       http://phaser.io/
-[es6-module-transpiler]:     https://github.com/square/es6-module-transpiler
+[traceur]:      https://github.com/google/traceur-compiler
 [analytics]:    http://www.google.com/analytics/
 
 [npm-url]: https://www.npmjs.org/package/slush-phaser-project

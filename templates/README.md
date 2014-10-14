@@ -16,22 +16,24 @@ $ gulp
 
 This should open a browser window with the game running locally. You can copy the address and paste it into any browser on your local network (including mobiles and tablets).
 
-## Project Scaffold
-* assets (put your working assets here, export final asset to `project/assets`)
+## Scaffold
+* design (game design document goes here)
+* media (folder for your assets source...)
+* gulp (gulp tasks folder)
+* project (contains scripts, stylesheets and index.html)
+* static/assets (image and sound files, use 'assets/file_name' in source code)
     - graphic
     - music
     - sound
-* design (game design document goes here)
-* project (the REAL project folder)
 
 ## Editing
 
 When editing, make sure you update the files within the `project` directory. These files will then be compressed and added to the `dist` directory ready for publishing.
 
-The JavaScript files have been set in ES6 modular way using [es6-module-transpiler][es6-module-transpiler]. This means you can treat the files as modules which is going to be supported officially by Phaser 3.
+ECMAScript 6 features are supported with help of [Traceur][Traceur]. This means you can write code with syntax which is going to be supported officially by Phaser 3.
 
 Happy building games!
 
 [node]:       http://nodejs.org/
 [gulp]:       http://gulpjs.com/
-[es6-module-transpiler]: https://github.com/square/es6-module-transpiler
+[Traceur]:    https://github.com/google/traceur-compiler
