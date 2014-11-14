@@ -58,13 +58,13 @@ function generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPat
         process.exit(0);
     }
 
-    /* Test only
-    gutil.log(gutil.colors.green('path: ' + srcPath));
+    // Test only
+    /*gutil.log(gutil.colors.green('path: ' + srcPath));
     gutil.log(gutil.colors.green('moduleName: ' + moduleName));
     gutil.log(gutil.colors.green('fileName: ' + fileName));
     gutil.log(gutil.colors.green('ext: ' + ext));
-    gutil.log(gutil.colors.green('destPath: ' + destPath));
-    */
+    gutil.log(gutil.colors.green('destPath: ' + destPath));*/
+
 
     return gulp.src(srcPath)
         .pipe(replace(/__NAMESPACE__/g, moduleName))
@@ -72,15 +72,15 @@ function generatorEngine(type, srcPath, moduleName, fileName, finalPath, destPat
             basename: fileName,
             extname: ext
         }))
+        .pipe(gulp.dest(destPath))
         .on('end', function() {
             gutil.log(
-                gutil.colors.green('[-done:] Generate'),
+                gutil.colors.green('[-Done]: Generate'),
                 gutil.colors.cyan(fileName + ext),
                 gutil.colors.green('at'),
                 gutil.colors.magenta(tildify(destPath))
             );
-        })
-        .pipe(gulp.dest(destPath));
+        });
 }
 
 function setupTask(generator) {
@@ -190,7 +190,7 @@ var generate = function(options) {
     var typeAndName = argv._.slice()[1],
         generatorAndTasks = typeAndName.length ? typeAndName.split(':') : undefined,
         validTypes = [
-            'entity', 'sprite',
+            'sprite',
             'state'
         ],
         gen;
@@ -226,7 +226,7 @@ var generate = function(options) {
                 gutil.colors.red(' is not a valid type.')
             );
             gutil.log(
-                gutil.colors.bold('[-note:] valid types are'),
+                gutil.colors.bold('[-Note:] valid types are'),
                 gutil.colors.cyan(validTypes.join(', '))
             );
             process.exit(0);
