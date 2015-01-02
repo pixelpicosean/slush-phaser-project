@@ -1,8 +1,8 @@
-var gulp         = require('gulp'),
-    less         = require('gulp-less'),
-    rename       = require('gulp-rename'),
-    minifycss    = require('gulp-minify-css'),
-    handleErrors = require('../util/handleErrors');
+var gulp         = require('gulp');
+var less         = require('gulp-less');
+var rename       = require('gulp-rename');
+var minifycss    = require('gulp-minify-css');
+var handleErrors = require('../util/handleErrors');
 
 
 gulp.task('minifyCss', function () {

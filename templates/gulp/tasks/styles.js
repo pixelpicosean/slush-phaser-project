@@ -1,8 +1,8 @@
-var gulp         = require('gulp'),
-    less         = require('gulp-less'),
-    concat       = require('gulp-concat'),
-    browserSync  = require('browser-sync'),
-    handleErrors = require('../util/handleErrors');
+var gulp         = require('gulp');
+var less         = require('gulp-less');
+var concat       = require('gulp-concat');
+var browserSync  = require('browser-sync');
+var handleErrors = require('../util/handleErrors');
 
 
 gulp.task('styles', function () {

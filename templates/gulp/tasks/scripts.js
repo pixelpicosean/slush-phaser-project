@@ -1,10 +1,9 @@
-var gulp         = require('gulp'),
-    concat       = require('gulp-concat'),
-    plumber      = require('gulp-plumber'),
-    traceur      = require('gulp-traceur'),
-    sourcemaps   = require('gulp-sourcemaps'),
-    browserSync  = require('browser-sync'),
-    handleErrors = require('../util/handleErrors');
+var gulp         = require('gulp');
+var concat       = require('gulp-concat');
+var traceur      = require('gulp-traceur');
+var sourcemaps   = require('gulp-sourcemaps');
+var browserSync  = require('browser-sync');
+var handleErrors = require('../util/handleErrors');
 
 
 gulp.task('scripts', [ 'lint' ], function () {

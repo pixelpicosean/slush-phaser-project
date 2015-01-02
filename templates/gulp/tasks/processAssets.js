@@ -1,5 +1,5 @@
-var gulp         = require('gulp'),
-    handleErrors = require('../util/handleErrors');
+var gulp         = require('gulp');
+var handleErrors = require('../util/handleErrors');
 
 
 gulp.task('processAssets', function () {

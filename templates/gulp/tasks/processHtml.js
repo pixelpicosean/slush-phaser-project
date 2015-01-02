@@ -1,7 +1,6 @@
-var gulp         = require('gulp'),
-    gutil        = require('gulp-util'),
-    processhtml  = require('gulp-processhtml'),
-    handleErrors = require('../util/handleErrors');
+var gulp         = require('gulp');
+var processhtml  = require('gulp-processhtml');
+var handleErrors = require('../util/handleErrors');
 
 
 gulp.task('processHtml', function () {

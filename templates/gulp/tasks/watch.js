@@ -1,7 +1,7 @@
-var gulp        = require('gulp'),
-    path        = require('path'),
-    gutil       = require('gulp-util'),
-    browserSync = require('browser-sync');
+var gulp        = require('gulp');
+var path        = require('path');
+var gutil       = require('gulp-util');
+var browserSync = require('browser-sync');
 
 
 function logChanges (event) {

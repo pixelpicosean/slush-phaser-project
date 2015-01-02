@@ -1,6 +1,5 @@
-var gulp         = require('gulp'),
-    del          = require('del'),
-    handleErrors = require('../util/handleErrors');
+var gulp = require('gulp');
+var del  = require('del');
 
 
 gulp.task('clean', function (done) {
