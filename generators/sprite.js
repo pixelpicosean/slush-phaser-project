@@ -1,6 +1,6 @@
 class __NAMESPACE__ extends Phaser.Sprite {
 
-    constructor(game, x, y/*, your-params-here*/) {
+    constructor(game, x, y) {
         super(game, x, y, 'logo');
 
         /* init code here */
