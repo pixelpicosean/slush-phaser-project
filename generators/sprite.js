@@ -7,7 +7,9 @@ class __NAMESPACE__ extends Phaser.Sprite {
         this.anchor.setTo(0.5);
     }
 
-    update() {}
+    update() {
+        // TODO
+    }
 
 }
 

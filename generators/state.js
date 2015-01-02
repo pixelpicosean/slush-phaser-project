@@ -1,12 +1,20 @@
 class __NAMESPACE__ {
 
-    init(settings) {}
+    init(settings) {
+        // TODO
+    }
 
-    preload() {}
+    preload() {
+        // TODO
+    }
 
-    create() {}
+    create() {
+        // TODO
+    }
 
-    update() {}
+    update() {
+        // TODO
+    }
 
 }
 
