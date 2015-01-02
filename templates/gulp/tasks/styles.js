@@ -10,5 +10,6 @@ gulp.task('styles', function () {
         .pipe(handleErrors())
         .pipe(less())
         .pipe(concat('style.css'))
-        .pipe(gulp.dest(paths['temp']));
+        .pipe(gulp.dest(paths['temp']))
+        .pipe(browserSync.reload({ stream: true }));
 });
