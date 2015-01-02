@@ -2,7 +2,7 @@ var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 
 
-gulp.task('server', function () {
+gulp.task('server', [ 'compile' ], function () {
     browserSync({
         server: {
             baseDir: [
