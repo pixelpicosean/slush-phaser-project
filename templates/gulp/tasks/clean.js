@@ -3,8 +3,8 @@ var gulp         = require('gulp'),
     handleErrors = require('../util/handleErrors');
 
 
-gulp.task('clean', function () {
+gulp.task('clean', function (done) {
     del([
         paths['temp'], paths['product']
-    ]);
+    ], done);
 });
