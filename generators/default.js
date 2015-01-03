@@ -2,109 +2,11 @@
 
 module.exports = function (gulp, $, inquirer) {
 
-    var prompts = [
-        {
-            type: 'input',
-            name: 'name',
-            default: 'Awesome Phaser',
-            message: 'Name your game'
-        },
-        {
-            type: 'input',
-            name: 'packageName',
-            default: 'awesome-phaser',
-            message: 'package name',
-            validate: function (input) {
-                var pass = input.match(/^[A-Za-z0-9\-]+$/);
-                if (pass) {
-                    return true;
-                }
-                else {
-                    return "You may only use letters, numbers and hyphens (-)";
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'description',
-            message: 'Description'
-        },
-        {
-            type: 'input',
-            name: 'width',
-            default: '960',
-            message: 'Width',
-            validate: function(input) {
-                var pass = input.match(/^\d+$/);
-                if (pass) {
-                    return true;
-                }
-                else {
-                    return "Please enter a valid number";
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'height',
-            default: '640',
-            message: 'Height',
-            validate: function(input) {
-                var pass = input.match(/^\d+$/);
-                if (pass) {
-                    return true;
-                }
-                else {
-                    return "Please enter a valid number";
-                }
-            }
-        },
-        {
-            type: 'list',
-            name: 'phaserCustom',
-            message: 'Choose physics systems you want, including those you MAY use in the future',
-            choices: [
-                { name: 'Only arcade (Recommended)', value: 'arcade' },
-                { name: 'All', value: 'all' },
-                { name: 'Customise', value: '?' },
-                { name: 'No physics support', value: 'none' }
-            ],
-            default: 0
-        },
-        {
-            type: 'checkbox',
-            name: 'externalLibs',
-            message: 'Select libs you want to use',
-            choices: [
-                { name: 'Arcade', value: 'arcade', checked: true },
-                { name: 'P2', value: 'p2' },
-                { name: 'Ninja', value: 'ninja' }
-            ],
-            when: function(answers) {
-                return (answers['phaserCustom'] === '?');
-            }
-        },
-        {
-            type: 'input',
-            name: 'ga',
-            message: 'Google Analytics Key (enter "no" to skip)',
-            validate: function(input) {
-                var pass = input.match(/[A-Z0-9\-o]+/);
-                if (pass) {
-                    return true;
-                }
-                else {
-                    return "Please enter a valid Google Analytics Key or 'no'";
-                }
-            }
-        },
-        {
-            type: 'confirm',
-            name: 'moveOn',
-            message: 'Continue?',
-            default: true
-        }
-    ];
+    function validateInput (regexp, errorMsg) {
+        return function (input) {
+            return !!input.match(regexp) || errorMsg;
+        };
+    }
 
     function renameHiddenFile (file) {
         if (file.basename[0] === '_')
@@ -161,8 +63,79 @@ module.exports = function (gulp, $, inquirer) {
             .on('finish', done);
     }
 
-    gulp.task('default', function (done) {
+    var prompts = [
+        {
+            type: 'input',
+            name: 'name',
+            default: 'Awesome Phaser',
+            message: 'Name your game'
+        },
+        {
+            type: 'input',
+            name: 'packageName',
+            default: 'awesome-phaser',
+            message: 'package name',
+            validate: validateInput(/^[A-Za-z0-9\-]+$/, "You may only use letters, numbers and hyphens (-)")
+        },
+        {
+            type: 'input',
+            name: 'description',
+            message: 'Description'
+        },
+        {
+            type: 'input',
+            name: 'width',
+            default: '960',
+            message: 'Width',
+            validate: validateInput(/^\d+$/, "Please enter a valid number")
+        },
+        {
+            type: 'input',
+            name: 'height',
+            default: '640',
+            message: 'Height',
+            validate: validateInput(/^\d+$/, "Please enter a valid number")
+        },
+        {
+            type: 'list',
+            name: 'phaserCustom',
+            message: 'Choose physics systems you want, including those you MAY use in the future',
+            choices: [
+                { name: 'Only arcade (Recommended)', value: 'arcade' },
+                { name: 'All', value: 'all' },
+                { name: 'Customise', value: '?' },
+                { name: 'No physics support', value: 'none' }
+            ],
+            default: 0
+        },
+        {
+            type: 'checkbox',
+            name: 'externalLibs',
+            message: 'Select libs you want to use',
+            choices: [
+                { name: 'Arcade', value: 'arcade', checked: true },
+                { name: 'P2', value: 'p2' },
+                { name: 'Ninja', value: 'ninja' }
+            ],
+            when: function(answers) {
+                return (answers['phaserCustom'] === '?');
+            }
+        },
+        {
+            type: 'input',
+            name: 'ga',
+            message: 'Google Analytics Key (enter "no" to skip)',
+            validate: validateInput(/[A-Z0-9\-o]+/, "Please enter a valid Google Analytics Key or 'no'")
+        },
+        {
+            type: 'confirm',
+            name: 'moveOn',
+            message: 'Continue?',
+            default: true
+        }
+    ];
 
+    gulp.task('default', function (done) {
         inquirer.prompt(prompts, function(answers) {
             if (!answers.moveOn)
                 return done();
@@ -170,7 +143,6 @@ module.exports = function (gulp, $, inquirer) {
             phaserLibs(answers);
             processTask(answers, done);
         });
-
     });
 
 };
