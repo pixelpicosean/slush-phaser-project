@@ -44,9 +44,9 @@
 
     <!-- build:js game.min.js -->
     <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
-    <% if (needPIXI) { %><script src="bower_components/phaser-official/build/custom/pixi.js"></script><% } %>
-    <script src="bower_components/phaser-official/build/<%= phaserPath %>"></script>
-    <% _.forEach(externalLibs, function(lib) { %><script src="bower_components/phaser-official/build/custom/<%- lib %>.js"></script><% }); %>
+    <% if (needPIXI) { %><script src="bower_components/phaser/build/custom/pixi.js"></script><% } %>
+    <script src="bower_components/phaser/build/<%= phaserPath %>"></script>
+    <% _.forEach(externalLibs, function(lib) { %><script src="bower_components/phaser/build/custom/<%- lib %>.js"></script><% }); %>
     <script src="game.js"></script>
     <!-- /build -->
 

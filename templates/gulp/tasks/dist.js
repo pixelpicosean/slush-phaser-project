@@ -34,9 +34,9 @@ module.exports = function (gulp, $, config) {
     gulp.task('dist:scripts', [ 'dev:build:scripts' ], function () {
         return gulp.src([
                 './static/bower_components/traceur-runtime/traceur-runtime.js',
-                <% if (needPIXI) { %>'./static/bower_components/phaser-official/build/custom/pixi.js',<% } %>
-                './static/bower_components/phaser-official/build/<%= phaserPath %>',
-                <% _.forEach(externalLibs, function(lib) { %>'./static/bower_components/phaser-official/build/custom/<%- lib %>.js',<% }); %>
+                <% if (needPIXI) { %>'./static/bower_components/phaser/build/custom/pixi.js',<% } %>
+                './static/bower_components/phaser/build/<%= phaserPath %>',
+                <% _.forEach(externalLibs, function(lib) { %>'./static/bower_components/phaser/build/custom/<%- lib %>.js',<% }); %>
                 './.tmp/game.js'
             ])
             .pipe($.sourcemaps.init())
