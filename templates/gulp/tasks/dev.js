@@ -6,13 +6,13 @@ module.exports = function (gulp, $, config) {
 
     var paths = config.paths;
 
-    gulp.task('html', function () {
+    gulp.task('dev:build:views', function () {
         return gulp.src(paths['develop'] + '/index.html')
             .pipe(gulp.dest(paths['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
-    gulp.task('styles', function () {
+    gulp.task('dev:build:styles', function () {
         return gulp.src(paths['less'])
             .pipe(handleErrors())
             .pipe($.less())
@@ -21,7 +21,7 @@ module.exports = function (gulp, $, config) {
             .pipe(browserSync.reload({ stream: true }));
     });
 
-    gulp.task('scripts', [ 'lint' ], function () {
+    gulp.task('dev:build:scripts', [ 'dev:lint' ], function () {
         return gulp.src(paths['scripts'])
             .pipe(handleErrors())
             .pipe($.sourcemaps.init())
@@ -35,20 +35,20 @@ module.exports = function (gulp, $, config) {
             .pipe(browserSync.reload({ stream: true }));
     });
 
-    gulp.task('lint', function () {
+    gulp.task('dev:lint', function () {
         return gulp.src([ paths['scripts'] ])
             .pipe(handleErrors())
             .pipe($.jshint('.jshintrc'))
             .pipe($.jshint.reporter('jshint-stylish'));
     });
 
-    gulp.task('compile', [
-        'html',
-        'styles',
-        'scripts'
+    gulp.task('dev:build', [
+        'dev:build:views',
+        'dev:build:styles',
+        'dev:build:scripts'
     ]);
 
-    gulp.task('server', [ 'compile' ], function () {
+    gulp.task('dev:server', [ 'dev:build' ], function () {
         browserSync({
             server: {
                 baseDir: [
@@ -59,15 +59,15 @@ module.exports = function (gulp, $, config) {
         });
     });
 
-    gulp.task('watch', function () {
-        gulp.watch(paths['scripts'],                 [ 'scripts' ]);
-        gulp.watch(paths['less'],                    [  'styles' ]);
-        gulp.watch(paths['develop'] + '/index.html', [    'html' ]);
+    gulp.task('dev:watch', function () {
+        gulp.watch(paths['scripts'],                 [ 'dev:build:scripts' ]);
+        gulp.watch(paths['less'],                    [  'dev:build:styles' ]);
+        gulp.watch(paths['develop'] + '/index.html', [   'dev:build:views' ]);
     });
 
     gulp.task('dev', [
-        'watch',
-        'server'
+        'dev:watch',
+        'dev:server'
     ]);
 
     // The default task, run with `gulp default` or `gulp`.

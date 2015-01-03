@@ -7,20 +7,20 @@ module.exports = function (gulp, $, config) {
 
     var paths = config.paths;
 
-    gulp.task('clean', function (done) {
+    gulp.task('dist:clean', function (done) {
         del([
             paths['temp'], paths['product']
         ], done);
     });
 
-    gulp.task('processHtml', function () {
+    gulp.task('dist:views', function () {
         return gulp.src(paths['develop'] + '/index.html')
             .pipe(handleErrors())
             .pipe($.processhtml('index.html'))
             .pipe(gulp.dest(paths['product']));
     });
 
-    gulp.task('minifyCss', function () {
+    gulp.task('dist:styles', function () {
         return gulp.src(paths['less'])
             .pipe(handleErrors())
             .pipe($.less())
@@ -32,7 +32,7 @@ module.exports = function (gulp, $, config) {
             .pipe(gulp.dest(paths['product']));
     });
 
-    gulp.task('uglify', [ 'scripts' ], function () {
+    gulp.task('dist:scripts', [ 'dev:build:scripts' ], function () {
         return gulp.src([
                 './static/bower_components/traceur-runtime/traceur-runtime.js',
                 <% if (needPIXI) { %>'./static/bower_components/phaser-official/build/custom/pixi.js',<% } %>
@@ -47,7 +47,7 @@ module.exports = function (gulp, $, config) {
             .pipe(gulp.dest(paths['product']));
     });
 
-    gulp.task('processAssets', function () {
+    gulp.task('dist:assets', function () {
         gulp.src([
             'static/**',
             '!static/bower_components',     // Workaround to ensure both directory
@@ -58,11 +58,11 @@ module.exports = function (gulp, $, config) {
     });
 
     gulp.task('build', function (done) {
-        runSequence('clean', [
-            'processHtml',
-            'minifyCss',
-            'uglify',
-            'processAssets'
+        runSequence('dist:clean', [
+            'dist:views',
+            'dist:styles',
+            'dist:scripts',
+            'dist:assets'
         ], done);
     });
 
