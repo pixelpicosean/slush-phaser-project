@@ -1,11 +1,4 @@
 var del          = require('del');
-var less         = require('gulp-less');
-var concat       = require('gulp-concat');
-var rename       = require('gulp-rename');
-var uglify       = require('gulp-uglify');
-var minifycss    = require('gulp-minify-css');
-var sourcemaps   = require('gulp-sourcemaps');
-var processhtml  = require('gulp-processhtml');
 var runSequence  = require('run-sequence');
 var handleErrors = require('../util/handleErrors');
 
@@ -20,19 +13,19 @@ module.exports = function (gulp, $, config) {
     gulp.task('processHtml', function () {
         return gulp.src(paths['develop'] + '/index.html')
             .pipe(handleErrors())
-            .pipe(processhtml('index.html'))
+            .pipe($.processhtml('index.html'))
             .pipe(gulp.dest(paths['product']));
     });
 
     gulp.task('minifyCss', function () {
         return gulp.src(paths['less'])
             .pipe(handleErrors())
-            .pipe(less())
-            .pipe(minifycss({
+            .pipe($.less())
+            .pipe($.minifyCss({
                 keepSpecialComments: false,
                 removeEmpty: true
             }))
-            .pipe(rename('style.min.css'))
+            .pipe($.rename('style.min.css'))
             .pipe(gulp.dest(paths['product']));
     });
 
@@ -44,10 +37,10 @@ module.exports = function (gulp, $, config) {
                 <% _.forEach(externalLibs, function(lib) { %>'./static/bower_components/phaser-official/build/custom/<%- lib %>.js',<% }); %>
                 './.tmp/game.js'
             ])
-            .pipe(sourcemaps.init())
-            .pipe(concat('game.min.js'))
-            .pipe(uglify())
-            .pipe(sourcemaps.write('.'))
+            .pipe($.sourcemaps.init())
+            .pipe($.concat('game.min.js'))
+            .pipe($.uglify())
+            .pipe($.sourcemaps.write('.'))
             .pipe(gulp.dest(paths['product']));
     });
 

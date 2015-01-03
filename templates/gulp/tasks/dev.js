@@ -1,8 +1,3 @@
-var less         = require('gulp-less');
-var concat       = require('gulp-concat');
-var jshint       = require('gulp-jshint');
-var traceur      = require('gulp-traceur');
-var sourcemaps   = require('gulp-sourcemaps');
 var browserSync  = require('browser-sync');
 var handleErrors = require('../util/handleErrors');
 
@@ -18,8 +13,8 @@ module.exports = function (gulp, $, config) {
     gulp.task('styles', function () {
         return gulp.src(paths['less'])
             .pipe(handleErrors())
-            .pipe(less())
-            .pipe(concat('style.css'))
+            .pipe($.less())
+            .pipe($.concat('style.css'))
             .pipe(gulp.dest(paths['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
@@ -27,13 +22,13 @@ module.exports = function (gulp, $, config) {
     gulp.task('scripts', [ 'lint' ], function () {
         return gulp.src(paths['scripts'])
             .pipe(handleErrors())
-            .pipe(sourcemaps.init())
-            .pipe(traceur({
+            .pipe($.sourcemaps.init())
+            .pipe($.traceur({
                 modules: 'register',
                 moduleName: true
             }))
-            .pipe(concat('game.js'))
-            .pipe(sourcemaps.write())
+            .pipe($.concat('game.js'))
+            .pipe($.sourcemaps.write())
             .pipe(gulp.dest(paths['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
@@ -41,8 +36,8 @@ module.exports = function (gulp, $, config) {
     gulp.task('lint', function () {
         return gulp.src([ paths['scripts'] ])
             .pipe(handleErrors())
-            .pipe(jshint('.jshintrc'))
-            .pipe(jshint.reporter('jshint-stylish'));
+            .pipe($.jshint('.jshintrc'))
+            .pipe($.jshint.reporter('jshint-stylish'));
     });
 
     gulp.task('compile', [
