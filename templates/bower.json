@@ -1,6 +1,5 @@
 {
   "name": "<%= packageName %>",
-  "version": "0.0.1",
   "description": "<%= description %>",
   "authors": [
     ""
