@@ -35,19 +35,6 @@ module.exports = function (gulp, $, config) {
             .pipe(browserSync.reload({ stream: true }));
     });
 
-    gulp.task('dev:lint', function () {
-        return gulp.src([ paths['scripts'] ])
-            .pipe(handleErrors())
-            .pipe($.jshint('.jshintrc'))
-            .pipe($.jshint.reporter('jshint-stylish'));
-    });
-
-    gulp.task('dev:build', [
-        'dev:build:views',
-        'dev:build:styles',
-        'dev:build:scripts'
-    ]);
-
     gulp.task('dev:server', [ 'dev:build' ], function () {
         browserSync({
             server: {
@@ -65,12 +52,25 @@ module.exports = function (gulp, $, config) {
         gulp.watch(paths['develop'] + '/index.html', [   'dev:build:views' ]);
     });
 
+    gulp.task('dev:lint', function () {
+        return gulp.src([ paths['scripts'] ])
+            .pipe(handleErrors())
+            .pipe($.jshint('.jshintrc'))
+            .pipe($.jshint.reporter('jshint-stylish'));
+    });
+
+    gulp.task('dev:build', [
+        'dev:build:views',
+        'dev:build:styles',
+        'dev:build:scripts'
+    ]);
+
     gulp.task('dev', [
         'dev:watch',
         'dev:server'
     ]);
 
-    // The default task, run with `gulp default` or `gulp`.
+    // Aliasing `dev` as default task.
     gulp.task('default', [ 'dev' ]);
 
 };

@@ -8,9 +8,7 @@ module.exports = function (gulp, $, config) {
     var paths = config.paths;
 
     gulp.task('dist:clean', function (done) {
-        del([
-            paths['temp'], paths['product']
-        ], done);
+        del([ paths['temp'], paths['product'] ], done);
     });
 
     gulp.task('dist:views', function () {
