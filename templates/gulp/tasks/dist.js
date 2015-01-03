@@ -5,21 +5,22 @@ var handleErrors = require('../util/handleErrors');
 
 module.exports = function (gulp, $, config) {
 
-    var paths = config.paths;
+    var dirs  = config.dirs;
+    var globs = config.globs;
 
     gulp.task('dist:clean', function (done) {
-        del([ paths['temp'], paths['product'] ], done);
+        del([ dirs['temp'], dirs['product'] ], done);
     });
 
     gulp.task('dist:views', function () {
-        return gulp.src(paths['develop'] + '/index.html')
+        return gulp.src(globs['views'])
             .pipe(handleErrors())
-            .pipe($.processhtml('index.html'))
-            .pipe(gulp.dest(paths['product']));
+            .pipe($.processhtml())
+            .pipe(gulp.dest(dirs['product']));
     });
 
     gulp.task('dist:styles', function () {
-        return gulp.src(paths['less'])
+        return gulp.src(globs['styles'])
             .pipe(handleErrors())
             .pipe($.less())
             .pipe($.minifyCss({
@@ -27,7 +28,7 @@ module.exports = function (gulp, $, config) {
                 removeEmpty: true
             }))
             .pipe($.rename('style.min.css'))
-            .pipe(gulp.dest(paths['product']));
+            .pipe(gulp.dest(dirs['product']));
     });
 
     gulp.task('dist:scripts', [ 'dev:build:scripts' ], function () {
@@ -42,7 +43,7 @@ module.exports = function (gulp, $, config) {
             .pipe($.concat('game.min.js'))
             .pipe($.uglify())
             .pipe($.sourcemaps.write('.'))
-            .pipe(gulp.dest(paths['product']));
+            .pipe(gulp.dest(dirs['product']));
     });
 
     gulp.task('dist:assets', function () {
@@ -52,10 +53,10 @@ module.exports = function (gulp, $, config) {
             '!static/bower_components/**'   // and its contents don't get copied.
         ])
             .pipe(handleErrors())
-            .pipe(gulp.dest(paths['product']));
+            .pipe(gulp.dest(dirs['product']));
     });
 
-    gulp.task('build', function (done) {
+    gulp.task('dist', function (done) {
         runSequence('dist:clean', [
             'dist:views',
             'dist:styles',

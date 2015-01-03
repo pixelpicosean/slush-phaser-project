@@ -1,13 +1,21 @@
+var SRC      = 'project';
+var BUILD    = '.tmp';
+var DIST     = 'dist';
+var STATIC   = 'static';
+
 module.exports = {
 
-    paths: {
-        'develop': 'project',
-        'static' : 'static',
-        'temp'   : '.tmp',
-        'product': 'dist',
+    dirs: {
+        'temp'   : BUILD,
+        'static' : STATIC,
+        'product': DIST
+    },
 
-        get less    () { return this['develop'] + '/less/*.less'; },
-        get scripts () { return this['develop'] + '/scripts/**/*.js'; }
+    globs: {
+        'views'  : SRC    + '/*.html',
+        'assets' : STATIC + '/**',
+        'styles' : SRC    + '/less/*.less',
+        'scripts': SRC    + '/scripts/**/*.js'
     }
 
 };

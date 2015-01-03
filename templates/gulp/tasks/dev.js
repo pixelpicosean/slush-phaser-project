@@ -4,25 +4,26 @@ var handleErrors = require('../util/handleErrors');
 
 module.exports = function (gulp, $, config) {
 
-    var paths = config.paths;
+    var dirs  = config.dirs;
+    var globs = config.globs;
 
     gulp.task('dev:build:views', function () {
-        return gulp.src(paths['develop'] + '/index.html')
-            .pipe(gulp.dest(paths['temp']))
+        return gulp.src(globs['views'])
+            .pipe(gulp.dest(dirs['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
     gulp.task('dev:build:styles', function () {
-        return gulp.src(paths['less'])
+        return gulp.src(globs['styles'])
             .pipe(handleErrors())
             .pipe($.less())
             .pipe($.concat('style.css'))
-            .pipe(gulp.dest(paths['temp']))
+            .pipe(gulp.dest(dirs['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
     gulp.task('dev:build:scripts', [ 'dev:lint' ], function () {
-        return gulp.src(paths['scripts'])
+        return gulp.src(globs['scripts'])
             .pipe(handleErrors())
             .pipe($.sourcemaps.init())
             .pipe($.traceur({
@@ -31,7 +32,7 @@ module.exports = function (gulp, $, config) {
             }))
             .pipe($.concat('game.js'))
             .pipe($.sourcemaps.write())
-            .pipe(gulp.dest(paths['temp']))
+            .pipe(gulp.dest(dirs['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
@@ -39,21 +40,21 @@ module.exports = function (gulp, $, config) {
         browserSync({
             server: {
                 baseDir: [
-                    paths['static'],
-                    paths['temp']
+                    dirs['static'],
+                    dirs['temp']
                 ]
             }
         });
     });
 
     gulp.task('dev:watch', function () {
-        gulp.watch(paths['scripts'],                 [ 'dev:build:scripts' ]);
-        gulp.watch(paths['less'],                    [  'dev:build:styles' ]);
-        gulp.watch(paths['develop'] + '/index.html', [   'dev:build:views' ]);
+        gulp.watch(globs['scripts'], [ 'dev:build:scripts' ]);
+        gulp.watch(globs['styles'],  [  'dev:build:styles' ]);
+        gulp.watch(globs['views'],   [   'dev:build:views' ]);
     });
 
     gulp.task('dev:lint', function () {
-        return gulp.src([ paths['scripts'] ])
+        return gulp.src([ globs['scripts'] ])
             .pipe(handleErrors())
             .pipe($.jshint('.jshintrc'))
             .pipe($.jshint.reporter('jshint-stylish'));
