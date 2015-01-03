@@ -27,10 +27,12 @@
     "gulp-conflict": "^0.3.0",
     "gulp-filter": "^2.0.0",
     "gulp-install": "^0.2.0",
+    "gulp-load-plugins": "^0.8.0",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.5.0",
     "gulp-template": "^2.0.0",
     "gulp-util": "^3.0.0",
-    "inquirer": "^0.8.0"
+    "inquirer": "^0.8.0",
+    "require-dir": "^0.1.0"
   }
 }
