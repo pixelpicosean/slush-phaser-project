@@ -65,7 +65,6 @@ module.exports = function (gulp, $, config) {
         gulp.watch(paths['develop'] + '/index.html', [    'html' ]);
     });
 
-    // The default task, run with `gulp default` or `gulp`.
     gulp.task('dev', [
         'watch',
         'server'
