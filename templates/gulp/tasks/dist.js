@@ -4,6 +4,9 @@ var handleErrors = require('../util/handleErrors');
 
 
 module.exports = function (gulp, $, config) {
+
+    var paths = config.paths;
+
     gulp.task('clean', function (done) {
         del([
             paths['temp'], paths['product']
@@ -62,4 +65,5 @@ module.exports = function (gulp, $, config) {
             'processAssets'
         ], done);
     });
+
 };

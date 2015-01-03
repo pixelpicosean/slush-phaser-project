@@ -4,6 +4,8 @@ var handleErrors = require('../util/handleErrors');
 
 module.exports = function (gulp, $, config) {
 
+    var paths = config.paths;
+
     gulp.task('html', function () {
         return gulp.src(paths['develop'] + '/index.html')
             .pipe(gulp.dest(paths['temp']))
