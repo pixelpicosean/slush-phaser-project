@@ -82,6 +82,7 @@ module.exports = function (gulp, $, config, deps) {
     gulp.task('dev:lint', function () {
         return gulp.src([ globs['scripts'] ])
             .pipe(handleErrors())
+            .pipe($.cached('lint'))
             .pipe($.jshint('.jshintrc'))
             .pipe($.jshint.reporter('jshint-stylish'));
     });
