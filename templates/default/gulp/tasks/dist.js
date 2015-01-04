@@ -4,8 +4,9 @@ module.exports = function (gulp, $, config, deps) {
     var runSequence  = deps['runSequence'];
     var handleErrors = deps['handleErrors'];
 
-    var dirs  = config.dirs;
-    var globs = config.globs;
+    var dirs    = config.dirs;
+    var globs   = config.globs;
+    var options = config.pluginOptions;
 
     gulp.task('dist:clean', function (done) {
         del([ dirs['temp'], dirs['product'] ], done);

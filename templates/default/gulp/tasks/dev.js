@@ -4,8 +4,9 @@ module.exports = function (gulp, $, config, deps) {
     var handleErrors   = deps['handleErrors'];
     var mainBowerFiles = deps['mainBowerFiles'];
 
-    var dirs  = config.dirs;
-    var globs = config.globs;
+    var dirs    = config.dirs;
+    var globs   = config.globs;
+    var options = config.pluginOptions;
 
     // Forget any cached data
     // Reference: https://github.com/gulpjs/gulp/blob/master/docs/recipes/incremental-builds-with-concatenate.md

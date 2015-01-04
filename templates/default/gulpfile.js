@@ -1,7 +1,7 @@
 var gulp    = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var tasks   = require('require-dir')('./gulp/tasks');
-var config  = require('./project.config');
+var config  = require('./project-config');
 
 var taskDeps = {
     'del'            : require('del'),

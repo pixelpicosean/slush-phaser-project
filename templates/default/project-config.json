@@ -1,0 +1,13 @@
+{
+    "dirs": {
+        "temp"   : ".tmp",
+        "static" : "static",
+        "product": "dist"
+    },
+    "globs": {
+        "views"  : "project/*.html",
+        "assets" : "static/**",
+        "styles" : "project/less/*.less",
+        "scripts": "project/scripts/**/*.js"
+    }
+}
