@@ -23,7 +23,7 @@
             "filename": "offline.appcache",
             "cache": [
                 "game.min.js",
-                "styles.min.css"
+                "style.min.css"
             ],
             "preferOnline": true,
             "timestamp": true,
