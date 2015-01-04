@@ -1,4 +1,4 @@
-var bootstrap = require('./utils/bootstrap');
+var bootstrap = require('./lib/loadGenerators');
 
 var gulp          = require('gulp');
 var plugins       = require('gulp-load-plugins')();
