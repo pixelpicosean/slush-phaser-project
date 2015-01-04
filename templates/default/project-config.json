@@ -11,6 +11,14 @@
         "scripts": "project/scripts/**/*.js"
     },
     "pluginOptions": {
+        "dev:build:scripts": {
+            "modules": "register",
+            "moduleName": true
+        },
+        "dist:styles": {
+            "keepSpecialComments": false,
+            "removeEmpty": true
+        },
         "dist:appcache": {
             "filename": "offline.appcache",
             "cache": [

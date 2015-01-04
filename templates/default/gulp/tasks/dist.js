@@ -23,10 +23,7 @@ module.exports = function (gulp, $, config, deps) {
         return gulp.src(globs['styles'])
             .pipe(handleErrors())
             .pipe($.less())
-            .pipe($.minifyCss({
-                keepSpecialComments: false,
-                removeEmpty: true
-            }))
+            .pipe($.less(options['dist:styles']))
             .pipe($.rename('style.min.css'))
             .pipe(gulp.dest(dirs['product']));
     });

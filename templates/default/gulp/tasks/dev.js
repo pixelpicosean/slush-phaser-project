@@ -39,10 +39,7 @@ module.exports = function (gulp, $, config, deps) {
             .pipe(handleErrors())
             .pipe($.cached('scripts'))
             .pipe($.sourcemaps.init())
-            .pipe($.traceur({
-                modules: 'register',
-                moduleName: true
-            }))
+            .pipe($.traceur(options['dev:build:scripts']))
             .pipe($.remember('scripts'))
             .pipe($.concat('game.js'))
             .pipe($.sourcemaps.write('.'))
