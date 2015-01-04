@@ -1,4 +1,4 @@
-class __NAMESPACE__ {
+class <%= name %> extends Phaser.State {
 
     init(settings) {
         // TODO
@@ -18,4 +18,4 @@ class __NAMESPACE__ {
 
 }
 
-export default __NAMESPACE__;
+export default <%= name %>;

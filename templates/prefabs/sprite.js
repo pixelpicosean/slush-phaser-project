@@ -1,7 +1,7 @@
-class __NAMESPACE__ extends Phaser.Sprite {
+class <%= name %> extends Phaser.Sprite {
 
     constructor(game, x, y) {
-        super(game, x, y, 'logo');
+        super(game, x, y, '<%= key %>');
 
         /* init code here */
         this.anchor.setTo(0.5);
@@ -13,4 +13,4 @@ class __NAMESPACE__ extends Phaser.Sprite {
 
 }
 
-export default __NAMESPACE__;
+export default <%= name %>;
