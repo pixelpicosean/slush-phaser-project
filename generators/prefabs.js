@@ -1,18 +1,31 @@
 /* globals __dirname */
 
-module.exports = function (gulp, $, dependencies) {
+module.exports = function (gulp, $, dependencies, projectConfig) {
 
+    var _        = dependencies['underscore.string'];
     var inquirer = dependencies['inquirer'];
 
+    var spritesDir = projectConfig.dirs.prefabs || 'project/scripts/prefabs';
+    var statesDir  = projectConfig.dirs.states  || 'project/scripts/states';
+
     function task (answers, done) {
-        var d = dest(answers.type);
+        var outDir    = dest(answers.type);
+        var className = _.capitalize(_.camelize(answers.name));
+
+        answers.className = className;
 
         gulp.src(prefabTemplate(answers.type))
             .pipe($.template(answers))
-            .pipe($.rename({ basename: answers.name }))
-            .pipe($.conflict(d))
-            .pipe(gulp.dest(d))
+            .pipe($.rename({ basename: className }))
+            .pipe($.conflict(outDir))
+            .pipe(gulp.dest(outDir))
             .on('finish', done);
+    }
+
+    function validateInput (regexp, errorMsg) {
+        return function (input) {
+            return !!input.match(regexp) || errorMsg;
+        };
     }
 
     function prefabTemplate (type) {
@@ -21,8 +34,8 @@ module.exports = function (gulp, $, dependencies) {
 
     function dest (type) {
         switch (type) {
-            case 'sprite': return 'project/scripts/prefabs';
-            case 'state' : return 'project/scripts/states';
+            case 'state' : return statesDir;
+            case 'sprite': return spritesDir;
         }
     }
 
@@ -30,16 +43,17 @@ module.exports = function (gulp, $, dependencies) {
         {
             name: 'type',
             type: 'list',
-            message: 'What kind of object to generate?',
+            message: 'Which class you want to extend?',
             choices: [
-                { name: 'Sprite', value: 'sprite' },
-                { name: 'State',  value: 'state' }
+                { name: 'Phaser.Sprite', value: 'sprite' },
+                { name: 'Phaser.State',  value: 'state' }
             ],
             default: 0
         },
         {
             name: 'name',
-            message: 'What will be the name of this object?'
+            message: 'What will be the name of this object?',
+            validate: validateInput(/^[a-z][a-z0-9\-_ ]+$/i, 'Invalid name')
         },
         {
             name: 'key',

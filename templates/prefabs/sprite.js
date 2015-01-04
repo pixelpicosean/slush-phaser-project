@@ -1,4 +1,4 @@
-class <%= name %> extends Phaser.Sprite {
+class <%= className %> extends Phaser.Sprite {
 
     constructor(game, x, y) {
         super(game, x, y, '<%= key %>');
@@ -13,4 +13,4 @@ class <%= name %> extends Phaser.Sprite {
 
 }
 
-export default <%= name %>;
+export default <%= className %>;
