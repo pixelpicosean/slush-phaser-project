@@ -44,12 +44,9 @@
 
     <!-- build:js game.min.js -->
     <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
-    <% if (needPIXI) { %><script src="bower_components/phaser/build/custom/pixi.js"></script><% } %>
-    <script src="bower_components/phaser/build/<%= phaserPath %>"></script>
-    <% _.forEach(externalLibs, function(lib) { %><script src="bower_components/phaser/build/custom/<%- lib %>.js"></script><% }); %>
+    <script src="bower_components/phaser/build/phaser.js"></script>
     <script src="game.js"></script>
     <!-- /build -->
-
     <script>
         window.game = System.get('main')['default'].start();
     </script>
