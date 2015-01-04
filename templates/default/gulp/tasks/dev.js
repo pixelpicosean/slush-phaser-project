@@ -7,6 +7,17 @@ module.exports = function (gulp, $, config, deps) {
     var dirs  = config.dirs;
     var globs = config.globs;
 
+    // Forget any cached data
+    // Reference: https://github.com/gulpjs/gulp/blob/master/docs/recipes/incremental-builds-with-concatenate.md
+    function forget (cacheName) {
+        return function (e) {
+            if (e.type === 'deleted') {
+                $.remember.forget(cacheName, e.path);
+                delete $.cached.caches[cacheName][e.path];
+            }
+        };
+    }
+
     gulp.task('dev:build:views', function () {
         return gulp.src(globs['views'])
             .pipe(gulp.dest(dirs['temp']))
@@ -25,11 +36,13 @@ module.exports = function (gulp, $, config, deps) {
     gulp.task('dev:build:scripts', [ 'dev:lint' ], function () {
         return gulp.src(globs['scripts'])
             .pipe(handleErrors())
+            .pipe($.cached('scripts'))
             .pipe($.sourcemaps.init())
             .pipe($.traceur({
                 modules: 'register',
                 moduleName: true
             }))
+            .pipe($.remember('scripts'))
             .pipe($.concat('game.js'))
             .pipe($.sourcemaps.write())
             .pipe(gulp.dest(dirs['temp']))
@@ -54,7 +67,9 @@ module.exports = function (gulp, $, config, deps) {
     });
 
     gulp.task('dev:watch', function () {
-        gulp.watch(globs['scripts'], [ 'dev:build:scripts' ]);
+        gulp.watch(globs['scripts'], [ 'dev:build:scripts' ])
+            .on('changed', forget('scripts'));
+
         gulp.watch(globs['styles'],  [  'dev:build:styles' ]);
         gulp.watch(globs['views'],   [   'dev:build:views' ]);
     });
