@@ -1,65 +1,60 @@
-var del          = require('del');
-var runSequence  = require('run-sequence');
-var handleErrors = require('../util/handleErrors');
+module.exports = function (gulp, $, config, deps) {
 
+    var del          = deps['del'];
+    var runSequence  = deps['runSequence'];
+    var handleErrors = deps['handleErrors'];
 
-module.exports = function (gulp, $, config) {
-
-    var dirs  = config.dirs;
-    var globs = config.globs;
+    var dirs    = config.dirs;
+    var globs   = config.globs;
+    var options = config.pluginOptions;
 
     gulp.task('dist:clean', function (done) {
-        del([ dirs['temp'], dirs['product'] ], done);
+        del([ dirs['build'], dirs['dist'] ], done);
     });
 
     gulp.task('dist:views', function () {
         return gulp.src(globs['views'])
             .pipe(handleErrors())
             .pipe($.processhtml())
-            .pipe(gulp.dest(dirs['product']));
+            .pipe(gulp.dest(dirs['dist']));
     });
 
-    gulp.task('dist:styles', function () {
-        return gulp.src(globs['styles'])
+    gulp.task('dist:styles', [ 'dev:build:styles' ], function () {
+        return gulp.src(dirs['build'] + '/*.css')
             .pipe(handleErrors())
-            .pipe($.less())
-            .pipe($.minifyCss({
-                keepSpecialComments: false,
-                removeEmpty: true
-            }))
-            .pipe($.rename('style.min.css'))
-            .pipe(gulp.dest(dirs['product']));
+            .pipe($.minifyCss(options['dist:styles']))
+            .pipe($.rename({ extname: '.min.css' }))
+            .pipe(gulp.dest(dirs['dist']));
     });
 
-    gulp.task('dist:scripts', [ 'dev:build:scripts' ], function () {
-        return gulp.src([
-                './static/bower_components/traceur-runtime/traceur-runtime.js',
-                './static/bower_components/phaser/build/phaser.js',
-                './.tmp/game.js'
-            ])
+    gulp.task('dist:scripts', [ 'dev:build:bundle', 'dev:build:scripts' ], function () {
+        return gulp.src([dirs['build'] + '/bundle.js', dirs['build'] + '/game.js'])
             .pipe($.sourcemaps.init())
             .pipe($.concat('game.min.js'))
             .pipe($.uglify())
             .pipe($.sourcemaps.write('.'))
-            .pipe(gulp.dest(dirs['product']));
+            .pipe(gulp.dest(dirs['dist']));
     });
 
     gulp.task('dist:assets', function () {
-        gulp.src([
-            'static/**',
-            '!static/bower_components',     // Workaround to ensure both directory
-            '!static/bower_components/**'   // and its contents don't get copied.
-        ])
+        gulp.src(globs['assets'])
+            .pipe(gulp.dest(dirs['dist']));
+    });
+
+    gulp.task('dist:appcache', function () {
+        return gulp.src(globs['assets'])
             .pipe(handleErrors())
-            .pipe(gulp.dest(dirs['product']));
+            .pipe($.manifest(options['dist:appcache']))
+            .pipe(gulp.dest(dirs['dist']));
     });
 
     gulp.task('dist', function (done) {
         runSequence('dist:clean', [
             'dist:views',
+            'dist:assets',
             'dist:styles',
             'dist:scripts',
-            'dist:assets'
+            'dist:appcache'
         ], done);
     });
 
