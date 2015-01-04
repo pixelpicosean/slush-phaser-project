@@ -6,8 +6,9 @@ var config  = require('./project-config');
 var taskDeps = {
     'del'            : require('del'),
     'browserSync'    : require('browser-sync'),
-    'handleErrors'   : require('./gulp/util/handleErrors'),
     'runSequence'    : require('run-sequence'),
+    'autoprefixer'   : require('autoprefixer-core'),
+    'handleErrors'   : require('./gulp/util/handleErrors'),
     'mainBowerFiles' : require('main-bower-files')
 };
 

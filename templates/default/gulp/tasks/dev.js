@@ -1,6 +1,7 @@
 module.exports = function (gulp, $, config, deps) {
 
     var browserSync    = deps['browserSync'];
+    var autoprefixer   = deps['autoprefixer'];
     var handleErrors   = deps['handleErrors'];
     var mainBowerFiles = deps['mainBowerFiles'];
 
@@ -28,8 +29,12 @@ module.exports = function (gulp, $, config, deps) {
     gulp.task('dev:build:styles', function () {
         return gulp.src(globs['styles'])
             .pipe(handleErrors())
+            .pipe($.sourcemaps.init())
             .pipe($.less())
-            .pipe($.concat('style.css'))
+            .pipe($.postcss([
+                autoprefixer()
+            ]))
+            .pipe($.sourcemaps.write('.'))
             .pipe(gulp.dest(dirs['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });

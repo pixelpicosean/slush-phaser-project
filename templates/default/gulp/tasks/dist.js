@@ -19,12 +19,11 @@ module.exports = function (gulp, $, config, deps) {
             .pipe(gulp.dest(dirs['product']));
     });
 
-    gulp.task('dist:styles', function () {
-        return gulp.src(globs['styles'])
+    gulp.task('dist:styles', [ 'dev:build:styles' ], function () {
+        return gulp.src(dirs['temp'] + '/*.css')
             .pipe(handleErrors())
-            .pipe($.less())
-            .pipe($.less(options['dist:styles']))
-            .pipe($.rename('style.min.css'))
+            .pipe($.minifyCss(options['dist:styles']))
+            .pipe($.rename({ extname: '.min.css' }))
             .pipe(gulp.dest(dirs['product']));
     });
 
