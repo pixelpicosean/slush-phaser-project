@@ -1,9 +1,8 @@
-var browserSync    = require('browser-sync');
-var handleErrors   = require('../util/handleErrors');
-var mainBowerFiles = require('main-bower-files');
+module.exports = function (gulp, $, config, deps) {
 
-
-module.exports = function (gulp, $, config) {
+    var browserSync    = deps['browserSync'];
+    var handleErrors   = deps['handleErrors'];
+    var mainBowerFiles = deps['mainBowerFiles'];
 
     var dirs  = config.dirs;
     var globs = config.globs;
