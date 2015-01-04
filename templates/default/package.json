@@ -26,7 +26,7 @@
     "run-sequence": "^1.0.2"
   },
   "scripts": {
-    "post-install": "node ./node_modules/bower/bin/bower install",
-    "start": "./node_modules/.bin/gulp default"
+    "postinstall": "bower install",
+    "start": "gulp default"
   }
 }
