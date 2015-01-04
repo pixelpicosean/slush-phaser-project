@@ -2,7 +2,9 @@
     "dirs": {
         "build"   : ".tmp",
         "static" : "static",
-        "dist": "dist"
+        "dist": "dist",
+        "states": "project/scripts/states",
+        "prefabs": "project/scripts/prefabs"
     },
     "globs": {
         "views"  : "project/*.html",
