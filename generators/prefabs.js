@@ -1,12 +1,9 @@
 /* globals __dirname */
 
-module.exports = function (gulp, $, dependencies, projectConfig) {
+module.exports = function (gulp, $, dependencies, config) {
 
     var _        = dependencies['underscore.string'];
     var inquirer = dependencies['inquirer'];
-
-    var spritesDir = projectConfig.dirs.prefabs || 'project/scripts/prefabs';
-    var statesDir  = projectConfig.dirs.states  || 'project/scripts/states';
 
     function task (answers, done) {
         var outDir    = dest(answers.type);
@@ -22,6 +19,15 @@ module.exports = function (gulp, $, dependencies, projectConfig) {
             .on('finish', done);
     }
 
+    function result (done) {
+        return function (answers) {
+            if (!answers.proceed)
+                return done();
+
+            task(answers, done);
+        };
+    }
+
     function validateInput (regexp, errorMsg) {
         return function (input) {
             return !!input.match(regexp) || errorMsg;
@@ -34,8 +40,8 @@ module.exports = function (gulp, $, dependencies, projectConfig) {
 
     function dest (type) {
         switch (type) {
-            case 'state' : return statesDir;
-            case 'sprite': return spritesDir;
+            case 'state' : return config.dirs.states;
+            case 'sprite': return config.dirs.prefabs;
         }
     }
 
@@ -71,12 +77,7 @@ module.exports = function (gulp, $, dependencies, projectConfig) {
     ];
 
     gulp.task('prefab', function (done) {
-        inquirer.prompt(prompts, function (answers) {
-            if (!answers.proceed)
-                return done();
-
-            task(answers, done);
-        });
+        inquirer.prompt(prompts, result(done));
     });
 
 };

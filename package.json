@@ -34,6 +34,7 @@
     "gulp-util": "^3.0.0",
     "inquirer": "^0.8.0",
     "require-dir": "^0.1.0",
+    "underscore": "^1.7.0",
     "underscore.string": "^2.4.0"
   }
 }

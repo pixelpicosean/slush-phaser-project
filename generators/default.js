@@ -1,7 +1,8 @@
 /* globals __dirname */
 
-module.exports = function (gulp, $, dependencies) {
+module.exports = function (gulp, $, dependencies, config) {
 
+    var _        = dependencies['underscore.string'];
     var inquirer = dependencies['inquirer'];
 
     function task (answers, done) {
@@ -17,6 +18,15 @@ module.exports = function (gulp, $, dependencies) {
             .pipe(gulp.dest('.'))
             .pipe($.install())
             .on('finish', done);
+    }
+
+    function result (done) {
+        return function (answers) {
+            if (!answers.proceed)
+                return done();
+
+            task(answers, done);
+        };
     }
 
     function validateInput (regexp, errorMsg) {
@@ -139,12 +149,7 @@ module.exports = function (gulp, $, dependencies) {
     ];
 
     gulp.task('default', function (done) {
-        inquirer.prompt(prompts, function(answers) {
-            if (!answers.proceed)
-                return done();
-
-            task(answers, done);
-        });
+        inquirer.prompt(prompts, result(done));
     });
 
 };
