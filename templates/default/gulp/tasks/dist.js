@@ -29,10 +29,7 @@ module.exports = function (gulp, $, config, deps) {
     });
 
     gulp.task('dist:scripts', [ 'dev:build:bundle', 'dev:build:scripts' ], function () {
-        return gulp.src([
-                './.tmp/bundle.js',
-                './.tmp/game.js'
-            ])
+        return gulp.src([dirs['temp'] + '/bundle.js', dirs['temp'] + '/game.js'])
             .pipe($.sourcemaps.init())
             .pipe($.concat('game.min.js'))
             .pipe($.uglify())
