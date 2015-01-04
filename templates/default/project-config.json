@@ -1,8 +1,8 @@
 {
     "dirs": {
-        "temp"   : ".tmp",
+        "build"   : ".tmp",
         "static" : "static",
-        "product": "dist"
+        "dist": "dist"
     },
     "globs": {
         "views"  : "project/*.html",

@@ -22,7 +22,7 @@ module.exports = function (gulp, $, config, deps) {
 
     gulp.task('dev:build:views', function () {
         return gulp.src(globs['views'])
-            .pipe(gulp.dest(dirs['temp']))
+            .pipe(gulp.dest(dirs['build']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
@@ -35,7 +35,7 @@ module.exports = function (gulp, $, config, deps) {
                 autoprefixer()
             ]))
             .pipe($.sourcemaps.write('.'))
-            .pipe(gulp.dest(dirs['temp']))
+            .pipe(gulp.dest(dirs['build']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
@@ -48,14 +48,14 @@ module.exports = function (gulp, $, config, deps) {
             .pipe($.remember('scripts'))
             .pipe($.concat('game.js'))
             .pipe($.sourcemaps.write('.'))
-            .pipe(gulp.dest(dirs['temp']))
+            .pipe(gulp.dest(dirs['build']))
             .pipe(browserSync.reload({ stream: true }));
     });
 
     gulp.task('dev:build:bundle', function () {
         return gulp.src(mainBowerFiles())
             .pipe($.concat('bundle.js'))
-            .pipe(gulp.dest(dirs['temp']));
+            .pipe(gulp.dest(dirs['build']));
     });
 
     gulp.task('dev:server', [ 'dev:build' ], function () {
@@ -63,7 +63,7 @@ module.exports = function (gulp, $, config, deps) {
             server: {
                 baseDir: [
                     dirs['static'],
-                    dirs['temp']
+                    dirs['build']
                 ]
             },
             ghostMode: false,
