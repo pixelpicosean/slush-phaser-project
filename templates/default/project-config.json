@@ -9,5 +9,24 @@
         "assets" : "static/**",
         "styles" : "project/less/*.less",
         "scripts": "project/scripts/**/*.js"
+    },
+    "pluginOptions": {
+        "dist:appcache": {
+            "filename": "offline.appcache",
+            "cache": [
+                "game.min.js",
+                "styles.min.css"
+            ],
+            "preferOnline": true,
+            "timestamp": true,
+            "network": [
+                "https://*",
+                "http://*",
+                "*"
+            ],
+            "fallback": [
+                ". index.html"
+            ]
+        }
     }
 }
