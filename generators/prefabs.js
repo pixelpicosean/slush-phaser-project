@@ -1,6 +1,8 @@
 /* globals __dirname */
 
-module.exports = function (gulp, $, inquirer) {
+module.exports = function (gulp, $, dependencies) {
+
+    var inquirer = dependencies['inquirer'];
 
     function task (answers, done) {
         var d = dest(answers.type);
