@@ -62,7 +62,9 @@ module.exports = function (gulp, $, config, deps) {
                     dirs['static'],
                     dirs['temp']
                 ]
-            }
+            },
+            ghostMode: false,
+            notify: false
         });
     });
 
