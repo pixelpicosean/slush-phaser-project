@@ -1,5 +1,6 @@
-var browserSync  = require('browser-sync');
-var handleErrors = require('../util/handleErrors');
+var browserSync    = require('browser-sync');
+var handleErrors   = require('../util/handleErrors');
+var mainBowerFiles = require('main-bower-files');
 
 
 module.exports = function (gulp, $, config) {
@@ -36,6 +37,12 @@ module.exports = function (gulp, $, config) {
             .pipe(browserSync.reload({ stream: true }));
     });
 
+    gulp.task('dev:build:bundle', function () {
+        return gulp.src(mainBowerFiles())
+            .pipe($.concat('bundle.js'))
+            .pipe(gulp.dest(dirs['temp']));
+    });
+
     gulp.task('dev:server', [ 'dev:build' ], function () {
         browserSync({
             server: {
@@ -62,6 +69,7 @@ module.exports = function (gulp, $, config) {
 
     gulp.task('dev:build', [
         'dev:build:views',
+        'dev:build:bundle',
         'dev:build:styles',
         'dev:build:scripts'
     ]);

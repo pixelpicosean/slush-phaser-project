@@ -31,10 +31,9 @@ module.exports = function (gulp, $, config) {
             .pipe(gulp.dest(dirs['product']));
     });
 
-    gulp.task('dist:scripts', [ 'dev:build:scripts' ], function () {
+    gulp.task('dist:scripts', [ 'dev:build:bundle', 'dev:build:scripts' ], function () {
         return gulp.src([
-                './static/bower_components/traceur-runtime/traceur-runtime.js',
-                './static/bower_components/phaser/build/phaser.js',
+                './.tmp/bundle.js',
                 './.tmp/game.js'
             ])
             .pipe($.sourcemaps.init())
