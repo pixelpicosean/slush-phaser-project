@@ -19,13 +19,13 @@ class Analytics {
         }
 
         if (value) {
-            window.ga('send', this.category, action, label, value);
+            window.ga('send', 'event', this.category, action, label, value);
         }
         else if (label) {
-            window.ga('send', this.category, action, label);
+            window.ga('send', 'event', this.category, action, label);
         }
         else {
-            window.ga('send', this.category, action);
+            window.ga('send', 'event', this.category, action);
         }
     }
 
