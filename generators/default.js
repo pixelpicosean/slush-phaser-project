@@ -2,6 +2,21 @@
 
 module.exports = function (gulp, $, inquirer) {
 
+    function task (answers, done) {
+        var filter = $.filter('**/*.{md,js,json,html,manifest}');
+        phaserLibs(answers);
+
+        gulp.src(__dirname + '/../templates/default/**')
+            .pipe(filter)
+            .pipe($.template(answers))
+            .pipe(filter.restore())
+            .pipe($.rename(renameHiddenFile))
+            .pipe($.conflict('.'))
+            .pipe(gulp.dest('.'))
+            .pipe($.install())
+            .on('finish', done);
+    }
+
     function validateInput (regexp, errorMsg) {
         return function (input) {
             return !!input.match(regexp) || errorMsg;
@@ -16,10 +31,10 @@ module.exports = function (gulp, $, inquirer) {
     function phaserLibs (answers) {
         // Config phaser path
         var phaserPaths = {
-            'all': 'phaser.js',
-            'none': 'custom/phaser-no-libs.js',
+            'all'   : 'phaser.js',
+            'none'  : 'custom/phaser-no-libs.js',
             'arcade': 'custom/phaser-arcade-physics.js',
-            '?': 'custom/phaser-no-libs.js'
+            '?'     : 'custom/phaser-no-libs.js'
         };
 
         answers.phaserPath = phaserPaths[answers['phaserCustom']];
@@ -47,20 +62,6 @@ module.exports = function (gulp, $, inquirer) {
                 }
             }
         }
-    }
-
-    function processTask (answers, done) {
-        var filter = $.filter('**/*.{md,js,json,html,manifest}');
-
-        gulp.src(__dirname + '/../templates/default/**')
-            .pipe(filter)
-            .pipe($.template(answers))
-            .pipe(filter.restore())
-            .pipe($.rename(renameHiddenFile))
-            .pipe($.conflict('./'))
-            .pipe(gulp.dest('./'))
-            .pipe($.install())
-            .on('finish', done);
     }
 
     var prompts = [
@@ -129,7 +130,7 @@ module.exports = function (gulp, $, inquirer) {
         },
         {
             type: 'confirm',
-            name: 'moveOn',
+            name: 'proceed',
             message: 'Continue?',
             default: true
         }
@@ -137,11 +138,10 @@ module.exports = function (gulp, $, inquirer) {
 
     gulp.task('default', function (done) {
         inquirer.prompt(prompts, function(answers) {
-            if (!answers.moveOn)
+            if (!answers.proceed)
                 return done();
 
-            phaserLibs(answers);
-            processTask(answers, done);
+            task(answers, done);
         });
     });
 

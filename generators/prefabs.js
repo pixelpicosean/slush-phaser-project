@@ -20,7 +20,7 @@ module.exports = function (gulp, $, inquirer) {
     function dest (type) {
         switch (type) {
             case 'sprite': return 'project/scripts/prefabs';
-            case 'state':  return 'project/scripts/states';
+            case 'state' : return 'project/scripts/states';
         }
     }
 
