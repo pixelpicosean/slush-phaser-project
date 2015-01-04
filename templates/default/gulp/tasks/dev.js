@@ -44,7 +44,7 @@ module.exports = function (gulp, $, config, deps) {
             }))
             .pipe($.remember('scripts'))
             .pipe($.concat('game.js'))
-            .pipe($.sourcemaps.write())
+            .pipe($.sourcemaps.write('.'))
             .pipe(gulp.dest(dirs['temp']))
             .pipe(browserSync.reload({ stream: true }));
     });
