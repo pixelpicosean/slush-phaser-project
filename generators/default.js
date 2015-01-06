@@ -2,8 +2,9 @@
 
 module.exports = function (gulp, $, dependencies, config) {
 
-    var _        = dependencies['underscore.string'];
+    var _        = dependencies['underscore'];
     var inquirer = dependencies['inquirer'];
+    _.str        = dependencies['underscore.string'];
 
     function task (answers, done) {
         var filter = $.filter('**/*.{md,js,json,html,manifest}');
@@ -84,10 +85,10 @@ module.exports = function (gulp, $, dependencies, config) {
         {
             type: 'list',
             name: 'physicsEngine',
-            message: 'Choose which physics systems you want, including those you MAY use in the future',
+            message: 'Choose which physics engines you will use',
             choices: [
                 { name: 'Arcade only (default, recommended)', value: 'arcade'   },
-                { name: 'Standard (P2 and Arcade)'          , value: 'standard' },
+                { name: 'P2 with Arcade (standard)'         , value: 'standard' },
                 { name: 'Ninja with Arcade'                 , value: 'ninja'    },
                 { name: 'Do not include any physics engine' , value: 'none'     },
             ],

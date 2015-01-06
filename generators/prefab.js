@@ -2,18 +2,16 @@
 
 module.exports = function (gulp, $, dependencies, config) {
 
-    var _        = dependencies['underscore.string'];
+    var _        = dependencies['underscore'];
     var inquirer = dependencies['inquirer'];
+    _.str        = dependencies['underscore.string'];
 
     function task (answers, done) {
-        var outDir    = dest(answers.type);
-        var className = _.capitalize(_.camelize(answers.name));
-
-        answers.className = className;
+        var outDir = dest(answers.type);
 
         gulp.src(prefabTemplate(answers.type))
             .pipe($.template(answers))
-            .pipe($.rename({ basename: className }))
+            .pipe($.rename({ basename: answers.name }))
             .pipe($.conflict(outDir))
             .pipe(gulp.dest(outDir))
             .on('finish', done);
@@ -32,6 +30,10 @@ module.exports = function (gulp, $, dependencies, config) {
         return function (input) {
             return !!input.match(regexp) || errorMsg;
         };
+    }
+
+    function filterClassName (choice) {
+        return _.str.capitalize(_.str.camelize(choice));
     }
 
     function prefabTemplate (type) {
@@ -59,7 +61,8 @@ module.exports = function (gulp, $, dependencies, config) {
         {
             name: 'name',
             message: 'What will be the name of this object?',
-            validate: validateInput(/^[a-z][a-z0-9\-_ ]+$/i, 'Invalid name')
+            validate: validateInput(/^[a-z][a-z0-9\-_ ]+$/i, 'Invalid name'),
+            filter: filterClassName
         },
         {
             name: 'key',

@@ -4,6 +4,7 @@ require(__dirname + '/lib/loadGenerators')(
 
     [
         'inquirer',
+        'underscore',
         'underscore.string'
     ],
 
