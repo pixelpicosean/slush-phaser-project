@@ -62,41 +62,20 @@ Finally run [gulp][gulp] to launch a server.
 $ gulp
 ```
 
-### Generator
+### Generators
 
-After installed there should be a `phaser` command in your PATH, try `phaser --version` to check it.
-Now there's only generator support from the cli command, maybe project or some other features will be added, but I dont have any idea about that. *Feel free to tell me what you think :D*
+The following generator are available on the current version:
 
-**NOTE:** to make generator work as you want, please locate to **`GAME_ROOT`** instead of **`GAME_ROOT/project`**.
+*   `prefab`
 
-    phaser [command] [options]
+    This generator will scaffold an entity class for your game. The following classes are supported:
 
-    Commands:
-        g|generate         // Generate a new scene/prefab with ES6 support       
+    -   State
+    -   Sprite
 
-    Options:
-        -h, --help     output usage information
-        -V, --version  output the version number
 
-    Command-Specific Help:
-        phaser [command] --help
+**NOTICE**: Prior to running a generator, be sure you are in the project's root directory.
 
-#### Sample Usage
-
-Generate a new state called `Credits`:
-```sh
-phaser g state:credits
-```
-
-Generate a new sprite prefab `Trigger`:
-```sh
-phaser g sprite:trigger
-```
-
-Generate a new sprite prefab `Radar` in `prefabs/triggers` folder:
-```sh
-phaser g sprite:triggers/radar
-```
 
 ## Workflow
 
