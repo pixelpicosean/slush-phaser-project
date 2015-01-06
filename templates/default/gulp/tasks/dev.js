@@ -44,7 +44,7 @@ module.exports = function (gulp, $, config, deps) {
             .pipe(handleErrors())
             .pipe($.cached('scripts'))
             .pipe($.sourcemaps.init())
-            .pipe($.traceur(options['dev:build:scripts']))
+            .pipe($['6to5'](options['dev:build:scripts']))
             .pipe($.remember('scripts'))
             .pipe($.concat('game.js'))
             .pipe($.sourcemaps.write('.'))
@@ -53,7 +53,10 @@ module.exports = function (gulp, $, config, deps) {
     });
 
     gulp.task('dev:build:bundle', function () {
-        return gulp.src(mainBowerFiles())
+        var libs = [ './node_modules/6to5/browser-polyfill.js' ]
+            .concat(mainBowerFiles());
+
+        return gulp.src(libs)
             .pipe($.concat('bundle.js'))
             .pipe(gulp.dest(dirs['build']));
     });
@@ -77,6 +80,7 @@ module.exports = function (gulp, $, config, deps) {
 
         gulp.watch(globs['styles'],  [  'dev:build:styles' ]);
         gulp.watch(globs['views'],   [   'dev:build:views' ]);
+        gulp.watch('bower.json',     [  'dev:build:bundle' ]);
     });
 
     gulp.task('dev:lint', function () {
