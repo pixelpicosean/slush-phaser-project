@@ -77,6 +77,7 @@ module.exports = function (gulp, $, config, deps) {
 
         gulp.watch(globs['styles'],  [  'dev:build:styles' ]);
         gulp.watch(globs['views'],   [   'dev:build:views' ]);
+        gulp.watch('bower.json',     [  'dev:build:bundle' ]);
     });
 
     gulp.task('dev:lint', function () {
