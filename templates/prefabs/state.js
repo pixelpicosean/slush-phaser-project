@@ -1,4 +1,4 @@
-class <%= className %> extends Phaser.State {
+class <%= name %> extends Phaser.State {
 
     init(settings) {
         // TODO
@@ -18,4 +18,4 @@ class <%= className %> extends Phaser.State {
 
 }
 
-export default <%= className %>;
+export default <%= name %>;

@@ -1,0 +1,9 @@
+{
+    "dirs": {
+        "build"   : ".tmp",
+        "static" : "static",
+        "dist": "dist",
+        "states": "project/scripts/states",
+        "prefabs": "project/scripts/prefabs"
+    }
+}
