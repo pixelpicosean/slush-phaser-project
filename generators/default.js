@@ -7,7 +7,6 @@ module.exports = function (gulp, $, dependencies, config) {
 
     function task (answers, done) {
         var filter = $.filter('**/*.{md,js,json,html,manifest}');
-        // phaserLibs(answers);
 
         gulp.src(__dirname + '/../templates/default/**')
             .pipe(filter)
@@ -40,41 +39,14 @@ module.exports = function (gulp, $, dependencies, config) {
             file.basename = '.' + file.basename.slice(1);
     }
 
-    // function phaserLibs (answers) {
-    //     // Config phaser path
-    //     var phaserPaths = {
-    //         'all'   : 'phaser.js',
-    //         'none'  : 'custom/phaser-no-libs.js',
-    //         'arcade': 'custom/phaser-arcade-physics.js',
-    //         '?'     : 'custom/phaser-no-libs.js'
-    //     };
-    //
-    //     answers.phaserPath = phaserPaths[answers['phaserCustom']];
-    //     answers.externalLibs = answers.externalLibs || [];
-    //     answers.needPIXI = false;
-    //
-    //     // Config included physics libs
-    //     if (answers['phaserCustom'] === '?') {
-    //         // Choose all the 3 ?!
-    //         if (answers['externalLibs'].length === 3) {
-    //             answers.phaserPath = phaserPaths['all'];
-    //             // Donot duplicate
-    //             answers['externalLibs'].length = 0;
-    //         }
-    //         else {
-    //             // Reset phaser path to the arcade one if arcade choosed
-    //             var index = answers['externalLibs'].indexOf('arcade');
-    //             if (index !== -1) {
-    //                 answers.phaserPath = phaserPaths['arcade'];
-    //                 answers['externalLibs'].splice(index, 1);
-    //             }
-    //             else {
-    //                 // Add pixi.js if use "phaser-no-libs"
-    //                 answers.needPIXI = true;
-    //             }
-    //         }
-    //     }
-    // }
+    function filterPhysicsEngine (choice) {
+        switch (choice) {
+            case 'arcade'  : return 'build/custom/phaser-arcade-physics.js';
+            case 'standard': return 'build/phaser.js';
+            case 'ninja'   : return 'build/custom/phaser-ninja-physics.js';
+            case 'none'    : return 'build/custom/phaser-no-physics.js';
+        }
+    }
 
     var prompts = [
         {
@@ -109,31 +81,19 @@ module.exports = function (gulp, $, dependencies, config) {
             message: 'Height',
             validate: validateInput(/^\d+$/, "Please enter a valid number")
         },
-        // {
-        //     type: 'list',
-        //     name: 'phaserCustom',
-        //     message: 'Choose physics systems you want, including those you MAY use in the future',
-        //     choices: [
-        //         { name: 'Only arcade (Recommended)', value: 'arcade' },
-        //         { name: 'All', value: 'all' },
-        //         { name: 'Customise', value: '?' },
-        //         { name: 'No physics support', value: 'none' }
-        //     ],
-        //     default: 0
-        // },
-        // {
-        //     type: 'checkbox',
-        //     name: 'externalLibs',
-        //     message: 'Select libs you want to use',
-        //     choices: [
-        //         { name: 'Arcade', value: 'arcade', checked: true },
-        //         { name: 'P2', value: 'p2' },
-        //         { name: 'Ninja', value: 'ninja' }
-        //     ],
-        //     when: function(answers) {
-        //         return (answers['phaserCustom'] === '?');
-        //     }
-        // },
+        {
+            type: 'list',
+            name: 'physicsEngine',
+            message: 'Choose which physics systems you want, including those you MAY use in the future',
+            choices: [
+                { name: 'Arcade only (default, recommended)', value: 'arcade'   },
+                { name: 'Standard (P2 and Arcade)'          , value: 'standard' },
+                { name: 'Ninja with Arcade'                 , value: 'ninja'    },
+                { name: 'Do not include any physics engine' , value: 'none'     },
+            ],
+            filter: filterPhysicsEngine,
+            default: 0
+        },
         {
             type: 'input',
             name: 'ga',
