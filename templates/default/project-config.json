@@ -14,8 +14,12 @@
     },
     "pluginOptions": {
         "dev:build:scripts": {
-            "modules": "register",
-            "moduleName": true
+            "modules": "amd",
+            "moduleIds": true,
+            "format": {
+                "comments": false,
+                "compact": true
+            }
         },
         "dist:styles": {
             "keepSpecialComments": false,

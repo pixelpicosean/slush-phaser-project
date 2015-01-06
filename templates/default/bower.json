@@ -6,7 +6,7 @@
   ],
   "dependencies": {
     "phaser": "latest",
-    "traceur-runtime": "latest"
+    "almond": "latest"
   },
   "overrides": {
     "phaser": {
