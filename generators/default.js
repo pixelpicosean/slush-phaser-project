@@ -7,12 +7,8 @@ module.exports = function (gulp, $, dependencies, config) {
     _.str        = dependencies['underscore.string'];
 
     function task (answers, done) {
-        var filter = $.filter('**/*.{md,js,json,html,manifest}');
-
         gulp.src(__dirname + '/../templates/default/**')
-            .pipe(filter)
-            .pipe($.template(answers))
-            .pipe(filter.restore())
+            .pipe($.if('**/*.{md,js,json,html,manifest}', $.template(answers)))
             .pipe($.rename(renameHiddenFile))
             .pipe($.conflict('.'))
             .pipe(gulp.dest('.'))
