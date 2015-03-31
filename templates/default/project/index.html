@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<!-- build:[manifest] offline.appcache -->
 <html lang="en">
+<!-- /build -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -35,23 +37,19 @@
 
     <title><%= name %></title>
 
-    <!-- build:css style.min.css -->
-    <link rel="stylesheet" href="style.css">
+    <!-- build:css styles.min.css -->
+    <link rel="stylesheet" href="styles.css">
     <!-- /build -->
 </head>
 <body>
     <section id="game-container"></section>
 
     <!-- build:js game.min.js -->
-    <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
-    <% if (needPIXI) { %><script src="bower_components/phaser-official/build/custom/pixi.js"></script><% } %>
-    <script src="bower_components/phaser-official/build/<%= phaserPath %>"></script>
-    <% _.forEach(externalLibs, function(lib) { %><script src="bower_components/phaser-official/build/custom/<%- lib %>.js"></script><% }); %>
+    <script src="bundle.js"></script>
     <script src="game.js"></script>
     <!-- /build -->
-
     <script>
-        window.game = System.get('main')['default'].start();
+        window.game = require('main')['default'].start();
     </script>
 </body>
 </html>
